@@ -4,13 +4,16 @@ import React from 'react';
 class Footer extends React.Component {
   render() {
     const divStyle = { paddingTop: '15px' };
+    const footerStyle = { 'background-color': '#069200', color: '#FFF' };
     return (
-        <footer>
+        <footer style={footerStyle} >
           <div style={divStyle} className="ui center aligned container">
-            <hr />
-              Department of Information and Computer Sciences <br />
-              University of Hawaii<br />
-              Honolulu, HI 96822
+            O'ahu Waste Organizer<br/>
+            <hr/>
+            Final Project for ICS 314<br/>
+            Inspired by OWO, the HACC 2018 team project<br/>
+            University of Hawaii<br/>
+            Honolulu, HI 96822<br/>
           </div>
         </footer>
     );
