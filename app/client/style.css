@@ -1,6 +1,27 @@
 .background {
-  background: url('https://camping.ehawaii.gov/camping/resources/spc,resource,31720,p,1,null,Waimanu%20valley.JPG') no-repeat center center fixed;
+  margin-top: -10px;
+  background: url(https://camping.ehawaii.gov/camping/resources/spc,resource,31720,p,1,null,Waimanu%20valley.JPG) no-repeat center center fixed;
   background-size: cover;
+  height: auto;
   color: white;
-  height: 500px;
+}
+
+.trapezoid {
+  border-bottom: 600px solid #373737;
+  border-left: 0px solid transparent;
+  border-right: 30vw solid transparent;
+  height: 0;
+  width: 60vw;
+  text-align: center;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #069200;
+  color: white;
+  text-align: center;
+  padding: 15px 0px 15px 0px;
 }
