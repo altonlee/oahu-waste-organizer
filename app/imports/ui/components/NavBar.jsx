@@ -7,6 +7,7 @@ import { Menu, Dropdown, Image } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
+/** TODO: Add a link to current open audit */
 class NavBar extends React.Component {
   render() {
     const menuStyle = { marginBottom: '10px', backgroundColor: '#069200' };
@@ -16,9 +17,6 @@ class NavBar extends React.Component {
             <Image src="/images/logo_white.png" size='mini'/>
           </Menu.Item>
           <Menu.Item as={NavLink} activeClassName="active" exact to="/events" key='events'>Events</Menu.Item>
-          <Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>Charts and
-            Graphs</Menu.Item>
-          <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>Heat Map</Menu.Item>
           <Menu.Item as={NavLink} activeClassName="active" exact to="/about" key='about'>Learn More</Menu.Item>
           {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
               <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Edit Events</Menu.Item>

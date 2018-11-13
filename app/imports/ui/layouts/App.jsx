@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import Home from '../pages/Home';
 import ListStuff from '../pages/ListStuff';
 import ListEvents from '../pages/ListEvents';
+import EventCharts from '../pages/EventCharts';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import InputData from '../pages/InputData';
 import EditStuff from '../pages/EditStuff';
@@ -32,6 +33,7 @@ class App extends React.Component {
               <Route path="/about" component={ListStuff}/>
               <ProtectedRoute path="/list" component={ListStuff}/>
               <ProtectedRoute path="/input" component={InputData}/>
+              <ProtectedRoute path="/charts" component={EventCharts}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
