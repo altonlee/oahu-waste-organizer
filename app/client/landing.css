@@ -1,0 +1,16 @@
+.landing-background {
+  margin-top: -10px;
+  background: url(https://camping.ehawaii.gov/camping/resources/spc,resource,31720,p,1,null,Waimanu%20valley.JPG) no-repeat center center fixed;
+  background-size: cover;
+  height: auto;
+  color: white;
+}
+
+.trapezoid {
+  border-bottom: 600px solid #373737;
+  border-left: 0px solid transparent;
+  border-right: 30vw solid transparent;
+  height: 0;
+  width: 60vw;
+  text-align: center;
+}
