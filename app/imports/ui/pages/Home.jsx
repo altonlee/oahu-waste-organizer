@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Image, Grid } from 'semantic-ui-react';
+import { Header, Image } from 'semantic-ui-react';
 
 /** A simple static component to render some text for the Home page. */
 class Home extends React.Component {

@@ -8,8 +8,12 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Home from '../pages/Home';
 import ListStuff from '../pages/ListStuff';
+<<<<<<< HEAD
 import ListEvents from '../pages/ListEvents';
 import EventCharts from '../pages/EventCharts';
+=======
+import About from '../pages/About';
+>>>>>>> JakeBranch
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import InputData from '../pages/InputData';
 import EditStuff from '../pages/EditStuff';
@@ -29,8 +33,13 @@ class App extends React.Component {
               <Route exact path="/" component={Home}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
+<<<<<<< HEAD
               <Route path="/events" component={ListEvents}/>
               <Route path="/about" component={ListStuff}/>
+=======
+              <Route path="/events" component={ListStuff}/>
+              <Route path="/about" component={About}/>
+>>>>>>> JakeBranch
               <ProtectedRoute path="/list" component={ListStuff}/>
               <ProtectedRoute path="/input" component={InputData}/>
               <ProtectedRoute path="/charts" component={EventCharts}/>
