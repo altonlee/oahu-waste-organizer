@@ -10,7 +10,7 @@ import Home from '../pages/Home';
 import ListStuff from '../pages/ListStuff';
 import ListEvents from '../pages/ListEvents';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
+import InputData from '../pages/InputData';
 import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -31,7 +31,7 @@ class App extends React.Component {
               <Route path="/events" component={ListEvents}/>
               <Route path="/about" component={ListStuff}/>
               <ProtectedRoute path="/list" component={ListStuff}/>
-              <ProtectedRoute path="/add" component={AddStuff}/>
+              <ProtectedRoute path="/input" component={InputData}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>

@@ -1,3 +1,10 @@
+h2 {
+  margin: 10px 0 5px 0;
+  padding: 0;
+  font-size: 20px;
+  font-weight: normal;
+}
+
 .background {
   margin-top: -10px;
   background: url(https://camping.ehawaii.gov/camping/resources/spc,resource,31720,p,1,null,Waimanu%20valley.JPG) no-repeat center center fixed;

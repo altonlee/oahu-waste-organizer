@@ -1,11 +1,13 @@
 import React from 'react';
-import { Container, Button, Icon, Item, Header } from 'semantic-ui-react'
+import { Container, Button, Icon, Item, Header } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import Event from '/imports/ui/components/Event';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListEvents extends React.Component {
 
   render() {
-    const details = { color: 'grey' }
+    const details = { color: 'grey' };
     return (
         <Container>
           <Header as='h1'>Past / Upcoming Waste Audits</Header>
@@ -25,7 +27,7 @@ class ListEvents extends React.Component {
                   8:30am to 1:30pm
                 </Item.Description>
                 <Item.Extra>
-                  <Button primary floated='right'>
+                  <Button as={Link} to="/input" primary floated='right'>
                     View
                     <Icon name='right chevron'/>
                   </Button>
@@ -47,7 +49,7 @@ class ListEvents extends React.Component {
                   8:30am to 1:30pm
                 </Item.Description>
                 <Item.Extra>
-                  <Button primary floated='right'>
+                  <Button as={Link} to="/input" primary floated='right'>
                     View
                     <Icon name='right chevron'/>
                   </Button>
@@ -69,7 +71,7 @@ class ListEvents extends React.Component {
                   8:30am to 1:30pm
                 </Item.Description>
                 <Item.Extra>
-                  <Button primary floated='right'>
+                  <Button as={Link} to="/input" primary floated='right'>
                     View
                     <Icon name='right chevron'/>
                   </Button>

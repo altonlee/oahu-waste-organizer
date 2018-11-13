@@ -1,0 +1,38 @@
+.form-heading {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.card-margins {
+  margin: 10px;
+}
+
+.half {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+.right {
+  text-align: right;
+  margin-right: 40px;
+}
+
+.left {
+  text-align: left;
+  margin-left: 40px;
+}
+
+.data-content {
+  font-family: "Roboto Mono", monospace;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.ui.grid.container.border-margin-border-margin-border-margin-border-margin-border-margin-border-margin {
+  width: unset !important;
+}
