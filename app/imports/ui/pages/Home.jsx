@@ -5,7 +5,7 @@ import { Header, Image } from 'semantic-ui-react';
 class Home extends React.Component {
   render() {
     return (
-        <div className="background">
+        <div className="landing-background">
           <div className="trapezoid">
             <Image src="/images/logo.png" size='medium' centered/>
             <Header as="h1" inverted>Oʻahu Waste Organization</Header>
