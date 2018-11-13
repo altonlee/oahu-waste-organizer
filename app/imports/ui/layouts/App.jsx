@@ -8,6 +8,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Home from '../pages/Home';
 import ListStuff from '../pages/ListStuff';
+import ListEvents from '../pages/ListEvents';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddStuff from '../pages/AddStuff';
 import EditStuff from '../pages/EditStuff';
@@ -27,7 +28,7 @@ class App extends React.Component {
               <Route exact path="/" component={Home}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
-              <Route path="/events" component={ListStuff}/>
+              <Route path="/events" component={ListEvents}/>
               <Route path="/about" component={ListStuff}/>
               <ProtectedRoute path="/list" component={ListStuff}/>
               <ProtectedRoute path="/add" component={AddStuff}/>
