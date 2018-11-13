@@ -31,37 +31,3 @@ h2 {
   padding: 15px 0px 15px 0px;
 }
 
-.about-background {
-  margin-top: -10px;
-  background: url(http://www.hawaii.edu/news/attachments/img8876_7609l.jpg) no-repeat center center fixed;
-  background-size: cover;
-  height: 600px;
-}
-
-.about-text {
-  padding: 170px;
-  text-align: center;
-  line-height: 1.7em;
-  font-size: 70px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.about-rest {
-  display: flex;
-  background-color: white;
-  color: black;
-  height: 100%;
-  padding-right: 100px;
-}
-
-.about-rest-text {
-  width: 900px;
-  height: 336px;
-  padding: 20px 0 0 100px;
-  font-size: 20px;
-}
-
-.about-image {
-  width: 500px;
-  padding: 50px 0 0 20px;
-}

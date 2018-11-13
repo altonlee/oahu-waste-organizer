@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header, Image } from 'semantic-ui-react';
+import '/client/about.css';
 
 /** A simple static component to render some text for the Home page. */
 class About extends React.Component {
