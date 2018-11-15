@@ -110,7 +110,7 @@ class EventCharts extends React.Component {
     };
 
     return (
-        <Charts options={Bar}/>
+        <Charts options={Pie}/>
     );
   }
 }

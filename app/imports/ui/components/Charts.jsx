@@ -1,24 +1,24 @@
 import React from 'react';
 import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+/** Renders a chart for use in EventCharts.jsx.
+ * https://www.highcharts.com/blog/tutorials/highcharts-react-wrapper/
+ * */
 class Charts extends React.Component {
-  render() {
-    const options = {
-      title: {
-        text: 'My chart',
-      },
-      series: [{
-        data: [1, 2, 3],
-      }],
-    };
+  componentDidMount() {
+    this.chart = new Highcharts[this.props.type || 'Chart'](
+        this.chartEl,
+        this.props.options
+    );
+  }
 
+  componentWillUnmount() {
+    this.chart.destroy();
+  }
+
+  render() {
     return (
-        <HighchartsReact
-            highcharts={Highcharts}
-            options={options}
-        />
+        <div ref={el => this.chartEl = el} />
     );
   }
 }
