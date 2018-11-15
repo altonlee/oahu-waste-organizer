@@ -1,9 +1,10 @@
 import React from 'react';
 import Charts from '../components/Charts';
 
-/** A simple static component to render some text for the Home page. */
+/** A page with charts to represent event audit data.
+ * https://www.highcharts.com/blog/tutorials/highcharts-react-wrapper/
+ * */
 class EventCharts extends React.Component {
-
   render() {
     const Pie = {
       chart: {
@@ -110,7 +111,9 @@ class EventCharts extends React.Component {
     };
 
     return (
-        <Charts options={Bar}/>
+        <div>
+          <Charts options={Bar} />
+        </div>
     );
   }
 }
