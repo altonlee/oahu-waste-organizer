@@ -10,23 +10,23 @@ class EventCharts extends React.Component {
         plotBackgroundColor: null,
         plotBorderWidth: null,
         plotShadow: false,
-        type: 'pie'
+        type: 'pie',
       },
       title: {
-        text: 'Browser market shares in January, 2018'
+        text: 'Browser market shares in January, 2018',
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
       },
       plotOptions: {
         pie: {
           allowPointSelect: true,
           cursor: 'pointer',
           dataLabels: {
-            enabled: false
+            enabled: false,
           },
-          showInLegend: true
-        }
+          showInLegend: true,
+        },
       },
       series: [{
         name: 'Brands',
@@ -35,50 +35,50 @@ class EventCharts extends React.Component {
           name: 'Chrome',
           y: 61.41,
           sliced: true,
-          selected: true
+          selected: true,
         }, {
           name: 'Internet Explorer',
-          y: 11.84
+          y: 11.84,
         }, {
           name: 'Firefox',
-          y: 10.85
+          y: 10.85,
         }, {
           name: 'Edge',
-          y: 4.67
+          y: 4.67,
         }, {
           name: 'Safari',
-          y: 4.18
+          y: 4.18,
         }, {
           name: 'Other',
-          y: 7.05
-        }]
-      }]
+          y: 7.05,
+        }],
+      }],
     };
     const Bar = {
       chart: {
-        type: 'area'
+        type: 'area',
       },
       title: {
-        text: 'Historic and Estimated Worldwide Population Distribution by Region'
+        text: 'Historic and Estimated Worldwide Population Distribution by Region',
       },
       subtitle: {
-        text: 'Source: Wikipedia.org'
+        text: 'Source: Wikipedia.org',
       },
       xAxis: {
         categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
         tickmarkPlacement: 'on',
         title: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       yAxis: {
         title: {
-          text: 'Percent'
-        }
+          text: 'Percent',
+        },
       },
       tooltip: {
         pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millions)<br/>',
-        split: true
+        split: true,
       },
       plotOptions: {
         area: {
@@ -87,26 +87,26 @@ class EventCharts extends React.Component {
           lineWidth: 1,
           marker: {
             lineWidth: 1,
-            lineColor: '#ffffff'
-          }
-        }
+            lineColor: '#ffffff',
+          },
+        },
       },
       series: [{
         name: 'Asia',
-        data: [502, 635, 809, 947, 1402, 3634, 5268]
+        data: [502, 635, 809, 947, 1402, 3634, 5268],
       }, {
         name: 'Africa',
-        data: [106, 107, 111, 133, 221, 767, 1766]
+        data: [106, 107, 111, 133, 221, 767, 1766],
       }, {
         name: 'Europe',
-        data: [163, 203, 276, 408, 547, 729, 628]
+        data: [163, 203, 276, 408, 547, 729, 628],
       }, {
         name: 'America',
-        data: [18, 31, 54, 156, 339, 818, 1201]
+        data: [18, 31, 54, 156, 339, 818, 1201],
       }, {
         name: 'Oceania',
-        data: [2, 2, 2, 6, 13, 30, 46]
-      }]
+        data: [2, 2, 2, 6, 13, 30, 46],
+      }],
     };
 
     return (
