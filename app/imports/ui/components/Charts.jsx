@@ -1,27 +1,24 @@
 import React from 'react';
 import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Charts extends React.Component {
-  constructor(props) {
-    super(props);
-    this.chartContainer = React.createRef();
-  }
-
-  componentDidMount() {
-    this.chart = new Highcharts[this.props.type || 'Chart'](
-        this.chartContainer.current,
-        this.props.options
-    );
-  }
-
-  componentWillUnmount() {
-    this.chart.destroy();
-  }
-
   render() {
+    const options = {
+      title: {
+        text: 'My chart',
+      },
+      series: [{
+        data: [1, 2, 3],
+      }],
+    };
+
     return (
-        <div ref={this.chartContainer}/>
+        <HighchartsReact
+            highcharts={Highcharts}
+            options={options}
+        />
     );
   }
 }
