@@ -1,82 +1,116 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
+import Charts from '../components/Charts';
 
 /** A simple static component to render some text for the Home page. */
 class EventCharts extends React.Component {
+
   render() {
+    const Pie = {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: 'Browser market shares in January, 2018'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+          name: 'Chrome',
+          y: 61.41,
+          sliced: true,
+          selected: true
+        }, {
+          name: 'Internet Explorer',
+          y: 11.84
+        }, {
+          name: 'Firefox',
+          y: 10.85
+        }, {
+          name: 'Edge',
+          y: 4.67
+        }, {
+          name: 'Safari',
+          y: 4.18
+        }, {
+          name: 'Other',
+          y: 7.05
+        }]
+      }]
+    };
+    const Bar = {
+      chart: {
+        type: 'area'
+      },
+      title: {
+        text: 'Historic and Estimated Worldwide Population Distribution by Region'
+      },
+      subtitle: {
+        text: 'Source: Wikipedia.org'
+      },
+      xAxis: {
+        categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+        tickmarkPlacement: 'on',
+        title: {
+          enabled: false
+        }
+      },
+      yAxis: {
+        title: {
+          text: 'Percent'
+        }
+      },
+      tooltip: {
+        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millions)<br/>',
+        split: true
+      },
+      plotOptions: {
+        area: {
+          stacking: 'percent',
+          lineColor: '#ffffff',
+          lineWidth: 1,
+          marker: {
+            lineWidth: 1,
+            lineColor: '#ffffff'
+          }
+        }
+      },
+      series: [{
+        name: 'Asia',
+        data: [502, 635, 809, 947, 1402, 3634, 5268]
+      }, {
+        name: 'Africa',
+        data: [106, 107, 111, 133, 221, 767, 1766]
+      }, {
+        name: 'Europe',
+        data: [163, 203, 276, 408, 547, 729, 628]
+      }, {
+        name: 'America',
+        data: [18, 31, 54, 156, 339, 818, 1201]
+      }, {
+        name: 'Oceania',
+        data: [2, 2, 2, 6, 13, 30, 46]
+      }]
+    };
+
     return (
-        <Container>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat massa vel ullamcorper interdum.
-          Suspendisse sodales ipsum vitae erat accumsan tristique id sit amet lorem. Fusce maximus magna at tempus
-          tincidunt. Suspendisse at nibh sit amet odio egestas suscipit pellentesque cursus orci. Vestibulum non nunc
-          vitae enim semper efficitur. Cras blandit faucibus tellus, quis maximus ex facilisis vel. Duis semper lacus
-          commodo consequat tincidunt. Curabitur non tellus blandit, fringilla nunc aliquet, efficitur erat. Curabitur
-          feugiat, lacus feugiat vulputate viverra, quam eros pretium erat, eget tristique dolor magna vitae ligula.
-          Suspendisse pellentesque in ex sit amet sollicitudin. Fusce eget turpis quis mi varius congue id eget
-          mauris.
-          Cras semper mattis lacus volutpat viverra. Suspendisse potenti. Praesent vitae maximus erat.<br/>
-          <br/>
-          Nam in tortor et ante gravida ultrices. Pellentesque nec risus consectetur, vulputate erat id, venenatis
-          quam.
-          Cras mattis dapibus enim nec volutpat. Sed porta id ante nec efficitur. Etiam lobortis metus non orci
-          gravida,
-          nec tincidunt sem luctus. In scelerisque neque et enim molestie, sed rhoncus elit efficitur. Aliquam
-          lobortis
-          quam in metus dignissim ultricies. Curabitur laoreet ipsum a neque convallis molestie. Phasellus congue nisl
-          a
-          odio interdum condimentum. Donec sit amet convallis metus, ut placerat tortor. Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit. Integer luctus eleifend velit, sed lobortis justo faucibus vel. Proin ac nisl
-          suscipit, hendrerit tortor ac, porta nunc. Nullam vitae pharetra libero. Maecenas non erat risus. Sed eget
-          tincidunt tellus.<br/>
-          <br/>
-
-          Integer id risus malesuada, viverra risus eget, aliquet nibh. Cras sit amet urna ultricies, bibendum nunc
-          sed,
-          ultricies massa. Fusce at urna enim. In sollicitudin sodales lacus, et facilisis metus bibendum eget.
-          Quisque
-          rhoncus ut nisl at commodo. Proin eget lacus at velit convallis consequat. Phasellus suscipit auctor odio id
-          porta. Phasellus aliquam nulla nec sodales accumsan. Phasellus vel accumsan ex. Pellentesque mattis tellus
-          id
-          mauris fringilla bibendum. Nam at fringilla augue, in lacinia mauris.<br/>
-          <br/>
-
-          Suspendisse dictum nisl pharetra, vulputate neque eu, luctus nibh. Nullam iaculis pharetra mollis. Fusce
-          consectetur enim mattis faucibus suscipit. Integer imperdiet, tortor ut sodales consectetur, velit felis
-          porta
-          ante, ac tempus nisi tellus eget erat. Aliquam sit amet venenatis velit, non gravida sem. Aenean molestie
-          auctor quam sed tincidunt. Curabitur ullamcorper diam quis nisi volutpat imperdiet. Nulla pharetra dolor vel
-          lorem volutpat, eu lobortis dolor mollis. Quisque rutrum augue et lacus posuere, at dignissim ligula
-          tincidunt. Praesent varius purus justo, a elementum felis maximus quis. Fusce semper nisi erat, ut laoreet
-          erat malesuada id. Sed ultricies, orci non vulputate scelerisque, ligula odio viverra purus, eu porttitor
-          augue nibh eget sapien. Praesent scelerisque ex eu nunc consequat, in blandit lorem condimentum.<br/>
-          <br/>
-
-          Curabitur maximus dolor nisl, non congue sem tempor id. Maecenas eget interdum velit, at fringilla lacus.
-          Fusce a aliquam ligula. Donec ut tellus vitae nisl vehicula malesuada eget vitae dui. Fusce porttitor risus
-          sapien, et blandit diam blandit eu. Praesent eu tortor purus. In pellentesque erat in nisl ullamcorper
-          lacinia. Aliquam mi sapien, rutrum accumsan elit et, vestibulum efficitur massa. Fusce ac consectetur nisl.
-          Pellentesque eget rutrum tortor. Integer blandit risus sit amet diam fermentum ullamcorper.<br/>
-          <br/>
-
-          Curabitur blandit tristique tortor, eget mattis velit molestie sed. Praesent mattis tempor nunc vel
-          fermentum.
-          Cras sed leo tincidunt, fringilla eros vel, finibus eros. Sed dignissim turpis non metus cursus efficitur.
-          Morbi massa tellus, feugiat vitae diam eu, fringilla semper sapien. Interdum et malesuada fames ac ante
-          ipsum
-          primis in faucibus. Pellentesque elementum non enim at mattis. Donec dictum mi vitae velit faucibus, eget
-          fringilla lectus vehicula. Vestibulum faucibus dolor vel tortor interdum, eget pharetra justo varius.<br/>
-          <br/>
-
-          Nulla vitae fermentum sapien, efficitur pretium enim. Nunc sit amet diam in leo pulvinar euismod at
-          fringilla
-          leo. Morbi posuere augue lacus, vel suscipit sapien porta a. Donec ultricies lectus et velit efficitur
-          pretium. Integer nisi sapien, auctor sit amet ultricies sit amet, tristique in odio. Aliquam erat volutpat.
-          Aenean ultrices, turpis dapibus tristique mattis, tortor lorem tempor massa, et convallis libero neque vitae
-          mi. Curabitur maximus dolor quis venenatis porta. Aliquam hendrerit tortor vel volutpat gravida. Nulla eget
-          sagittis magna. Nunc ultrices, risus sed iaculis blandit, nunc sem semper ante, vitae accumsan nibh urna ut
-          velit. Nullam sit amet interdum sapien. In accumsan convallis rhoncus. Praesent ipsum ligula, ullamcorper eu
-          tempus sed, egestas quis eros. In ac eros ullamcorper arcu blandit tristique vel in lectus.<br/>
-        </Container>
+        <Charts options={Bar}/>
     );
   }
 }
