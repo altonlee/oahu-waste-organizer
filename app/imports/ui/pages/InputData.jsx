@@ -4,6 +4,16 @@ import '/client/input.css';
 
 class InputData extends React.Component {
   render() {
+    const campusOptions = [
+      { key: 'uh manoa', text: 'University of Hawaiʻi at Manoa', value: 'uh manoa' },
+      { key: 'uh hilo', text: 'University of Hawaiʻi at Hilo', value: 'uh hilo' },
+      { key: 'west oahu', text: 'University of Hawaiʻi - West Oahu', value: 'west oahu' },
+    ]
+    const buildingOptions = [
+      { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: 'qlc' },
+      { key: 'campus center', text: 'Campus Center', value: 'campus center' },
+      { key: 'post', text: 'Pacific Ocean Science and Technology', value: 'post' },
+    ]
     const categoryOptions = [
       { key: 'items of interest', text: '---Items of Interest---', value: 'items of interest', disabled: true },
       { key: 'starbucks cups', text: 'Starbucks Cups', value: 'starbucks cups' },
@@ -62,9 +72,9 @@ class InputData extends React.Component {
             <Grid.Row>
               <Grid.Column>
                 <div className="form-heading">Location</div>
-                <Dropdown placeholder='Select Campus' fluid search selection/>
+                <Dropdown placeholder='Select Campus' fluid search selection options={campusOptions}/>
                 <div className="form-heading">Building</div>
-                <Dropdown placeholder='Select Building' fluid search selection/>
+                <Dropdown placeholder='Select Building' fluid search selection options={buildingOptions}/>
                 <div className="form-heading">Notes</div>
                 <Form.TextArea placeholder="Notes..."/>
               </Grid.Column>
