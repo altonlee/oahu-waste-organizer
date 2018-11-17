@@ -68,6 +68,7 @@ class InputData extends React.Component {
 
     return (
         <div>
+          <Card className="card-margins" fluid>
           <Grid container columns="two" className="border-margin">
             <Grid.Row>
               <Grid.Column>
@@ -95,9 +96,14 @@ class InputData extends React.Component {
                   <Header as='h3'>Weight</Header>
                   <Input placeholder="Weight"/>
                 </Card>
+                <Card>
+                  <Header as='h3'>Volume</Header>
+                  <Input placeholder="Volume"/>
+                </Card>
               </div>
             </Card>
           </div>
+          </Card>
         </div>
     );
   }

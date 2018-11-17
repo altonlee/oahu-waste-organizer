@@ -1,11 +1,10 @@
 import React from 'react';
 import { Container, Button, Icon, Item, Header } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import Event from '/imports/ui/components/Event';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -23,7 +22,7 @@ class ListEvents extends React.Component {
               <Item.Content>
                 <Item.Header>University of Hawaii at Manoa</Item.Header>
                 <Item.Meta>
-                  <span className='details'>Keller Hall</span>
+                  <span options={details}>Keller Hall</span>
                 </Item.Meta>
                 <Item.Description>
                   09/21/2018<br/>
