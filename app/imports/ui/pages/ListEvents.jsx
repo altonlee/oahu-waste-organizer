@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 import { Container, Item, Header } from 'semantic-ui-react';
 import { Events } from '/imports/api/event/event';
 import Event from '/imports/ui/components/Event';
@@ -12,7 +12,7 @@ class ListEvents extends React.Component {
     return (
         <Container>
           <Header as='h1' textAlign="center">Past / Upcoming Waste Audits</Header>
-          <Item.Group>
+          <Item.Group divided unstackable>
             {this.props.event.map((event, index) => <Event key={index} event={event} />)}
           </Item.Group>
         </Container>
