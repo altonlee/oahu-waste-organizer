@@ -1,29 +1,28 @@
 import React from 'react';
 import { Button, Icon, Item } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { withRouter, Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+/** Renders a single event in the ListEvents table. See pages/ListEvents.jsx. */
 class Event extends React.Component {
   render() {
+    const details = { color: 'grey' };
     return (
         <Item>
-          <Item.Image src='/images/logo.png'/>
+          <Item.Image
+              src='http://manoa.hawaii.edu/confuciusinstitute/wp-content/uploads/2017/03/manoaseal_transparent.png'/>
           <Item.Content>
-            <Item.Header>University of Hawaii at Manoa</Item.Header>
+            <Item.Header>{this.props.event.campus}</Item.Header>
             <Item.Meta>
-              <span className='details'>Keller Hall</span>
+              <span className='details'>{this.props.event.building}</span>
             </Item.Meta>
             <Item.Description>
-              09/21/2018<br/>
-              8:30am to 1:30pm<br/>
+              {this.props.event.date}<br/>
+              {this.props.event.timeStart} to {this.props.event.timeEnd}<br/>
             </Item.Description>
             <Item.Extra>
-              /**  Maybe make button unclickable if audit is closed */
               {this.props.currentUser ? (
                   <Button color='green' as={Link} to="/input" floated='right'>
                     Input Data
@@ -43,11 +42,7 @@ class Event extends React.Component {
 
 /** Require a document to be passed to this component. */
 Event.propTypes = {
-  /* campus: PropTypes.string.isRequired,
-    building: PropTypes.string.isRequired,
-    timeStart: PropTypes.object.Date.isRequired,
-    timeEnd: PropTypes.object.Date.isRequired, */
-  stuff: PropTypes.object.isRequired,
+  event: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */

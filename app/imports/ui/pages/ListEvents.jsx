@@ -1,116 +1,36 @@
 import React from 'react';
-import { Container, Button, Icon, Item, Header } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import Event from '/imports/ui/components/Event';
-import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
+import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter } from 'react-router-dom';
-import { Roles } from 'meteor/alanning:roles';
+import { Container, Item, Header } from 'semantic-ui-react';
+import { Events } from '/imports/api/event/event';
+import Event from '/imports/ui/components/Event';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+/** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class ListEvents extends React.Component {
-
   render() {
-    const details = { color: 'grey' };
     return (
         <Container>
-          <Header as='h1'>Past / Upcoming Waste Audits</Header>
-
-          <Item.Group divided>
-            <Item>
-              <Item.Image src='/images/logo.png'/>
-              <Item.Content>
-                <Item.Header>University of Hawaii at Manoa</Item.Header>
-                <Item.Meta>
-                  <span className='details'>Keller Hall</span>
-                </Item.Meta>
-                <Item.Description>
-                  09/21/2018<br/>
-                  8:30am to 1:30pm<br/>
-                </Item.Description>
-                <Item.Extra>
-                  {this.props.currentUser ? (
-                      <Button color='green' as={Link} to="/input" floated='right'>
-                        Input Data
-                        <Icon name='right chevron'/>
-                      </Button>
-                  ) : ''}
-                  <Button basic color='green' as={Link} to="/charts" floated='right'>
-                    View
-                    <Icon name='right chevron'/>
-                  </Button>
-                </Item.Extra>
-              </Item.Content>
-            </Item>
-
-            <Item>
-              <Item.Image src='/images/logo.png'/>
-              <Item.Content>
-                <Item.Header>Kapiolani Community College</Item.Header>
-                <Item.Meta>
-                  <span className='details'>Olona Building</span>
-                </Item.Meta>
-                <Item.Description>
-                  11/13/2018<br/>
-                  8:30am to 1:30pm<br/>
-                </Item.Description>
-                <Item.Extra>
-                  {this.props.currentUser ? (
-                      <Button color='green' as={Link} to="/input" floated='right'>
-                        Input Data
-                        <Icon name='right chevron'/>
-                      </Button>
-                  ) : ''}
-                  <Button basic color='green' as={Link} to="/charts" floated='right'>
-                    View
-                    <Icon name='right chevron'/>
-                  </Button>
-                </Item.Extra>
-              </Item.Content>
-            </Item>
-
-            <Item>
-              <Item.Image src='/images/logo.png'/>
-              <Item.Content>
-                <Item.Header>Leeward Community College</Item.Header>
-                <Item.Meta>
-                  <span className='details'>Building A</span>
-                </Item.Meta>
-                <Item.Description>
-                  12/25/2018<br/>
-                  8:30am to 1:30pm<br/>
-                </Item.Description>
-                <Item.Extra>
-                  {this.props.currentUser ? (
-                      <Button color='green' as={Link} to="/input" floated='right'>
-                        Input Data
-                        <Icon name='right chevron'/>
-                      </Button>
-                  ) : ''}
-                  <Button basic color='green' as={Link} to="/charts" floated='right'>
-                    View
-                    <Icon name='right chevron'/>
-                  </Button>
-                </Item.Extra>
-              </Item.Content>
-            </Item>
+          <Header as='h1' textAlign="center">Past / Upcoming Waste Audits</Header>
+          <Item.Group>
+            {this.props.event.map((event, index) => <Event key={index} event={event} />)}
           </Item.Group>
-
         </Container>
     );
   }
 }
 
-/** Declare the types of all properties. */
+/** Require an array of Events in the props. */
 ListEvents.propTypes = {
-  currentUser: PropTypes.string,
+  event: PropTypes.array.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-const EventsContainer = withTracker(() => ({
-  currentUser: Meteor.user() ? Meteor.user().username : '',
-}))(ListEvents);
-
-/** Enable ReactRouter for this component. https://reacttraining.com/react-router/web/api/withRouter */
-export default withRouter(EventsContainer);
+export default withTracker(() => {
+  // Get access to Stuff documents.
+  const subscription = Meteor.subscribe('Events');
+  return {
+    event: Events.find({}).fetch(),
+    ready: subscription.ready(),
+  };
+})(ListEvents);
