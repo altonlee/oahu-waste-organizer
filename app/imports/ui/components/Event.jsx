@@ -9,19 +9,21 @@ import { Button, Icon, Item } from 'semantic-ui-react';
 /** Renders a single event in the ListEvents table. See pages/ListEvents.jsx. */
 class Event extends React.Component {
   render() {
-    const details = { color: 'grey' };
+    const UHM = { src: '/images/thumb-uhm.png' };
+    const KCC = { src: '/images/thumb-kcc.png' };
     return (
         <Item>
-          <Item.Image
-              src='http://manoa.hawaii.edu/confuciusinstitute/wp-content/uploads/2017/03/manoaseal_transparent.png'/>
+          <Item.Image src='/images/thumb-uhm.png' size='medium' rounded/>
           <Item.Content>
             <Item.Header>{this.props.event.campus}</Item.Header>
             <Item.Meta>
-              <span className='details'>{this.props.event.building}</span>
+              <span>{this.props.event.building}</span>
             </Item.Meta>
             <Item.Description>
               {this.props.event.date}<br/>
               {this.props.event.timeStart} to {this.props.event.timeEnd}<br/>
+               <br/><strong>NOTES:</strong><br/>
+              {this.props.event.notes}<br/>
             </Item.Description>
             <Item.Extra>
               {this.props.currentUser ? (

@@ -9,8 +9,9 @@ import Event from '/imports/ui/components/Event';
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class ListEvents extends React.Component {
   render() {
+    const eventStyle = { paddingBottom: '15px' };
     return (
-        <Container>
+        <Container style={eventStyle}>
           <Header as='h1' textAlign="center">Past / Upcoming Waste Audits</Header>
           <Item.Group divided unstackable>
             {this.props.event.map((event, index) => <Event key={index} event={event} />)}
