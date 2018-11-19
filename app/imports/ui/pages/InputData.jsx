@@ -1,9 +1,29 @@
 import React from 'react';
-import { Grid, Form, Input, Dropdown, Card, Header } from 'semantic-ui-react';
+import {
+  List,
+  Image,
+  TextArea,
+  Segment,
+  Menu,
+  Button,
+  Form,
+  Input,
+  Dropdown,
+  Card,
+  Header,
+  Sidebar,
+} from 'semantic-ui-react';
 import '/client/input.css';
 
 class InputData extends React.Component {
+  state = { visible: false }
+
+  handleHideClick = () => this.setState({ visible: false })
+  handleShowClick = () => this.setState({ visible: true })
+  handleSidebarHide = () => this.setState({ visible: false })
+
   render() {
+    const { visible } = this.state
     const campusOptions = [
       { key: 'uh manoa', text: 'University of Hawaiʻi at Manoa', value: 'uh manoa' },
       { key: 'uh hilo', text: 'University of Hawaiʻi at Hilo', value: 'uh hilo' },
@@ -67,42 +87,57 @@ class InputData extends React.Component {
     ];
 
     return (
-        <div>
-          <Card className="card-margins" fluid>
-          <Grid container columns="two" className="border-margin">
-            <Grid.Row>
-              <Grid.Column>
-                <div className="form-heading">Location</div>
-                <Dropdown placeholder='Select Campus' fluid search selection options={campusOptions}/>
-                <div className="form-heading">Building</div>
-                <Dropdown placeholder='Select Building' fluid search selection options={buildingOptions}/>
-                <div className="form-heading">Notes</div>
-                <Form.TextArea placeholder="Notes..."/>
-              </Grid.Column>
-              <Grid.Column>
-                <div className="form-heading">Date</div>
-                <div className="data-content">Thursday, October 25, 2018</div>
-                <div className="form-heading">Bucket Tare</div>
-                <Input placeholder="Bucket Tare..."/>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-          <div className="card-margins">
-            <Card fluid>
-              <Header as='h3'>Category</Header>
-              <Dropdown placeholder='Select Category' selection search options={categoryOptions}/>
-              <div className="card-margins">
-                <Card>
-                  <Header as='h3'>Weight</Header>
-                  <Input placeholder="Weight"/>
-                </Card>
-                <Card>
-                  <Header as='h3'>Volume</Header>
-                  <Input placeholder="Volume"/>
-                </Card>
-              </div>
-            </Card>
-          </div>
+        <div style={{ textAlign: 'left' }}>
+          <Button.Group>
+            <Button disabled={visible} onClick={this.handleShowClick}>
+              Show sidebar
+            </Button>
+            <Button disabled={!visible} onClick={this.handleHideClick}>
+              Hide sidebar
+            </Button>
+          </Button.Group>
+          <Sidebar.Pushable as={Segment}>
+            <Sidebar as={Menu} animation='overlay' icon='labeled' onHide={this.handleSidebarHide} vertical
+                     visible={visible} width='very wide'>
+              <div className="form-heading">Location</div>
+              <Dropdown placeholder='Select Campus' fluid search selection options={campusOptions}/>
+              <div className="form-heading">Building</div>
+              <Dropdown placeholder='Select Building' fluid search selection options={buildingOptions}/>
+              <div className="form-heading">Notes</div>
+              <Form>
+                <TextArea placeholder="Notes..."/>
+              </Form>
+              <div className="form-heading">Date</div>
+              <Input className="form-heading" placeholder="MM/DD/YYYY"/>
+              <div className="form-heading">Bucket Tare</div>
+              <Input placeholder="Bucket Tare..."/>
+            </Sidebar>
+
+            <Sidebar.Pusher>
+              <Segment basic>
+                <Header as='h3'>Application Content</Header>
+                <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png'/>
+              </Segment>
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
+
+          <Card className="card-margins">
+            <div className="card-margins">
+              <Card fluid>
+                <Header as='h3'>Category</Header>
+                <Dropdown placeholder='Select Category' selection search options={categoryOptions}/>
+                <div className="card-margins">
+                  <Card>
+                    <Header as='h3'>Weight</Header>
+                    <Input placeholder="Weight"/>
+                  </Card>
+                  <Card>
+                    <Header as='h3'>Volume</Header>
+                    <Input placeholder="Volume"/>
+                  </Card>
+                </div>
+              </Card>
+            </div>
           </Card>
         </div>
     );
