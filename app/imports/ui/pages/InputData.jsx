@@ -87,42 +87,24 @@ class InputData extends React.Component {
     ];
 
     return (
-        <div style={{ textAlign: 'left' }}>
-          <Button.Group>
-            <Button disabled={visible} onClick={this.handleShowClick}>
-              Show sidebar
-            </Button>
-            <Button disabled={!visible} onClick={this.handleHideClick}>
-              Hide sidebar
-            </Button>
-          </Button.Group>
+        <div style={{ padding: '20px' }}>
+          <Segment>
+          <div className="form-heading">Location</div>
+          <Dropdown placeholder='Select Campus' fluid search selection options={campusOptions}/>
+          <div className="form-heading">Building</div>
+          <Dropdown placeholder='Select Building' fluid search selection options={buildingOptions}/>
+          <div className="form-heading">Notes</div>
+          <Form>
+            <TextArea placeholder="Notes..."/>
+          </Form>
+          <div className="form-heading">Date</div>
+          <Input className="form-heading" placeholder="MM/DD/YYYY"/>
+          <div className="form-heading">Bucket Tare</div>
+          <Input placeholder="Bucket Tare..."/>
+
           <Sidebar.Pushable as={Segment}>
             <Sidebar as={Menu} animation='overlay' icon='labeled' onHide={this.handleSidebarHide} vertical
                      visible={visible} width='very wide'>
-              <div className="form-heading">Location</div>
-              <Dropdown placeholder='Select Campus' fluid search selection options={campusOptions}/>
-              <div className="form-heading">Building</div>
-              <Dropdown placeholder='Select Building' fluid search selection options={buildingOptions}/>
-              <div className="form-heading">Notes</div>
-              <Form>
-                <TextArea placeholder="Notes..."/>
-              </Form>
-              <div className="form-heading">Date</div>
-              <Input className="form-heading" placeholder="MM/DD/YYYY"/>
-              <div className="form-heading">Bucket Tare</div>
-              <Input placeholder="Bucket Tare..."/>
-            </Sidebar>
-
-            <Sidebar.Pusher>
-              <Segment basic>
-                <Header as='h3'>Application Content</Header>
-                <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png'/>
-              </Segment>
-            </Sidebar.Pusher>
-          </Sidebar.Pushable>
-
-          <Card className="card-margins">
-            <div className="card-margins">
               <Card fluid>
                 <Header as='h3'>Category</Header>
                 <Dropdown placeholder='Select Category' selection search options={categoryOptions}/>
@@ -137,8 +119,39 @@ class InputData extends React.Component {
                   </Card>
                 </div>
               </Card>
-            </div>
-          </Card>
+            </Sidebar>
+
+            <Sidebar.Pusher>
+              <Segment basic>
+                <List horizontal relaxed='very'>
+                  <List.Item>
+                    <List.Content>
+                      <List.Header>Category</List.Header>
+                      Starbucks Cups
+                    </List.Content>
+                  </List.Item>
+                    <List.Item>
+                    <List.Content>
+                      <List.Header>Weight</List.Header>
+                      3.1 Ibs
+                    </List.Content>
+                  </List.Item>
+                  <List.Item>
+                    <List.Content>
+                      <List.Header>Volume</List.Header>
+                      13.75 gal
+                    </List.Content>
+                  </List.Item>
+                  <List.Item>
+                    <List.Content floated='right' verticalAlign='middle'>
+                      <Button disabled={visible} onClick={this.handleShowClick}>Edit</Button>
+                    </List.Content>
+                  </List.Item>
+                </List>
+              </Segment>
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
+          </Segment>
         </div>
     );
   }
