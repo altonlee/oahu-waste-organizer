@@ -1,49 +1,59 @@
 import React from 'react';
-import { Button, List } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Button, Divider, List } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
 
 /** Renders a single bag in the InputData table. See pages/InputData.jsx. */
-class Event extends React.Component {
+class Bag extends React.Component {
   render() {
-
+    const { visible } = this.state
     return (
-        <Item>
-          <Item.Image
-              src='http://manoa.hawaii.edu/confuciusinstitute/wp-content/uploads/2017/03/manoaseal_transparent.png'/>
-          <Item.Content>
-            <Item.Header>{this.props.event.campus}</Item.Header>
-            <Item.Meta>
-              <span className='details'>{this.props.event.building}</span>
-            </Item.Meta>
-            <Item.Description>
-              {this.props.event.date}<br/>
-              {this.props.event.timeStart} to {this.props.event.timeEnd}<br/>
-            </Item.Description>
-            <Item.Extra>
-              {Meteor.userId() !== null ? (
-                  <Button color='green' as={Link} to="/input" floated='right'>
-                    Input Data
-                    <Icon name='right chevron'/>
-                  </Button>
-              ) : ''}
-              <Button basic color='green' as={Link} to="/charts" floated='right'>
-                View
-                <Icon name='right chevron'/>
-              </Button>
-            </Item.Extra>
-          </Item.Content>
-        </Item>
+        <List horizontal relaxed='very'>
+          <List.Item>
+            <List.Content>
+              <List.Header>Category</List.Header>
+              Starbucks Cups
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content>
+              <List.Header>Weight</List.Header>
+              3.1 Ibs
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content>
+              <List.Header>Volume</List.Header>
+              13.75 gal
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content floated='right' verticalAlign='middle'>
+              <Button disabled={visible} onClick={this.handleShowClick}>Edit</Button>
+            </List.Content>
+          </List.Item>
+          <Divider/>
+        </List>
     );
   }
 }
 
+
 /** Require a document to be passed to this component. */
-Event.propTypes = {
-  event: PropTypes.object.isRequired,
+Bag.propTypes = {
+  bag: PropTypes.object.isRequired,
+  currentUser: PropTypes.string,
+
 };
 
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+const BagContainer = withTracker(() => ({
+  currentUser: Meteor.user() ? Meteor.user().username : '',
+}))(Bag);
+
+
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(Event);
+export default withRouter(BagContainer);

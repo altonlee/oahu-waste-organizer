@@ -1,7 +1,8 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import {
   List,
-  Image,
+    Divider,
   TextArea,
   Segment,
   Menu,
@@ -14,6 +15,7 @@ import {
   Sidebar,
 } from 'semantic-ui-react';
 import '/client/input.css';
+import Bag from '/imports/ui/components/Bag';
 
 class InputData extends React.Component {
   state = { visible: false }
@@ -147,7 +149,9 @@ class InputData extends React.Component {
                       <Button disabled={visible} onClick={this.handleShowClick}>Edit</Button>
                     </List.Content>
                   </List.Item>
+                  <Divider/>
                 </List>
+                <Divider hidden/>
               </Segment>
             </Sidebar.Pusher>
           </Sidebar.Pushable>
