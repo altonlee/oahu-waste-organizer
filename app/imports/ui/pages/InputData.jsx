@@ -2,7 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import {
   List,
-    Divider,
+  Divider,
   TextArea,
   Segment,
   Menu,
@@ -10,7 +10,6 @@ import {
   Form,
   Input,
   Dropdown,
-  Card,
   Header,
   Sidebar,
 } from 'semantic-ui-react';
@@ -18,24 +17,35 @@ import '/client/input.css';
 import Bag from '/imports/ui/components/Bag';
 
 class InputData extends React.Component {
+  constructor() {
+    super();
+
+    this.categoryInput = null;
+    this.weightInput = null;
+    this.volumeInput = null;
+    this.notesInput = null;
+  }
+
   state = { visible: false }
 
   handleHideClick = () => this.setState({ visible: false })
+
   handleShowClick = () => this.setState({ visible: true })
+
   handleSidebarHide = () => this.setState({ visible: false })
 
   render() {
-    const { visible } = this.state
+    const { visible } = this.state;
     const campusOptions = [
       { key: 'uh manoa', text: 'University of Hawaiʻi at Manoa', value: 'uh manoa' },
       { key: 'uh hilo', text: 'University of Hawaiʻi at Hilo', value: 'uh hilo' },
       { key: 'west oahu', text: 'University of Hawaiʻi - West Oahu', value: 'west oahu' },
-    ]
+    ];
     const buildingOptions = [
       { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: 'qlc' },
       { key: 'campus center', text: 'Campus Center', value: 'campus center' },
       { key: 'post', text: 'Pacific Ocean Science and Technology', value: 'post' },
-    ]
+    ];
     const categoryOptions = [
       { key: 'items of interest', text: '---Items of Interest---', value: 'items of interest', disabled: true },
       { key: 'starbucks cups', text: 'Starbucks Cups', value: 'starbucks cups' },
@@ -88,73 +98,69 @@ class InputData extends React.Component {
       { key: 'all electronics', text: 'All Electronics', value: 'all electronics' },
     ];
 
+    const bags = [
+      {
+        category: 'Starbucks Cups',
+        weight: 3.1,
+        volume: 13.75,
+      },
+      {
+        category: 'Plastic To-Go Cups',
+        weight: 2.65,
+        volume: 11,
+      },
+      {
+        category: 'Wax Paper cups',
+        weight: 3.2,
+        volume: 11,
+      },
+    ];
+    const bagElements = [];
+    for (let i = 0; i < bags.length; i++) {
+      bagElements[i] = <Bag handleShowClick={this.handleShowClick} category={bags[i].category} volume={bags[i].volume}
+                            weight={bags[i].weight} visible={visible}/>;
+    }
+
     return (
         <div style={{ padding: '20px' }}>
           <Segment>
-          <div className="form-heading">Location</div>
-          <Dropdown placeholder='Select Campus' fluid search selection options={campusOptions}/>
-          <div className="form-heading">Building</div>
-          <Dropdown placeholder='Select Building' fluid search selection options={buildingOptions}/>
-          <div className="form-heading">Notes</div>
-          <Form>
-            <TextArea placeholder="Notes..."/>
-          </Form>
-          <div className="form-heading">Date</div>
-          <Input className="form-heading" placeholder="MM/DD/YYYY"/>
-          <div className="form-heading">Bucket Tare</div>
-          <Input placeholder="Bucket Tare..."/>
+            <div className="form-heading">Location</div>
+            <Dropdown placeholder='Select Campus' fluid search selection options={campusOptions}/>
+            <div className="form-heading">Building</div>
+            <Dropdown placeholder='Select Building' fluid search selection options={buildingOptions}/>
+            <div className="form-heading">Notes</div>
+            <Form>
+              <TextArea placeholder="Notes..."/>
+            </Form>
+            <div className="form-heading">Date</div>
+            <Input className="form-heading" placeholder="MM/DD/YYYY"/>
+            <div className="form-heading">Bucket Tare</div>
+            <Input placeholder="Bucket Tare..."/>
 
-          <Sidebar.Pushable as={Segment}>
-            <Sidebar as={Menu} animation='overlay' icon='labeled' onHide={this.handleSidebarHide} vertical
-                     visible={visible} width='very wide'>
-              <Card fluid>
-                <Header as='h3'>Category</Header>
-                <Dropdown placeholder='Select Category' selection search options={categoryOptions}/>
-                <div className="card-margins">
-                  <Card>
-                    <Header as='h3'>Weight</Header>
-                    <Input placeholder="Weight"/>
-                  </Card>
-                  <Card>
-                    <Header as='h3'>Volume</Header>
-                    <Input placeholder="Volume"/>
-                  </Card>
-                </div>
-              </Card>
-            </Sidebar>
+            <Sidebar.Pushable as={Segment} className='input-sidebar'>
+              <Sidebar as={Menu} animation='overlay' icon='labeled' onHide={this.handleSidebarHide} vertical
+                       visible={visible} direction='right' width='very wide' style={{ padding: '10px' }}>
+                <Form>
+                  <Header as='h3'>Category</Header>
+                  <Dropdown ref={this.categoryInput} placeholder='Select Category' selection search
+                            options={categoryOptions}/>
+                  <Header as='h3'>Weight</Header>
+                  <Input ref={this.weightInput} label={{ basic: true, content: 'lb' }} labelPosition='right'
+                         placeholder="Weight"/>
+                  <Header as='h3'>Volume</Header>
+                  <Input ref={this.volumeInput} label={{ basic: true, content: 'gal' }} labelPosition='right'
+                         placeholder="Volume"/>
+                  <Header as='h3'>Notes</Header>
+                  <TextArea ref={this.notesInput} placeholder="Notes"/>
+                </Form>
+              </Sidebar>
 
-            <Sidebar.Pusher>
-              <Segment basic>
-                <List horizontal relaxed='very'>
-                  <List.Item>
-                    <List.Content>
-                      <List.Header>Category</List.Header>
-                      Starbucks Cups
-                    </List.Content>
-                  </List.Item>
-                    <List.Item>
-                    <List.Content>
-                      <List.Header>Weight</List.Header>
-                      3.1 Ibs
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Content>
-                      <List.Header>Volume</List.Header>
-                      13.75 gal
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Content floated='right' verticalAlign='middle'>
-                      <Button disabled={visible} onClick={this.handleShowClick}>Edit</Button>
-                    </List.Content>
-                  </List.Item>
-                  <Divider/>
-                </List>
-                <Divider hidden/>
-              </Segment>
-            </Sidebar.Pusher>
-          </Sidebar.Pushable>
+              <Sidebar.Pusher>
+                <Segment basic style={{ minHeight: '350px' }}>
+                  {bagElements}
+                </Segment>
+              </Sidebar.Pusher>
+            </Sidebar.Pushable>
           </Segment>
         </div>
     );
