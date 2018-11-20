@@ -16,7 +16,7 @@ if (Events.find().count() === 0) {
   }
 }
 
-/** This subscription publishes only the documents associated with the logged in user */
+/** This subscription publishes Events */
 Meteor.publish('Events', function publish() {
-  return Events.find();
+  return Events.find({}, {sort: {date: -1, timeStart: 1 }});
 });
