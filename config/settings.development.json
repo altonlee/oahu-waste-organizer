@@ -6,7 +6,7 @@
 
   "defaultEvents": [
     {
-      "campus": "University of Hawaii at Hawaii",
+      "campus": "University of Hawaii at Manoa",
       "building": "Queen Liliuokalani Center",
       "date": "11/16/2018",
       "timeStart": "11:00 AM",
@@ -14,12 +14,20 @@
       "notes": "Audit was successful! We ate Papa John's after."
     },
     {
-      "campus": "University of Hawaii at Hawaii",
-      "building": "Keller Hall",
+      "campus": "Kapiolani Community College",
+      "building": "Building A",
       "date": "10/10/2018",
-      "timeStart": "11:00 AM",
-      "timeEnd": "01:00 PM",
+      "timeStart": "10:00 AM",
+      "timeEnd": "03:00 PM",
       "notes": "Audit failed! How did this happen!?"
+    },
+    {
+      "campus": "University of Washington",
+      "building": "Johnson Building",
+      "date": "9/25/2018",
+      "timeStart": "9:00 AM",
+      "timeEnd": "02:00 PM",
+      "notes": "It's cold up here. :(   Placeholder school to test unknown campus."
     }
   ],
 

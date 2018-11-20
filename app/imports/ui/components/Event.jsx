@@ -8,12 +8,22 @@ import { Button, Icon, Item } from 'semantic-ui-react';
 
 /** Renders a single event in the ListEvents table. See pages/ListEvents.jsx. */
 class Event extends React.Component {
+  renderSwitch(param) {
+    const campus = param.toString();
+    switch(campus) {
+      case "University of Hawaii at Manoa":
+        return <Item.Image src='/images/thumb-uhm.png' size='medium' rounded/>;
+      case "Kapiolani Community College":
+        return <Item.Image src='/images/thumb-kcc.png' size='medium' rounded/>;
+      default:
+        return <Item.Image src='/images/logo.png' size='medium' rounded/>;
+    }
+  }
+
   render() {
-    const UHM = { src: '/images/thumb-uhm.png' };
-    const KCC = { src: '/images/thumb-kcc.png' };
     return (
         <Item>
-          <Item.Image src='/images/thumb-uhm.png' size='medium' rounded/>
+          {this.renderSwitch(this.props.event.campus)}
           <Item.Content>
             <Item.Header>{this.props.event.campus}</Item.Header>
             <Item.Meta>
