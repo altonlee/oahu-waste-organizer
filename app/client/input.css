@@ -2,7 +2,6 @@
   font-size: 16px;
   margin-bottom: 5px;
   margin-top: 10px;
-  text-align: left;
 }
 
 .half {
@@ -43,4 +42,8 @@
 
 .sidebar .ui.form .ui.input {
   width: calc(100% - 40px);
+}
+
+.input-bag .ui.horizontal.list > .item {
+  margin-left: 0;
 }

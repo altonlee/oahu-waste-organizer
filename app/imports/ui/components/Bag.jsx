@@ -1,38 +1,45 @@
 import React from 'react';
-import { Button, Divider, Form, Header, List, TextArea } from 'semantic-ui-react';
+import { Button, Divider, List, Checkbox } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 /** Renders a single bag in the InputData table. See pages/InputData.jsx. */
 class Bag extends React.Component {
   render() {
     return (
-        <div>
-          <List horizontal relaxed='very' style={{ display: 'flex', width: '100%' }}>
-            <List.Item>
+        <div className='input-bag'>
+          <List horizontal relaxed='very' style={{ width: '100%' }}>
+            <List.Item style={{ width: '20px', paddingRight: 0 }}>
+              <List.Content>
+                <Checkbox/>
+              </List.Content>
+            </List.Item>
+            <List.Item style={{ width: '150px' }}>
               <List.Content>
                 <List.Header>Category</List.Header>
                 {this.props.category}
               </List.Content>
             </List.Item>
-            <List.Item>
+            <List.Item style={{ width: '105px' }}>
               <List.Content>
                 <List.Header>Weight</List.Header>
                 {this.props.weight} lbs
               </List.Content>
             </List.Item>
-            <List.Item>
+            <List.Item style={{ width: '105px' }}>
               <List.Content>
                 <List.Header>Volume</List.Header>
                 {this.props.volume} gal
               </List.Content>
             </List.Item>
-            <List.Item>
+            <List.Item style={{ width: 'calc(100% - 476px)'}}>
               <List.Header>Notes</List.Header>
-              {this.props.notes}
+              <div style={{ overflow: 'hidden', height: '1em', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{this.props.notes} Lorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet su</div>
             </List.Item>
-            <List.Item style={{ marginLeft: 'auto' }}>
-              <List.Content floated='right' verticalAlign='middle'>
-                <Button disabled={this.props.visible} onClick={this.props.handleShowClick}>Edit</Button>
+            <List.Item style={{ marginLeft: 'auto', width: '96px' }}>
+              <List.Content verticalAlign='middle'>
+                <Button disabled={this.props.visible} onClick={this.props.handleShowClick}>
+                  Edit
+                </Button>
               </List.Content>
             </List.Item>
           </List>

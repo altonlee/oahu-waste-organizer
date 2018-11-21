@@ -8,7 +8,7 @@ import {
   Input,
   Dropdown,
   Header,
-  Sidebar,
+  Sidebar, Button, Icon, Grid,
 } from 'semantic-ui-react';
 import '/client/input.css';
 import Bag from '/imports/ui/components/Bag';
@@ -24,8 +24,6 @@ class InputData extends React.Component {
   }
 
   state = { visible: false }
-
-  handleHideClick = () => this.setState({ visible: false })
 
   handleShowClick = () => this.setState({ visible: true })
 
@@ -121,52 +119,86 @@ class InputData extends React.Component {
     return (
         <div style={{ padding: '20px' }}>
           <Segment>
-            <div className="form-heading">Location</div>
-            <Dropdown placeholder='Select Campus' search selection options={campusOptions}/>
-            <div className="form-heading">Building</div>
-            <Dropdown placeholder='Select Building' search selection options={buildingOptions}/>
-            <div className="form-heading">Recorder Name</div>
-            <Input placeholder="Name"/>
-              <div className="form-heading">Recorder Email</div>
-              <Input placeholder="Email"/>
-              <div className="form-heading">Notes</div>
-              <Form>
-                <TextArea placeholder="Notes..."/>
-              </Form>
-              <div className="form-heading">Date</div>
-              <Input placeholder="MM/DD/YYYY"/>
-              <div className="form-heading">Bucket Tare</div>
-              <Input placeholder="Bucket Tare..."/>
+            <Grid columns='equal'>
+              <Grid.Row>
+                <Grid.Column>
+                  <div className="form-heading">Location</div>
+                  <Dropdown placeholder='Select Campus' fluid search selection options={campusOptions}/>
+                </Grid.Column>
+                <Grid.Column>
+                  <div className="form-heading">Building</div>
+                  <Dropdown placeholder='Select Building' fluid search selection options={buildingOptions}/>
+                </Grid.Column>
+                <Grid.Column>
+                  <div className="form-heading">Date</div>
+                  <Input fluid placeholder="MM/DD/YYYY"/>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+            <div className="form-heading">Notes</div>
+            <Form>
+              <TextArea placeholder="Notes..."/>
+            </Form>
+            <Sidebar.Pushable as={Segment} className='input-sidebar'>
+              <Sidebar as={Menu} animation='overlay' icon='labeled' vertical
+                       visible={visible} direction='right' width='very wide' style={{ padding: '10px' }}>
+                <Form>
+                  <Header as='h3'>Category</Header>
+                  <Dropdown ref={this.categoryInput} placeholder='Select Category' selection search
+                            options={categoryOptions}/>
+                  <Header as='h3'>Weight</Header>
+                  <Input ref={this.weightInput} label={{ basic: true, content: 'lb' }} labelPosition='right'
+                         placeholder="Weight"/>
+                  <Header as='h3'>Volume</Header>
+                  <Input ref={this.volumeInput} label={{ basic: true, content: 'gal' }} labelPosition='right'
+                         placeholder="Volume"/>
+                  <Header as='h3'>Notes</Header>
+                  <TextArea ref={this.notesInput} placeholder="Notes"/>
+                </Form>
+                <div style={{ padding: '20px' }}>
+                  <Button basic color='green' floated='left' onClick={this.handleSidebarHide}>
+                    Cancel
+                  </Button>
+                  <Button color='green' floated='right'>
+                    Save
+                  </Button>
+                </div>
+              </Sidebar>
 
-              <Sidebar.Pushable as={Segment} className='input-sidebar'>
-                <Sidebar as={Menu} animation='overlay' icon='labeled' onHide={this.handleSidebarHide} vertical
-                         visible={visible} direction='right' width='very wide' style={{ padding: '10px' }}>
-                  <Form>
-                    <Header as='h3'>Category</Header>
-                    <Dropdown ref={this.categoryInput} placeholder='Select Category' selection search
-                              options={categoryOptions}/>
-                    <Header as='h3'>Weight</Header>
-                    <Input ref={this.weightInput} label={{ basic: true, content: 'lb' }} labelPosition='right'
-                           placeholder="Weight"/>
-                    <Header as='h3'>Volume</Header>
-                    <Input ref={this.volumeInput} label={{ basic: true, content: 'gal' }} labelPosition='right'
-                           placeholder="Volume"/>
-                    <Header as='h3'>Notes</Header>
-                    <TextArea ref={this.notesInput} placeholder="Notes"/>
-                  </Form>
-                </Sidebar>
-
-                <Sidebar.Pusher>
-                  <Segment basic style={{ minHeight: '450px' }}>
+              <Sidebar.Pusher>
+                <Segment.Group>
+                  <Segment style={{ paddingBottom: '5px' }}>
+                    <Grid columns='equal'>
+                      <Grid.Row>
+                        <Grid.Column>
+                          <Icon name='tasks'/>
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Icon name='trash alternate'/>
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Button color='green'>
+                            Add Bag
+                          </Button>
+                        </Grid.Column>
+                        <Grid.Column>
+                          <div className="form-heading" style={{ display: 'inline-block', paddingRight: '10px' }}>Bucket Tare</div>
+                          <Input placeholder="Bucket Tare..."/>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid>
+                  </Segment>
+                  <Segment basic style={{ minHeight: '500px' }}>
                     {bagElements}
                   </Segment>
-                </Sidebar.Pusher>
-              </Sidebar.Pushable>
+                </Segment.Group>
+              </Sidebar.Pusher>
+            </Sidebar.Pushable>
           </Segment>
         </div>
-  );
+    );
   }
 
-  }
+}
 
-  export default InputData;
+export default InputData;
