@@ -6,24 +6,16 @@ import { Tracker } from 'meteor/tracker';
 const Input = new Mongo.Collection('Input');
 
 /** Create a schema to constrain the structure of documents associated with this collection. */
+const Item = new SimpleSchema({
+  name: String,
+  weight: Number,
+  volume: Number
+}, { tracker: Tracker });
+
 const InputSchema = new SimpleSchema({
   bagTare: Number,
-  Category: String,
-  "Item": {
-    type: Array
-    },
-  "Item.$": {
-    type: String
-  },
-  "Item.$.name": {
-    type: String
-  },
-  "Item.$.weight": {
-    type: Number
-  },
-  "Item.$.volume": {
-    type: Number
-  }
+  category: String,
+  items: [Item],
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
