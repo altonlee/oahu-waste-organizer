@@ -1,2 +1,2 @@
-import '/imports/api/stuff';
+import '/imports/api/input';
 import '/imports/api/event';
