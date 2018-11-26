@@ -33,7 +33,7 @@ class App extends React.Component {
               <Route path="/events" component={ListEvents}/>
               <Route path="/charts/:_id" component={EventCharts}/>
               <Route path="/about" component={About}/>
-              <ProtectedRoute path="/input" component={InputData}/>
+              <ProtectedRoute path="/input/:_id" component={InputData}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <AdminProtectedRoute path="/admin" component={EventsAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>

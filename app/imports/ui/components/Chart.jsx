@@ -1,14 +1,17 @@
 import React from 'react';
 import Highcharts from 'highcharts';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
-// import { InputData } from '../../api/data/data';
 
 /** Renders a chart for use in EventCharts.jsx.
  * https://www.highcharts.com/blog/tutorials/highcharts-react-wrapper/
  * TODO: give Chart sample data to read
  * */
 class Chart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     const pieStyle = {
       chart: {
@@ -18,7 +21,7 @@ class Chart extends React.Component {
         type: 'pie',
       },
       title: {
-        text: 'Browser market shares in January, 2018',
+        text: `${this.props.event.campus}`,
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
@@ -76,4 +79,12 @@ class Chart extends React.Component {
   }
 }
 
-export default Chart;
+/** Require a document to be passed to this component. */
+Chart.propTypes = {
+  event: PropTypes.object.isRequired,
+  input: PropTypes.object.isRequired,
+
+};
+
+/** Wrap this component in withRouter since we use the <Link> React Router element. */
+export default withRouter(Chart);

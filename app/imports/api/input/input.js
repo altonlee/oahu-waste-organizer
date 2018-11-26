@@ -9,13 +9,18 @@ const Input = new Mongo.Collection('Input');
 const Item = new SimpleSchema({
   name: String,
   weight: Number,
-  volume: Number
-}, { tracker: Tracker });
+  volume: Number,
+});
 
-const InputSchema = new SimpleSchema({
+const Data = new SimpleSchema({
   bagTare: Number,
   category: String,
   items: [Item],
+});
+
+const InputSchema = new SimpleSchema({
+  eventID: String,
+  data: [Data],
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
