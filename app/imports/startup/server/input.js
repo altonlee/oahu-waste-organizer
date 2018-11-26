@@ -4,7 +4,7 @@ import { Input } from '../../api/input/input.js';
 
 /** Initialize the database with a default data document. */
 function addData(data) {
-  console.log(`  Adding: ${data.category} data.`);
+  console.log(`  Adding: ${data.eventID} data.`);
   Input.insert(data);
 }
 
@@ -18,5 +18,6 @@ if (Input.find().count() === 0) {
 
 /** This subscription publishes Events */
 Meteor.publish('Input', function publish() {
+  console.log(Input.find());
   return Input.find();
 });
