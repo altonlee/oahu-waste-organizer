@@ -8,10 +8,6 @@ import PropTypes from 'prop-types';
  * TODO: give Chart sample data to read
  * */
 class Chart extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const pieStyle = {
       chart: {
@@ -21,7 +17,7 @@ class Chart extends React.Component {
         type: 'pie',
       },
       title: {
-        text: `${this.props.event.campus}`,
+        text: 'changeme',
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
@@ -79,12 +75,5 @@ class Chart extends React.Component {
   }
 }
 
-/** Require a document to be passed to this component. */
-Chart.propTypes = {
-  event: PropTypes.object.isRequired,
-  input: PropTypes.object.isRequired,
-
-};
-
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(Chart);
+export default Chart;

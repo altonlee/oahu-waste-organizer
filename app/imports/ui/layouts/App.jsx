@@ -10,10 +10,10 @@ import Home from '../pages/Home';
 import ListEvents from '../pages/ListEvents';
 import EventCharts from '../pages/EventCharts';
 import About from '../pages/About';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
-import EventsAdmin from '../pages/EventsAdmin';
 import InputData from '../pages/InputData';
+import InputAdmin from '../pages/InputAdmin';
 import EditStuff from '../pages/EditStuff';
+import ListStuffAdmin from '../pages/ListStuffAdmin';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -35,7 +35,7 @@ class App extends React.Component {
               <Route path="/about" component={About}/>
               <ProtectedRoute path="/input/:_id" component={InputData}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
-              <AdminProtectedRoute path="/admin" component={EventsAdmin}/>
+              <AdminProtectedRoute path="/input/admin/" component={InputAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>
