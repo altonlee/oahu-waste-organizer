@@ -16,7 +16,7 @@ const Data = new SimpleSchema({
   bagTare: Number,
   category: String,
   items: [Item],
-});
+}, { tracker: Tracker });
 
 const InputSchema = new SimpleSchema({
   eventID: String,

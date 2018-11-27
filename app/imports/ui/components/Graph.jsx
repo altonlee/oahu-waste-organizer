@@ -1,8 +1,5 @@
 import React from 'react';
 import Highcharts from 'highcharts';
-import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
-// import { InputData } from '../../api/data/data';
 
 /** Renders a graph for use in EventCharts.jsx.
  * https://www.highcharts.com/blog/tutorials/highcharts-react-wrapper/

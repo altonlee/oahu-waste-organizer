@@ -9,7 +9,7 @@ const Events = new Mongo.Collection('Events');
 const EventSchema = new SimpleSchema({
   campus: String,
   building: String,
-  date: Date,
+  date: String,
   timeStart: String,
   timeEnd: String,
   notes: String,
