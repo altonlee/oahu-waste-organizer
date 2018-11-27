@@ -121,8 +121,8 @@ class InputData extends React.Component {
     }
 
     return (
-        <div style={{ padding: '20px' }}>
-          <Segment>
+        <div>
+          <Segment style={{ padding: '40px' }}>
             <Grid columns='equal'>
               <Grid.Row>
                 <Grid.Column>
@@ -159,19 +159,18 @@ class InputData extends React.Component {
                   <Header as='h3'>Notes</Header>
                   <TextArea ref={this.notesInput} placeholder="Notes"/>
                 </Form>
-                <div style={{ padding: '20px' }}>
-                  <Button basic color='green' floated='left' onClick={this.handleSidebarHide}>
-                    Cancel
-                  </Button>
+                <div style={{ paddingTop: '20px', paddingBottom: '20px' }}>
                   <Button color='green' floated='right'>
                     Save
+                  </Button>
+                  <Button basic color='green' floated='right' onClick={this.handleSidebarHide}>
+                    Cancel
                   </Button>
                 </div>
               </Sidebar>
 
               <Sidebar.Pusher>
-                <Segment.Group>
-                  <Segment style={{ paddingBottom: '5px' }}>
+                  <Segment vertical style={{ paddingBottom: '5px' }}>
                     <Grid columns='equal'>
                       <Grid.Row>
                         <Grid.Column>
@@ -192,10 +191,9 @@ class InputData extends React.Component {
                       </Grid.Row>
                     </Grid>
                   </Segment>
-                  <Segment basic style={{ minHeight: '500px' }}>
+                  <Segment vertical basic style={{ minHeight: '500px' }}>
                     {bagElements}
                   </Segment>
-                </Segment.Group>
               </Sidebar.Pusher>
             </Sidebar.Pushable>
           </Segment>
