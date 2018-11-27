@@ -18,7 +18,7 @@ class ListEvents extends React.Component {
         <Container style={eventStyle}>
           <Header as='h1' textAlign="center">Past / Upcoming Waste Audits</Header>
           <Item.Group divided unstackable>
-            {this.props.data.map((event, index) => <Event key={index} event={event} />)}
+            {this.props.data.map((event, index) => <Event key={index} data={event} />)}
           </Item.Group>
         </Container>
     );
