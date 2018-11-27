@@ -3,7 +3,7 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Create a Meteor collection. */
-const Input = new Mongo.Collection('Input');
+const Data = new Mongo.Collection('Data');
 
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const Item = new SimpleSchema({
@@ -12,19 +12,24 @@ const Item = new SimpleSchema({
   volume: Number,
 });
 
-const Data = new SimpleSchema({
+const Input = new SimpleSchema({
   bagTare: Number,
   category: String,
   items: [Item],
 }, { tracker: Tracker });
 
-const InputSchema = new SimpleSchema({
-  eventID: String,
-  data: [Data],
+const DataSchema = new SimpleSchema({
+  campus: String,
+  building: String,
+  date: String,
+  timeStart: String,
+  timeEnd: String,
+  notes: String,
+  data: [Input],
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
-Input.attachSchema(InputSchema);
+Data.attachSchema(DataSchema);
 
 /** Make the collection and schema available to other code. */
-export { Input, InputSchema };
+export { Data, DataSchema };
