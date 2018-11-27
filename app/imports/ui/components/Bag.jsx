@@ -10,7 +10,7 @@ class Bag extends React.Component {
           <List horizontal relaxed='very' style={{ width: '100%' }}>
             <List.Item style={{ width: '20px', paddingRight: 0 }}>
               <List.Content>
-                <Checkbox/>
+                <Checkbox onChange={this.toggle} checked={this.props.checked}/>
               </List.Content>
             </List.Item>
             <List.Item style={{ width: '150px' }}>
@@ -31,7 +31,7 @@ class Bag extends React.Component {
                 {this.props.volume} gal
               </List.Content>
             </List.Item>
-            <List.Item style={{ width: 'calc(100% - 476px)'}}>
+            <List.Item style={{ width: 'calc(100% - 476px)' }}>
               <List.Header>Notes</List.Header>
               <div style={{ overflow: 'hidden', height: '1em', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{this.props.notes} Lorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet su</div>
             </List.Item>
@@ -51,6 +51,7 @@ class Bag extends React.Component {
 
 /** Require a document to be passed to this component. */
 Bag.propTypes = {
+  checked: PropTypes.func.isRequired,
   handleShowClick: PropTypes.func.isRequired,
   category: PropTypes.string.isRequired,
   weight: PropTypes.number.isRequired,

@@ -25,6 +25,10 @@ class InputData extends React.Component {
 
   state = { visible: false }
 
+  checkState = { checked: false }
+
+  toggle = () => this.setState({ checked: !this.checkState.checked })
+
   handleShowClick = () => this.setState({ visible: true })
 
   handleSidebarHide = () => this.setState({ visible: false })
@@ -141,7 +145,7 @@ class InputData extends React.Component {
             </Form>
             <Sidebar.Pushable as={Segment} className='input-sidebar'>
               <Sidebar as={Menu} animation='overlay' icon='labeled' vertical
-                       visible={visible} direction='right' width='very wide' style={{ padding: '10px' }}>
+                       visible={visible} direction='right' width='very wide' style={{ padding: '20px' }}>
                 <Form>
                   <Header as='h3'>Category</Header>
                   <Dropdown ref={this.categoryInput} placeholder='Select Category' selection search
@@ -171,13 +175,13 @@ class InputData extends React.Component {
                     <Grid columns='equal'>
                       <Grid.Row>
                         <Grid.Column>
-                          <Icon name='tasks'/>
+                          <Icon name='tasks' onClick={this.toggle}/>
                         </Grid.Column>
                         <Grid.Column>
                           <Icon name='trash alternate'/>
                         </Grid.Column>
                         <Grid.Column>
-                          <Button color='green'>
+                          <Button color='green' onClick={this.handleShowClick}>
                             Add Bag
                           </Button>
                         </Grid.Column>
