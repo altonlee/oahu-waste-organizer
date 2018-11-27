@@ -23,26 +23,26 @@ class Event extends React.Component {
   render() {
     return (
         <Item>
-          {this.renderSwitch(this.props.event.campus)}
+          {this.renderSwitch(this.props.data.campus)}
           <Item.Content>
-            <Item.Header>{this.props.event.campus}</Item.Header>
+            <Item.Header>{this.props.data.campus}</Item.Header>
             <Item.Meta>
-              <span>{this.props.event.building}</span>
+              <span>{this.props.data.building}</span>
             </Item.Meta>
             <Item.Description>
-              {this.props.event.date}<br/>
-              {this.props.event.timeStart} to {this.props.event.timeEnd}<br/>
+              {this.props.data.date}<br/>
+              {this.props.data.timeStart} to {this.props.data.timeEnd}<br/>
                <br/><strong>NOTES:</strong><br/>
-              {this.props.event.notes}<br/>
+              {this.props.data.notes}<br/>
             </Item.Description>
             <Item.Extra>
               {this.props.currentUser ? (
-                  <Button color='green' as={Link} to={`/input/${this.props.event._id}`} floated='right'>
+                  <Button color='green' as={Link} to={`/input/${this.props.data._id}`} floated='right'>
                     Input Data
                     <Icon name='right chevron'/>
                   </Button>
               ) : ''}
-              <Button basic color='green' as={Link} to={`/charts/${this.props.event._id}`} floated='right'>
+              <Button basic color='green' as={Link} to={`/charts/${this.props.data._id}`} floated='right'>
                 View
                 <Icon name='right chevron'/>
               </Button>
@@ -55,7 +55,7 @@ class Event extends React.Component {
 
 /** Require a document to be passed to this component. */
 Event.propTypes = {
-  event: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   currentUser: PropTypes.string,
 
 };
