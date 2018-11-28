@@ -27,11 +27,36 @@
         },
         {
           "bagTare": 0,
+          "category": "Hair",
+          "items": [
+            {"name": "Wigs", "weight": 15.1, "volume": 21.1}
+          ]
+        },
+        {
+          "bagTare": 0,
+          "category": "Fabric",
+          "items": [
+            {"name": "Shirts", "weight": 3.1, "volume": 13.75},
+            {"name": "Pants", "weight": 2.65, "volume": 11},
+            {"name": "Socks", "weight": 3.2, "volume": 11}
+          ]
+        },
+        {
+          "bagTare": 0,
           "category": "Paper",
           "items": [
             {"name": "Recyclable paper", "weight": 9.6, "volume": 38.5},
             {"name": "Non-recyclable paper", "weight": 8.75, "volume": 33},
             {"name": "Paper towels", "weight": 16.75, "volume": 44}
+          ]
+        },
+        {
+          "bagTare": 0,
+          "category": "Aluminum",
+          "items": [
+            {"name": "8oz cans", "weight": 6.6, "volume": 38.5},
+            {"name": "Soda cans", "weight": 5.75, "volume": 33},
+            {"name": "16 oz cans", "weight": 7.75, "volume": 44}
           ]
         }
       ]
@@ -46,7 +71,7 @@
       "data": [
         {
           "bagTare": 0,
-          "category": "Plastic",
+          "category": "Items of Interest",
           "items": [
             {"name": "Starbucks cups", "weight": 3.1, "volume": 13.75},
             {"name": "Plastic to-go cups", "weight": 2.65, "volume": 11},
@@ -58,11 +83,56 @@
         },
         {
           "bagTare": 0,
+          "category": "Plastic",
+          "items": [
+            {"name": "HI-5 Recyclable Plastic Containers", "weight": 1.75, "volume": 11},
+            {"name": "Food wrappers", "weight": 1.85, "volume": 16.5},
+            {"name": "Plastic food containers", "weight": 5.2, "volume": 38.5},
+            {"name": "Styrofoam", "weight": 1.1, "volume": 5.5},
+            {"name": "Other Plastic", "weight": 11.35, "volume": 44}
+          ]
+        },
+        {
+          "bagTare": 0,
+          "category": "Metals",
+          "items": [
+            {"name": "Recyclable metals", "weight": 1, "volume": 2.75},
+            {"name": "Non-Recyclable", "weight": 1.1, "volume": 5.5},
+            {"name": "Aluminum Cans", "weight": 1, "volume": 2.75}
+          ]
+        },
+        {
+          "bagTare": 0,
           "category": "Paper",
           "items": [
             {"name": "Recyclable paper", "weight": 9.6, "volume": 38.5},
             {"name": "Non-recyclable paper", "weight": 8.75, "volume": 33},
             {"name": "Paper towels", "weight": 16.75, "volume": 44}
+          ]
+        },
+        {
+          "bagTare": 0,
+          "category": "Glass",
+          "items": [
+            {"name": "HI-5 Glass Containers", "weight": 4.5, "volume": 5.5},
+            {"name": "Non-HI-5 Glass", "weight": 4.65, "volume": 5.5}
+          ]
+        },
+        {
+          "bagTare": 0,
+          "category": "Organics",
+          "items": [
+            {"name": "Food Waste", "weight": 35.15, "volume": 44.5},
+            {"name": "Green Waste", "weight": 1.65, "volume": 5.5}
+          ]
+        },
+        {
+          "bagTare": 0,
+          "category": "Misc.",
+          "items": [
+            {"name": "Arkansas", "weight": 8.4, "volume": 6},
+            {"name": "Electronics", "weight": 15.75, "volume": 33},
+            {"name": "School supplies", "weight": 7.75, "volume": 5}
           ]
         }
       ]
@@ -77,23 +147,19 @@
       "data": [
         {
           "bagTare": 0,
-          "category": "Plastic",
+          "category": "Jam",
           "items": [
-            {"name": "Starbucks cups", "weight": 3.1, "volume": 13.75},
-            {"name": "Plastic to-go cups", "weight": 2.65, "volume": 11},
-            {"name": "Wax paper cups", "weight": 3.2, "volume": 11},
-            {"name": "Compostable take-out", "weight": 6.15, "volume": 35.75},
-            {"name": "Disposable utensils", "weight": 2.25, "volume": 4},
-            {"name": "Straws", "weight": 0.05, "volume": 2.5}
+            {"name": "Strawberry waste", "weight": 3.5, "volume": 13.75},
+            {"name": "Blueberry waste", "weight": 4.2, "volume": 12.6}
           ]
         },
         {
           "bagTare": 0,
-          "category": "Paper",
+          "category": "Jelly",
           "items": [
-            {"name": "Recyclable paper", "weight": 9.6, "volume": 38.5},
-            {"name": "Non-recyclable paper", "weight": 8.75, "volume": 33},
-            {"name": "Paper towels", "weight": 16.75, "volume": 44}
+            {"name": "Belly paper", "weight": 9.6, "volume": 38.5},
+            {"name": "Tongue twisters", "weight": 8.75, "volume": 33},
+            {"name": "Peanut butter", "weight": 16.75, "volume": 44}
           ]
         }
       ]

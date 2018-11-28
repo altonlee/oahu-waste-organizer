@@ -2,18 +2,41 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Loader } from 'semantic-ui-react';
+import { Header, Loader } from 'semantic-ui-react';
 import { Data, DataSchema } from '/imports/api/data/data';
 import Chart from '../components/Chart';
 import Graph from '../components/Graph';
 
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class EventCharts extends React.Component {
+  generateData(data) {
+    let ret = [];
+    let name = [];
+    let y = [];
+    let length = data.length;
+
+    // Get points and name from collection
+    for (let i = 0; i < length; i++) {
+      name[i] = data[i].category;
+      y[i] = _.reduce((_.pluck(data[i].items, 'weight')), function (memo, num) {return memo + num;}, 0);
+    }
+
+    // Return series with data
+    for (let i = 0; i < data.length; i++) {
+      ret.push({
+        name: name[i],
+        y: y[i]
+      });
+    }
+    return ret;
+  }
+
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
   renderPage() {
+    let seriesData = this.generateData(this.props.data.data);
     const pieStyle = {
       chart: {
         plotBackgroundColor: null,
@@ -22,13 +45,13 @@ class EventCharts extends React.Component {
         type: 'pie',
       },
       title: {
-        text: `${this.props.data.building} data`,
+        text: 'Data by Weight of Category',
       },
       subtitle: {
         text: `At ${this.props.data.campus} on ${this.props.data.date}`,
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+        pointFormat: '<b>{point.percentage:.1f}%</b>',
       },
       plotOptions: {
         pie: {
@@ -41,29 +64,9 @@ class EventCharts extends React.Component {
         },
       },
       series: [{
-        name: 'Brands',
+        name: 'Type of trash by weight',
         colorByPoint: true,
-        data: [{
-          name: 'Chrome',
-          y: 61.41,
-          sliced: true,
-          selected: true,
-        }, {
-          name: 'Internet Explorer',
-          y: 11.84,
-        }, {
-          name: 'Firefox',
-          y: 10.85,
-        }, {
-          name: 'Edge',
-          y: 4.67,
-        }, {
-          name: 'Safari',
-          y: 4.18,
-        }, {
-          name: 'Other',
-          y: 7.05,
-        }],
+        data: seriesData,
       }],
     };
     const barStyle = {
@@ -121,12 +124,14 @@ class EventCharts extends React.Component {
       }],
     };
     return (
-        <div className="ui grid">
-          <div className="eight wide column">
-            <Chart style={pieStyle}/>
-          </div>
-          <div className="eight wide column">
-            <Graph style={barStyle}/>
+        <div className="ui centered header">{this.props.data.date}: {this.props.data.building} data
+          <div className="ui grid container">
+            <div className="eight wide column">
+              <Chart style={pieStyle}/>
+            </div>
+            <div className="eight wide column">
+              <Graph style={barStyle}/>
+            </div>
           </div>
         </div>
     );
