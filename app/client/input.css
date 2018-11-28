@@ -33,6 +33,7 @@
 
 .sidebar h3 {
   text-align: left;
+  font-weight: normal;
 }
 
 .sidebar .ui.form .ui.dropdown,

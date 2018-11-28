@@ -25,10 +25,6 @@ class InputData extends React.Component {
 
   state = { visible: false }
 
-  checkState = { checked: false }
-
-  toggle = () => this.setState({ checked: !this.checkState.checked })
-
   handleShowClick = () => this.setState({ visible: true })
 
   handleSidebarHide = () => this.setState({ visible: false })
@@ -122,7 +118,7 @@ class InputData extends React.Component {
 
     return (
         <div>
-          <Segment style={{ padding: '40px' }}>
+          <div style={{ padding: '20px' }}>
             <Grid columns='equal'>
               <Grid.Row>
                 <Grid.Column>
@@ -143,7 +139,7 @@ class InputData extends React.Component {
             <Form>
               <TextArea placeholder="Notes..."/>
             </Form>
-            <Sidebar.Pushable as={Segment} className='input-sidebar'>
+            <Sidebar.Pushable as={Segment}>
               <Sidebar as={Menu} animation='overlay' icon='labeled' vertical
                        visible={visible} direction='right' width='very wide' style={{ padding: '20px' }}>
                 <Form>
@@ -151,10 +147,10 @@ class InputData extends React.Component {
                   <Dropdown ref={this.categoryInput} placeholder='Select Category' selection search
                             options={categoryOptions}/>
                   <Header as='h3'>Weight</Header>
-                  <Input ref={this.weightInput} label={{ basic: true, content: 'lb' }} labelPosition='right'
+                  <Input ref={this.weightInput} label={{ content: 'lb', color: 'green' }} labelPosition='right'
                          placeholder="Weight"/>
                   <Header as='h3'>Volume</Header>
-                  <Input ref={this.volumeInput} label={{ basic: true, content: 'gal' }} labelPosition='right'
+                  <Input ref={this.volumeInput} label={{ content: 'gal', color: 'green' }} labelPosition='right'
                          placeholder="Volume"/>
                   <Header as='h3'>Notes</Header>
                   <TextArea ref={this.notesInput} placeholder="Notes"/>
@@ -170,17 +166,17 @@ class InputData extends React.Component {
               </Sidebar>
 
               <Sidebar.Pusher>
-                  <Segment vertical style={{ paddingBottom: '5px' }}>
+                  <Segment vertical style={{ padding: '20px' }}>
                     <Grid columns='equal'>
                       <Grid.Row>
                         <Grid.Column>
-                          <Icon name='tasks' onClick={this.toggle}/>
+                            <Icon name='tasks'/>
                         </Grid.Column>
                         <Grid.Column>
-                          <Icon name='trash alternate'/>
+                          <Icon name='trash alternate' float='left'/>
                         </Grid.Column>
                         <Grid.Column>
-                          <Button color='green' onClick={this.handleShowClick}>
+                          <Button color='green' float='right' onClick={this.handleShowClick}>
                             Add Bag
                           </Button>
                         </Grid.Column>
@@ -191,12 +187,12 @@ class InputData extends React.Component {
                       </Grid.Row>
                     </Grid>
                   </Segment>
-                  <Segment vertical basic style={{ minHeight: '500px' }}>
+                  <Segment vertical basic style={{ minHeight: '500px', padding: '20px' }}>
                     {bagElements}
                   </Segment>
               </Sidebar.Pusher>
             </Sidebar.Pushable>
-          </Segment>
+          </div>
         </div>
     );
   }

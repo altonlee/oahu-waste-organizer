@@ -10,7 +10,7 @@ class Bag extends React.Component {
           <List horizontal relaxed='very' style={{ width: '100%' }}>
             <List.Item style={{ width: '20px', paddingRight: 0 }}>
               <List.Content>
-                <Checkbox onChange={this.toggle} checked={this.props.checked}/>
+                <Checkbox/>
               </List.Content>
             </List.Item>
             <List.Item style={{ width: '150px' }}>
@@ -51,7 +51,6 @@ class Bag extends React.Component {
 
 /** Require a document to be passed to this component. */
 Bag.propTypes = {
-  checked: PropTypes.func.isRequired,
   handleShowClick: PropTypes.func.isRequired,
   category: PropTypes.string.isRequired,
   weight: PropTypes.number.isRequired,
