@@ -12,11 +12,11 @@
       "timeStart": "09:00 AM",
       "timeEnd": "01:00 PM",
       "notes": "Audit failed! How did this happen!?",
-      "data": [
+      "input": [
         {
           "bagTare": 0,
           "category": "Plastic",
-          "items": [
+          "bags": [
             {"name": "Starbucks cups", "weight": 3.1, "volume": 13.75},
             {"name": "Plastic to-go cups", "weight": 2.65, "volume": 11},
             {"name": "Wax paper cups", "weight": 3.2, "volume": 11},
@@ -28,14 +28,14 @@
         {
           "bagTare": 0,
           "category": "Hair",
-          "items": [
+          "bags": [
             {"name": "Wigs", "weight": 15.1, "volume": 21.1}
           ]
         },
         {
           "bagTare": 0,
           "category": "Fabric",
-          "items": [
+          "bags": [
             {"name": "Shirts", "weight": 3.1, "volume": 13.75},
             {"name": "Pants", "weight": 2.65, "volume": 11},
             {"name": "Socks", "weight": 3.2, "volume": 11}
@@ -44,7 +44,7 @@
         {
           "bagTare": 0,
           "category": "Paper",
-          "items": [
+          "bags": [
             {"name": "Recyclable paper", "weight": 9.6, "volume": 38.5},
             {"name": "Non-recyclable paper", "weight": 8.75, "volume": 33},
             {"name": "Paper towels", "weight": 16.75, "volume": 44}
@@ -53,7 +53,7 @@
         {
           "bagTare": 0,
           "category": "Aluminum",
-          "items": [
+          "bags": [
             {"name": "8oz cans", "weight": 6.6, "volume": 38.5},
             {"name": "Soda cans", "weight": 5.75, "volume": 33},
             {"name": "16 oz cans", "weight": 7.75, "volume": 44}
@@ -68,11 +68,11 @@
       "timeStart": "11:00 PM",
       "timeEnd": "03:00 PM",
       "notes": "Audit was successful! We ate at Papa John's after.",
-      "data": [
+      "input": [
         {
           "bagTare": 0,
           "category": "Items of Interest",
-          "items": [
+          "bags": [
             {"name": "Starbucks cups", "weight": 3.1, "volume": 13.75},
             {"name": "Plastic to-go cups", "weight": 2.65, "volume": 11},
             {"name": "Wax paper cups", "weight": 3.2, "volume": 11},
@@ -84,7 +84,7 @@
         {
           "bagTare": 0,
           "category": "Plastic",
-          "items": [
+          "bags": [
             {"name": "HI-5 Recyclable Plastic Containers", "weight": 1.75, "volume": 11},
             {"name": "Food wrappers", "weight": 1.85, "volume": 16.5},
             {"name": "Plastic food containers", "weight": 5.2, "volume": 38.5},
@@ -95,7 +95,7 @@
         {
           "bagTare": 0,
           "category": "Metals",
-          "items": [
+          "bags": [
             {"name": "Recyclable metals", "weight": 1, "volume": 2.75},
             {"name": "Non-Recyclable", "weight": 1.1, "volume": 5.5},
             {"name": "Aluminum Cans", "weight": 1, "volume": 2.75}
@@ -104,7 +104,7 @@
         {
           "bagTare": 0,
           "category": "Paper",
-          "items": [
+          "bags": [
             {"name": "Recyclable paper", "weight": 9.6, "volume": 38.5},
             {"name": "Non-recyclable paper", "weight": 8.75, "volume": 33},
             {"name": "Paper towels", "weight": 16.75, "volume": 44}
@@ -113,7 +113,7 @@
         {
           "bagTare": 0,
           "category": "Glass",
-          "items": [
+          "bags": [
             {"name": "HI-5 Glass Containers", "weight": 4.5, "volume": 5.5},
             {"name": "Non-HI-5 Glass", "weight": 4.65, "volume": 5.5}
           ]
@@ -121,7 +121,7 @@
         {
           "bagTare": 0,
           "category": "Organics",
-          "items": [
+          "bags": [
             {"name": "Food Waste", "weight": 35.15, "volume": 44.5},
             {"name": "Green Waste", "weight": 1.65, "volume": 5.5}
           ]
@@ -129,7 +129,7 @@
         {
           "bagTare": 0,
           "category": "Misc.",
-          "items": [
+          "bags": [
             {"name": "Arkansas", "weight": 8.4, "volume": 6},
             {"name": "Electronics", "weight": 15.75, "volume": 33},
             {"name": "School supplies", "weight": 7.75, "volume": 5}
@@ -144,11 +144,11 @@
       "timeStart": "10:00 AM",
       "timeEnd": "02:00 PM",
       "notes": "What the... Where am I? Placeholder event to test unknown campus.",
-      "data": [
+      "input": [
         {
           "bagTare": 0,
           "category": "Jam",
-          "items": [
+          "bags": [
             {"name": "Strawberry waste", "weight": 3.5, "volume": 13.75},
             {"name": "Blueberry waste", "weight": 4.2, "volume": 12.6}
           ]
@@ -156,7 +156,7 @@
         {
           "bagTare": 0,
           "category": "Jelly",
-          "items": [
+          "bags": [
             {"name": "Belly paper", "weight": 9.6, "volume": 38.5},
             {"name": "Tongue twisters", "weight": 8.75, "volume": 33},
             {"name": "Peanut butter", "weight": 16.75, "volume": 44}

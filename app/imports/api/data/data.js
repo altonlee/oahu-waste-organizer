@@ -15,7 +15,7 @@ const Item = new SimpleSchema({
 const Input = new SimpleSchema({
   bagTare: Number,
   category: String,
-  items: [Item],
+  bags: [Item],
 }, { tracker: Tracker });
 
 const DataSchema = new SimpleSchema({
@@ -25,7 +25,7 @@ const DataSchema = new SimpleSchema({
   timeStart: String,
   timeEnd: String,
   notes: String,
-  data: [Input],
+  input: [Input],
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

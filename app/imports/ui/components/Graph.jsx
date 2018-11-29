@@ -4,6 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Highcharts from 'highcharts';
+import drilldown from 'highcharts-drilldown';
 
 /** Renders a graph for use in EventCharts.jsx.
  * https://www.highcharts.com/blog/tutorials/highcharts-react-wrapper/
@@ -11,6 +12,8 @@ import Highcharts from 'highcharts';
  * */
 class Graph extends React.Component {
   componentDidMount() {
+    drilldown(Highcharts);
+
     this.chart = new Highcharts[this.props.type || 'Chart'](
         this.chartEl,
         this.props.style
