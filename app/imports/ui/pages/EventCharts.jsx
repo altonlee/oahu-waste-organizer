@@ -2,14 +2,36 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Header, Loader } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 import { Data, DataSchema } from '/imports/api/data/data';
 import Chart from '../components/Chart';
 import Graph from '../components/Graph';
 
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class EventCharts extends React.Component {
-  generateData(data) {
+  generatePieData(data) {
+    let ret = [];
+    let name = [];
+    let y = [];
+    let length = data.length;
+
+    // Get points and name from collection
+    for (let i = 0; i < length; i++) {
+      name[i] = data[i].category;
+      y[i] = _.reduce((_.pluck(data[i].items, 'weight')), function (memo, num) {return memo + num;}, 0);
+    }
+
+    // Return series with data
+    for (let i = 0; i < data.length; i++) {
+      ret.push({
+        name: name[i],
+        y: y[i]
+      });
+    }
+    return ret;
+  }
+
+  generateBarData(data) {
     let ret = [];
     let name = [];
     let y = [];
@@ -36,7 +58,8 @@ class EventCharts extends React.Component {
   }
 
   renderPage() {
-    let seriesData = this.generateData(this.props.data.data);
+    let pieData = this.generatePieData(this.props.data.data);
+    let barData = this.generateBarData(this.props.data.data);
     const pieStyle = {
       chart: {
         plotBackgroundColor: null,
@@ -51,7 +74,7 @@ class EventCharts extends React.Component {
         text: `At ${this.props.data.campus} on ${this.props.data.date}`,
       },
       tooltip: {
-        pointFormat: '<b>{point.percentage:.1f}%</b>',
+        pointFormat: '<b>{point.percentage:.1f} lbs</b>',
       },
       plotOptions: {
         pie: {
@@ -66,63 +89,53 @@ class EventCharts extends React.Component {
       series: [{
         name: 'Type of trash by weight',
         colorByPoint: true,
-        data: seriesData,
+        data: pieData,
       }],
     };
     const barStyle = {
       chart: {
-        type: 'area',
+        type: 'column'
       },
       title: {
-        text: `${this.props.data.building} data`,
+        text: 'Breakdown of Data'
       },
       subtitle: {
-        text: `At ${this.props.data.campus} on ${this.props.data.date}`,
+        text: 'Click the columns to view breakdown.'
       },
       xAxis: {
-        categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
-        tickmarkPlacement: 'on',
-        title: {
-          enabled: false,
-        },
+        type: 'category'
       },
       yAxis: {
         title: {
-          text: 'Percent',
-        },
+          text: 'Weight (lbs)'
+        }
+
       },
-      tooltip: {
-        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millions)<br/>',
-        split: true,
+      legend: {
+        enabled: false
       },
       plotOptions: {
-        area: {
-          stacking: 'percent',
-          lineColor: '#ffffff',
-          lineWidth: 1,
-          marker: {
-            lineWidth: 1,
-            lineColor: '#ffffff',
-          },
-        },
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
       },
+
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+      },
+
       series: [{
-        name: 'Asia',
-        data: [502, 635, 809, 947, 1402, 3634, 5268],
-      }, {
-        name: 'Africa',
-        data: [106, 107, 111, 133, 221, 767, 1766],
-      }, {
-        name: 'Europe',
-        data: [163, 203, 276, 408, 547, 729, 628],
-      }, {
-        name: 'America',
-        data: [18, 31, 54, 156, 339, 818, 1201],
-      }, {
-        name: 'Oceania',
-        data: [2, 2, 2, 6, 13, 30, 46],
+        name: 'Breakdown of Trash Category',
+        colorByPoint: true,
+        data: barData,
       }],
     };
+
     return (
         <div className="ui centered header">{this.props.data.date}: {this.props.data.building} data
           <div className="ui grid container">
