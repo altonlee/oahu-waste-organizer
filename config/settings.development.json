@@ -15,6 +15,15 @@
       "input": [
         {
           "bagTare": 0,
+          "category": "Paper",
+          "bags": [
+            {"name": "Recyclable paper", "weight": 9.6, "volume": 38.5},
+            {"name": "Non-recyclable paper", "weight": 8.75, "volume": 33},
+            {"name": "Paper towels", "weight": 16.75, "volume": 44}
+          ]
+        },
+        {
+          "bagTare": 0,
           "category": "Plastic",
           "bags": [
             {"name": "Starbucks cups", "weight": 3.1, "volume": 13.75},
@@ -27,36 +36,20 @@
         },
         {
           "bagTare": 0,
-          "category": "Hair",
-          "bags": [
-            {"name": "Wigs", "weight": 15.1, "volume": 21.1}
-          ]
-        },
-        {
-          "bagTare": 0,
-          "category": "Fabric",
-          "bags": [
-            {"name": "Shirts", "weight": 3.1, "volume": 13.75},
-            {"name": "Pants", "weight": 2.65, "volume": 11},
-            {"name": "Socks", "weight": 3.2, "volume": 11}
-          ]
-        },
-        {
-          "bagTare": 0,
-          "category": "Paper",
-          "bags": [
-            {"name": "Recyclable paper", "weight": 9.6, "volume": 38.5},
-            {"name": "Non-recyclable paper", "weight": 8.75, "volume": 33},
-            {"name": "Paper towels", "weight": 16.75, "volume": 44}
-          ]
-        },
-        {
-          "bagTare": 0,
-          "category": "Aluminum",
+          "category": "Metals",
           "bags": [
             {"name": "8oz cans", "weight": 6.6, "volume": 38.5},
             {"name": "Soda cans", "weight": 5.75, "volume": 33},
             {"name": "16 oz cans", "weight": 7.75, "volume": 44}
+          ]
+        },
+        {
+          "bagTare": 0,
+          "category": "Misc.",
+          "bags": [
+            {"name": "Shirts", "weight": 3.1, "volume": 13.75},
+            {"name": "Pants", "weight": 2.65, "volume": 11},
+            {"name": "Socks", "weight": 3.2, "volume": 11}
           ]
         }
       ]
@@ -83,6 +76,15 @@
         },
         {
           "bagTare": 0,
+          "category": "Paper",
+          "bags": [
+            {"name": "Recyclable paper", "weight": 9.6, "volume": 38.5},
+            {"name": "Non-recyclable paper", "weight": 8.75, "volume": 33},
+            {"name": "Paper towels", "weight": 16.75, "volume": 44}
+          ]
+        },
+        {
+          "bagTare": 0,
           "category": "Plastic",
           "bags": [
             {"name": "HI-5 Recyclable Plastic Containers", "weight": 1.75, "volume": 11},
@@ -99,15 +101,6 @@
             {"name": "Recyclable metals", "weight": 1, "volume": 2.75},
             {"name": "Non-Recyclable", "weight": 1.1, "volume": 5.5},
             {"name": "Aluminum Cans", "weight": 1, "volume": 2.75}
-          ]
-        },
-        {
-          "bagTare": 0,
-          "category": "Paper",
-          "bags": [
-            {"name": "Recyclable paper", "weight": 9.6, "volume": 38.5},
-            {"name": "Non-recyclable paper", "weight": 8.75, "volume": 33},
-            {"name": "Paper towels", "weight": 16.75, "volume": 44}
           ]
         },
         {
