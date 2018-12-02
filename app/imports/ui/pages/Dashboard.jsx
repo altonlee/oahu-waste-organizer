@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
 import { Data, DataSchema } from '/imports/api/data/data';
 import Highcharts from 'highcharts';
-import Chart from '../components/Chart';
-import Graph from '../components/Graph';
-import Combo from '../components/Combo';
+import Chart from '../components/Charts/Chart';
+import Graph from '../components/Charts/Graph';
+import Combo from '../components/Charts/Combo';
 
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class EventCharts extends React.Component {

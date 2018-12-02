@@ -4,8 +4,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
 import { Data, DataSchema } from '/imports/api/data/data';
-import Chart from '../components/Chart';
-import Graph from '../components/Graph';
+import Chart from '../components/Charts/Chart';
+import Graph from '../components/Charts/Graph';
 
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class EventCharts extends React.Component {

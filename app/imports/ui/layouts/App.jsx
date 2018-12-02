@@ -12,7 +12,7 @@ import EventCharts from '../pages/EventCharts';
 import About from '../pages/About';
 import InputData from '../pages/InputData';
 import EditStuff from '../pages/EditStuff';
-import InputAdmin from '../pages/InputAdmin';
+import EventAdmin from '../pages/EventAdmin';
 import Dashboard from '../pages/Dashboard';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -35,7 +35,7 @@ class App extends React.Component {
               <Route path="/about" component={About}/>
               <ProtectedRoute path="/input/:_id" component={InputData}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
-              <AdminProtectedRoute path="/input/admin/" component={InputAdmin}/>
+              <AdminProtectedRoute path="/admin/" component={EventAdmin}/>
               <Route path="/dashboard" component={Dashboard}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
