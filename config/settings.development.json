@@ -140,19 +140,16 @@
       "input": [
         {
           "bagTare": 0,
-          "category": "Jam",
+          "category": "Paper",
           "bags": [
-            {"name": "Strawberry waste", "weight": 3.5, "volume": 13.75},
-            {"name": "Blueberry waste", "weight": 4.2, "volume": 12.6}
+            {"name": "Recyclable paper", "weight": 9.6, "volume": 38.5}
           ]
         },
         {
           "bagTare": 0,
-          "category": "Jelly",
+          "category": "Plastic",
           "bags": [
-            {"name": "Belly paper", "weight": 9.6, "volume": 38.5},
-            {"name": "Tongue twisters", "weight": 8.75, "volume": 33},
-            {"name": "Peanut butter", "weight": 16.75, "volume": 44}
+            {"name": "HI-5 Recyclable Plastic Containers", "weight": 1.75, "volume": 11}
           ]
         }
       ]

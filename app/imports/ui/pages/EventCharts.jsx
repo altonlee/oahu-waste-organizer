@@ -147,21 +147,31 @@ class EventCharts extends React.Component {
           }],
           drilldown:
               { series: drillData }
-        }
-    ;
+        };
 
+    const margins = { paddingBottom: '15px', paddingTop: '10px' };
     return (
         <div className="ui container">
           <div className="ui huge centered header">{this.props.data.date}: {this.props.data.building} data<br/>
+            <div className="ui large buttons" style={margins}>
+              <button className="ui button">Weight</button>
+              <div className="or"></div>
+              <button className="ui button">Volume</button>
+            </div>
             <div className="ui grid container">
               <div className="eight wide column">
-                <Chart style={pieStyle}/>
+                <div className="ui segment">
+                  <Chart style={pieStyle}/>
+                </div>
               </div>
               <div className="eight wide column">
-                <Graph style={barStyle}/>
+                <div className="ui segment">
+                  <Graph style={barStyle}/>
+                </div>
               </div>
             </div>
           </div>
+          <br/>
         </div>
     );
   }
