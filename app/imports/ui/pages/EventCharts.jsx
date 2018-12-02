@@ -150,7 +150,7 @@ class EventCharts extends React.Component {
     ;
 
     return (
-        <div className="ui centered header">{this.props.data.date}: {this.props.data.building} data
+        <h1 className="ui centered header">{this.props.data.date}: {this.props.data.building} data
           <div className="ui grid container">
             <div className="eight wide column">
               <Chart style={pieStyle}/>
@@ -159,7 +159,7 @@ class EventCharts extends React.Component {
               <Graph style={barStyle}/>
             </div>
           </div>
-        </div>
+        </h1>
     );
   }
 }

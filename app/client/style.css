@@ -1,16 +1,8 @@
-h2 {
-  margin: 10px 0 5px 0;
-  padding: 0;
-  font-size: 20px;
-  font-weight: normal;
-}
-
 .footer {
   bottom: 0;
   width: 100%;
   background-color: #069200;
   color: white;
   text-align: center;
-  padding: 15px 0px 15px 0px;
+  padding: 15px 0 15px 0;
 }
-
