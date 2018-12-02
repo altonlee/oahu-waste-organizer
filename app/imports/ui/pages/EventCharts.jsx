@@ -43,10 +43,11 @@ class EventCharts extends React.Component {
     // Get bag data
     for (let i = 0; i < length; i++) {
       name[i] = input[i].category;
-      data[i] = [
-      ["hello", 0.5],
-          ["world", 1.2]
-      ]
+      data[i] = [];
+      let bags = input[i].bags;
+      for (let j = 0; j < bags.length; j++) {
+        data[i][j] = [bags[j].name, bags[j].weight];
+      }
     }
 
     // Return series with drilldown
@@ -150,16 +151,18 @@ class EventCharts extends React.Component {
     ;
 
     return (
-        <h1 className="ui centered header">{this.props.data.date}: {this.props.data.building} data
-          <div className="ui grid container">
-            <div className="eight wide column">
-              <Chart style={pieStyle}/>
-            </div>
-            <div className="eight wide column">
-              <Graph style={barStyle}/>
+        <div className="ui container">
+          <div className="ui huge centered header">{this.props.data.date}: {this.props.data.building} data<br/>
+            <div className="ui grid container">
+              <div className="eight wide column">
+                <Chart style={pieStyle}/>
+              </div>
+              <div className="eight wide column">
+                <Graph style={barStyle}/>
+              </div>
             </div>
           </div>
-        </h1>
+        </div>
     );
   }
 }
