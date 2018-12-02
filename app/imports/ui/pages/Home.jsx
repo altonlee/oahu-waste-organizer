@@ -1,22 +1,17 @@
 import React from 'react';
-import { Header, Image } from 'semantic-ui-react';
+import Logo from '../components/Logo';
+import About from '../components/About';
 import '/client/landing.css';
 
-/** A simple static component to render some text for the Home page. */
-class Home extends React.Component {
+export default class Home extends React.Component {
+
   render() {
     return (
-        <div className="landing-background">
-          <div className="trapezoid">
-            <Image src="/images/logo.png" size='medium' centered/>
-            <Header as="h1" inverted>Oʻahu Waste Organization</Header>
-            <Header as="h3" inverted>
-              A clean, streamlined tool for data input and visualization
-            </Header>
-          </div>
+        <div>
+          <Logo/>
+          <About/>
         </div>
     );
   }
 }
 
-export default Home;
