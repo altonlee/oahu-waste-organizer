@@ -1,11 +1,12 @@
 import React from 'react';
-import { Header, Image, Container, Segment, Form } from 'semantic-ui-react';
+import { Header, Image, Container, Segment, Form, Message } from 'semantic-ui-react';
 import '/client/landing.css';
+import { Link } from 'react-router-dom';
 
 /** A simple static component to render some text for the Home page. */
 export default class Logo extends React.Component {
   render() {
-    const gridStyle = { display: 'flex', height: '520px', alignItems: 'center' };
+    const gridStyle = { display: 'flex', height: '700px', alignItems: 'center' };
     return (
         <div className="landing-background">
           <Container id="grad1" style={ gridStyle }>
@@ -39,6 +40,11 @@ export default class Logo extends React.Component {
                 <Form.Button content="Submit" color='green'/>
               </Segment>
               </Form>
+              <div style={{ width: 'calc(100% - 250px)', margin: 'auto', paddingTop: '5px' }}>
+              <Message>
+                <Link to="/signup">Click here to Register</Link>
+              </Message>
+              </div>
             </Container>
           </Container>
         </div>

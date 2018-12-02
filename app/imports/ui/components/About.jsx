@@ -14,7 +14,7 @@ export default class About extends React.Component {
               targets specific types of waste (i.e. plastic utensils, disposable beverage containers) to enable a more
               targeted response from the UH community. </Header>
           </Container>
-          <Container fluid>
+          <Container fluid style={{  }}>
             <Image src="https://lh3.googleusercontent.com/-1OrHC5XsHXA/W8isKqXFv_I/AAAAAAAAB6E/QTdFC4uutlUVQWx41TsmS95D5To3nXDRACJoC/w530-h353-n/pictofon-laptop-35.png" size="small" style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box' }}/>
             <Container style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box', margin: 'auto' }}>
             <Header as="h1">Get rid of pencil and paper!</Header>
