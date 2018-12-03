@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { Data, DataSchema } from '/imports/api/data/data';
 import {
   TextArea,
   Segment,
@@ -12,15 +13,30 @@ import {
 } from 'semantic-ui-react';
 import '/client/input.css';
 import Bag from '/imports/ui/components/Bag';
+import { Bert } from 'meteor/themeteorchef:bert';
+import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 
 class InputData extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.submit = this.submit.bind(this);
+    this.insertCallback = this.insertCallback.bind(this);
+    this.formRef = null;
+  }
 
-    this.categoryInput = null;
-    this.weightInput = null;
-    this.volumeInput = null;
-    this.notesInput = null;
+  insertCallback(error) {
+    if (error) {
+      Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
+    } else {
+      Bert.alert({ type: 'success', message: 'Add succeeded' });
+      this.formRef.reset();
+    }
+  }
+
+  submit(data) {
+    const { category, name, weight, volume, bagNotes } = data;
+    Data.insert({ category, name, weight, volume, bagNotes }, this.insertCallback);
   }
 
   state = { visible: false }
@@ -32,16 +48,26 @@ class InputData extends React.Component {
   render() {
     const { visible } = this.state;
     const campusOptions = [
-      { key: 'uh manoa', text: 'University of Hawaiʻi at Manoa', value: 'uh manoa' },
-      { key: 'uh hilo', text: 'University of Hawaiʻi at Hilo', value: 'uh hilo' },
-      { key: 'west oahu', text: 'University of Hawaiʻi - West Oahu', value: 'west oahu' },
+      { key: 'uh manoa', text: 'University of Hawai?i at Manoa', value: 'uh manoa' },
+      { key: 'uh hilo', text: 'University of Hawai?i at Hilo', value: 'uh hilo' },
+      { key: 'west oahu', text: 'University of Hawai?i - West Oahu', value: 'west oahu' },
     ];
     const buildingOptions = [
-      { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: 'qlc' },
+      { key: 'qlc', text: 'Queen Lili?uokalani Center', value: 'qlc' },
       { key: 'campus center', text: 'Campus Center', value: 'campus center' },
       { key: 'post', text: 'Pacific Ocean Science and Technology', value: 'post' },
     ];
     const categoryOptions = [
+      { key: 'items of interest', text: '---Items of Interest---', value: 'items of interest', disabled: true },
+      { key: 'paper', text: '---Paper---', value: 'paper', disabled: true },
+      { key: 'plastic', text: '---Plastic---', value: 'plastic', disabled: true },
+      { key: 'glass', text: '---Glass---', value: 'glass' },
+      { key: 'metals', text: '---Metals---', value: 'metals', disabled: true },
+      { key: 'organics', text: '---Organics---', value: 'organics', disabled: true },
+      { key: 'misc', text: '---Misc---', value: 'misc', disabled: true },
+    ];
+
+    const itemNameOptions = [
       { key: 'items of interest', text: '---Items of Interest---', value: 'items of interest', disabled: true },
       { key: 'starbucks cups', text: 'Starbucks Cups', value: 'starbucks cups' },
       { key: 'plastic to-go cups', text: 'Plastic To-Go Cups', value: 'plastic to-go cups' },
@@ -91,30 +117,30 @@ class InputData extends React.Component {
       { key: 'liquids', text: 'Liquids', value: 'liquids' },
       { key: 'office/school supplies', text: 'Office/School Supplies', value: 'office/school supplies' },
       { key: 'all electronics', text: 'All Electronics', value: 'all electronics' },
-    ];
+    ]
 
-    const bags = [
-      {
-        category: 'Starbucks Cups',
-        weight: 3.1,
-        volume: 13.75,
-      },
-      {
-        category: 'Plastic To-Go Cups',
-        weight: 2.65,
-        volume: 11,
-      },
-      {
-        category: 'Wax Paper cups',
-        weight: 3.2,
-        volume: 11,
-      },
-    ];
-    const bagElements = [];
-    for (let i = 0; i < bags.length; i++) {
-      bagElements[i] = <Bag handleShowClick={this.handleShowClick} category={bags[i].category} volume={bags[i].volume}
-                            weight={bags[i].weight} visible={visible}/>;
-    }
+    // const bags = [
+    //   {
+    //     category: 'Starbucks Cups',
+    //     weight: 3.1,
+    //     volume: 13.75,
+    //   },
+    //   {
+    //     category: 'Plastic To-Go Cups',
+    //     weight: 2.65,
+    //     volume: 11,
+    //   },
+    //   {
+    //     category: 'Wax Paper cups',
+    //     weight: 3.2,
+    //     volume: 11,
+    //   },
+    // ];
+    // const bagElements = [];
+    // for (let i = 0; i < bags.length; i++) {
+    //   bagElements[i] = <Bag handleShowClick={this.handleShowClick} category={bags[i].category} volume={bags[i].volume}
+    //                         weight={bags[i].weight} visible={visible}/>;
+    // }
 
     return (
         <div>
@@ -139,24 +165,28 @@ class InputData extends React.Component {
             <Form>
               <TextArea placeholder="Notes..."/>
             </Form>
+
             <Sidebar.Pushable as={Segment}>
               <Sidebar as={Menu} animation='overlay' icon='labeled' vertical
                        visible={visible} direction='right' width='very wide' style={{ padding: '20px' }}>
-                <Form>
+                <Form ref={(ref) => {
+                  this.formRef = ref;
+                }} schema={DataSchema} onSubmit={this.submit}>
                   <Header as='h3'>Category</Header>
-                  <Dropdown ref={this.categoryInput} placeholder='Select Category' selection search
+                  <Dropdown name='category' placeholder='Select Category' selection search options={itemNameOptions}/>
+                  <Dropdown name='name' placeholder='Select Type' selection search
                             options={categoryOptions}/>
                   <Header as='h3'>Weight</Header>
-                  <Input ref={this.weightInput} label={{ content: 'lb', color: 'green' }} labelPosition='right'
+                  <Input name='weight' label={{ content: 'lb', color: 'green' }} labelPosition='right'
                          placeholder="Weight"/>
                   <Header as='h3'>Volume</Header>
-                  <Input ref={this.volumeInput} label={{ content: 'gal', color: 'green' }} labelPosition='right'
+                  <Input name='volume' label={{ content: 'gal', color: 'green' }} labelPosition='right'
                          placeholder="Volume"/>
                   <Header as='h3'>Notes</Header>
-                  <TextArea ref={this.notesInput} placeholder="Notes"/>
+                  <TextArea name='bagNotes' placeholder="Notes"/>
                 </Form>
                 <div style={{ paddingTop: '20px', paddingBottom: '20px' }}>
-                  <Button color='green' floated='right'>
+                  <Button color='green' floated='right' value='Submit'>
                     Save
                   </Button>
                   <Button basic color='green' floated='right' onClick={this.handleSidebarHide}>
@@ -164,39 +194,52 @@ class InputData extends React.Component {
                   </Button>
                 </div>
               </Sidebar>
+              console.log(this.data);
 
               <Sidebar.Pusher>
-                  <Segment vertical style={{ padding: '20px' }}>
-                    <Grid columns='equal'>
-                      <Grid.Row>
-                        <Grid.Column>
-                            <Icon name='tasks'/>
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Icon name='trash alternate' float='left'/>
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Button color='green' float='right' onClick={this.handleShowClick}>
-                            Add Bag
-                          </Button>
-                        </Grid.Column>
-                        <Grid.Column>
-                          <div className="form-heading" style={{ display: 'inline-block', paddingRight: '10px' }}>Bucket Tare</div>
-                          <Input placeholder="Bucket Tare..."/>
-                        </Grid.Column>
-                      </Grid.Row>
-                    </Grid>
-                  </Segment>
-                  <Segment vertical basic style={{ minHeight: '500px', padding: '20px' }}>
-                    {bagElements}
-                  </Segment>
+                <Segment vertical style={{ padding: '20px' }}>
+                  <Grid columns='equal'>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Icon name='tasks'/>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Icon name='trash alternate' float='left'/>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Button color='green' float='right' onClick={this.handleShowClick}>
+                          Add Bag
+                        </Button>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <div className="form-heading" style={{ display: 'inline-block', paddingRight: '10px' }}>Bucket
+                          Tare
+                        </div>
+                        <Input placeholder="Bucket Tare..."/>
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
+                </Segment>
+                <Segment vertical basic style={{ minHeight: '500px', padding: '20px' }}>
+                  {this.props.data.map((data, index) => <Bag key={index} data={data}/>)}
+                </Segment>
               </Sidebar.Pusher>
             </Sidebar.Pushable>
           </div>
         </div>
     );
   }
-
 }
 
-export default InputData;
+InputData.propType = {
+  data: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+}
+
+export default withTracker(() => {
+  const subscription = Meteor.subscribe('Data');
+  return {
+    data: Data.find({}).fetch(),
+    ready: subscription.ready(),
+  };
+})(InputData);

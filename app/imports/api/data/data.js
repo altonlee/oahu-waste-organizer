@@ -10,6 +10,7 @@ const Item = new SimpleSchema({
   name: String,
   weight: Number,
   volume: Number,
+  bagNotes: String,
 });
 
 const Input = new SimpleSchema({
