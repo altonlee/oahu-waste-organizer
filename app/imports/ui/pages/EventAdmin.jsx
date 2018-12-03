@@ -1,7 +1,12 @@
 import React from 'react';
 import { Container, Segment, Grid, Divider, Icon, Button, Header, Dropdown } from 'semantic-ui-react';
+import { withRouter, Link } from 'react-router-dom';
 
 class EventAdmin extends React.Component {
+  handleClick() {
+
+  }
+
   render() {
     const margins = { paddingBottom: "15px" };
     const campusOptions = [
@@ -24,7 +29,8 @@ class EventAdmin extends React.Component {
                     <Icon name='search'/>
                     Find Event
                   </Header><br/>
-                  <Dropdown placeholder='Select Campus' search selection options={campusOptions}/> <Button positive>Edit</Button>
+                  <Dropdown placeholder='Select Campus' search selection options={campusOptions}/>
+                  <Button positive as={Link} to={`/edit/`}>Edit</Button>
                 </Grid.Column>
 
                 <Grid.Column>
@@ -32,7 +38,7 @@ class EventAdmin extends React.Component {
                     <Icon name='world'/>
                     Add New Event
                   </Header><br/>
-                  <Button primary>Create</Button>
+                  <Button primary as={Link} to={`/add`}>Create</Button>
                 </Grid.Column>
               </Grid.Row>
             </Grid>

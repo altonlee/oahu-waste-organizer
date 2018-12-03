@@ -1,13 +1,6 @@
 import React from 'react';
 import { Stuffs, StuffSchema } from '/imports/api/stuff/stuff';
-import { Grid, Segment, Header } from 'semantic-ui-react';
-import AutoForm from 'uniforms-semantic/AutoForm';
-import TextField from 'uniforms-semantic/TextField';
-import NumField from 'uniforms-semantic/NumField';
-import SelectField from 'uniforms-semantic/SelectField';
-import SubmitField from 'uniforms-semantic/SubmitField';
-import HiddenField from 'uniforms-semantic/HiddenField';
-import ErrorsField from 'uniforms-semantic/ErrorsField';
+import { Grid, Segment, Header, Dropdown } from 'semantic-ui-react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 
@@ -32,6 +25,12 @@ class AddStuff extends React.Component {
     }
   }
 
+  handleAddition(e, {value}) {
+    this.setState({
+      options: [{text: value, value}, ...this.state.options],
+    })
+  }
+
   /** On submit, insert the data. */
   submit(data) {
     const { name, quantity, condition } = data;
@@ -41,20 +40,25 @@ class AddStuff extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
+    const campusOptions = [
+      { key: 'uh manoa', text: 'University of Hawaiʻi at Manoa', value: 'uh manoa' },
+      { key: 'uh hilo', text: 'Kapiolani Community College', value: 'uh hilo' },
+      { key: 'west oahu', text: 'University of Hawaiʻi - West Oahu', value: 'west oahu' },
+    ];
+    const buildingOptions = [
+      { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: 'qlc' },
+      { key: 'campus center', text: 'Campus Center', value: 'campus center' },
+      { key: 'keller', text: 'Keller Hall', value: 'keller' },
+    ];
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Add Stuff</Header>
-            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={StuffSchema} onSubmit={this.submit}>
-              <Segment>
-                <TextField name='name'/>
-                <NumField name='quantity' decimal={false}/>
-                <SelectField name='condition'/>
-                <SubmitField value='Submit'/>
-                <ErrorsField/>
-                <HiddenField name='owner' value='fakeuser@foo.com'/>
-              </Segment>
-            </AutoForm>
+            <Header as="h2" textAlign="center">Create an Event</Header>
+            <Segment>
+              <div className="form-heading">Location</div>
+              <Dropdown placeholder='Select Campus' fluid search selection options={campusOptions}/>
+              <Dropdown placeholder='Select Building' search selection allowAdditions onAddItem={this.handleAddition} options={buildingOptions}/>
+            </Segment>
           </Grid.Column>
         </Grid>
     );

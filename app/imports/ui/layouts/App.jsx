@@ -11,8 +11,9 @@ import ListEvents from '../pages/ListEvents';
 import EventCharts from '../pages/EventCharts';
 import About from '../pages/About';
 import InputData from '../pages/InputData';
-import EditStuff from '../pages/EditStuff';
 import EventAdmin from '../pages/EventAdmin';
+import AddEvents from '../pages/AddEvents';
+import EditEvents from '../pages/EditEvents';
 import Dashboard from '../pages/Dashboard';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -34,8 +35,9 @@ class App extends React.Component {
               <Route path="/charts/:_id" component={EventCharts}/>
               <Route path="/about" component={About}/>
               <ProtectedRoute path="/input/:_id" component={InputData}/>
-              <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <AdminProtectedRoute path="/admin/" component={EventAdmin}/>
+              <AdminProtectedRoute path="/add" component={AddEvents}/>
+              <AdminProtectedRoute path="/edit" component={EditEvents}/>
               <Route path="/dashboard" component={Dashboard}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>

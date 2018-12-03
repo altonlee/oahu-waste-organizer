@@ -15,12 +15,14 @@ class EventCharts extends React.Component {
     let totalEvents = data.length;
     let totalWeight = 0;
     let totalVolume = 0;
+    let totalBags = 0;
     let ret = [];
 
     for (let i = 0; i < data.length; i++) {
       for (let j = 0; j < data[i].input.length; j++) {
         for (let k = 0; k < data[i].input[j].bags.length; k++) {
           let bags = data[i].input[j].bags;
+          totalBags++;
           totalWeight += _.reduce((_.pluck(bags, 'weight')), function (memo, num) {
             return memo + num;
           }, 0);
@@ -34,7 +36,8 @@ class EventCharts extends React.Component {
     ret = {
       totalEvents: totalEvents,
       totalWeight: Math.round(totalWeight),
-      totalVolume: Math.round(totalVolume)
+      totalVolume: Math.round(totalVolume),
+      totalBags: totalBags
     };
     return ret;
   }
@@ -466,7 +469,7 @@ class EventCharts extends React.Component {
         <div className="ui container">
           <div className="ui huge centered header">Dashboard<br/>
             <div className="ui centered segment" style={margins}>
-              <div className="ui four small statistics">
+              <div className="ui five small statistics">
                 <div className="statistic">
                   <div className="value">
                     <i className="clipboard icon"></i> {stats.totalEvents}
@@ -477,7 +480,7 @@ class EventCharts extends React.Component {
                 </div>
                 <div className="statistic">
                   <div className="value">
-                    <i className="weight icon"></i> {stats.totalWeight}
+                    <i className="balance scale icon"></i> {stats.totalWeight}
                   </div>
                   <div className="label">
                     Pounds of Trash
@@ -485,10 +488,18 @@ class EventCharts extends React.Component {
                 </div>
                 <div className="statistic">
                   <div className="value">
-                    <i className="trash icon"></i> {stats.totalVolume}
+                    <i className="weight icon"></i> {stats.totalVolume}
                   </div>
                   <div className="label">
                     Gallons of Trash
+                  </div>
+                </div>
+                <div className="statistic">
+                  <div className="value">
+                    <i className="trash icon"></i> {stats.totalBags}
+                  </div>
+                  <div className="label">
+                    Total Trashbags
                   </div>
                 </div>
                 <div className="statistic">

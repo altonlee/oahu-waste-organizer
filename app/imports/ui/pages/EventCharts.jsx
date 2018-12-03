@@ -84,7 +84,7 @@ class EventCharts extends React.Component {
         text: `At ${this.props.data.campus} on ${this.props.data.date}`,
       },
       tooltip: {
-        pointFormat: '<b>{point.percentage:.1f} lbs</b>',
+        pointFormat: '<b>{point.percentage:.1f}%</b>',
       },
       plotOptions: {
         pie: {
