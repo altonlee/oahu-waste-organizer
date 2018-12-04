@@ -24,7 +24,10 @@ const DataSchema = new SimpleSchema({
   date: String,
   timeStart: String,
   timeEnd: String,
-  notes: String,
+  notes: {
+    type: String,
+    optional: true
+  },
   input: [Input],
 }, { tracker: Tracker });
 
