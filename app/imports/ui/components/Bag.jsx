@@ -1,7 +1,11 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Roles } from 'meteor/alanning:roles';
+import { withRouter } from 'react-router-dom';
 import { Button, Divider, List, Checkbox } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+
 
 /** Renders a single bag in the InputData table. See pages/InputData.jsx. */
 class Bag extends React.Component {

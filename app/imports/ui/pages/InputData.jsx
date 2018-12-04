@@ -42,7 +42,6 @@ class InputData extends React.Component {
   state = { visible: false }
 
   handleShowClick = () => this.setState({ visible: true })
-
   handleSidebarHide = () => this.setState({ visible: false })
 
   render() {
@@ -194,7 +193,6 @@ class InputData extends React.Component {
                   </Button>
                 </div>
               </Sidebar>
-              console.log(this.data);
 
               <Sidebar.Pusher>
                 <Segment vertical style={{ padding: '20px' }}>
@@ -221,7 +219,7 @@ class InputData extends React.Component {
                   </Grid>
                 </Segment>
                 <Segment vertical basic style={{ minHeight: '500px', padding: '20px' }}>
-                  {this.props.data.map((data, index) => <Bag key={index} data={data}/>)}
+                  {this.props.data.map((bag, index) => <Bag key={index} data={bag}/>)}
                 </Segment>
               </Sidebar.Pusher>
             </Sidebar.Pushable>
@@ -241,5 +239,6 @@ export default withTracker(() => {
   return {
     data: Data.find({}).fetch(),
     ready: subscription.ready(),
+
   };
 })(InputData);
