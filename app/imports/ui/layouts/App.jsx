@@ -37,7 +37,7 @@ class App extends React.Component {
               <ProtectedRoute path="/input/:_id" component={InputData}/>
               <AdminProtectedRoute path="/admin/" component={EventAdmin}/>
               <AdminProtectedRoute path="/add" component={AddEvents}/>
-              <AdminProtectedRoute path="/edit" component={EditEvents}/>
+              <AdminProtectedRoute path="/edit/:_id" component={EditEvents}/>
               <Route path="/dashboard" component={Dashboard}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>

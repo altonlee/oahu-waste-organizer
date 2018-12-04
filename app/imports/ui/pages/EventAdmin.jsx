@@ -1,22 +1,42 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
+import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Link } from 'react-router-dom';
 import { Container, Segment, Grid, Divider, Icon, Button, Header, Dropdown } from 'semantic-ui-react';
-import { withRouter, Link } from 'react-router-dom';
+import { Data } from '/imports/api/data/data';
 
 class EventAdmin extends React.Component {
-  handleClick() {
-
+  constructor(props) {
+    super(props);
+    this.state = { docID: '' };
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  /** Populates dropdown with existing Events. */
+  listEvents(data) {
+    let options = [];
+    for (let i = 0; i < data.length; i++) {
+      options.push({
+        key: i,
+        text: `${data[i].date}: ${data[i].building}`,
+        value: data[i]._id
+      })
+    }
+    return options;
+  }
+
+  /** Handles changes to input fields. */
+  handleChange(event, { name, value }) {
+    console.log(name, value);
+    this.setState({ [name]: value });
+  };
+
   render() {
-    const margins = { paddingBottom: "15px" };
-    const campusOptions = [
-      { key: 'uh manoa', text: 'University of Hawaiʻi at Manoa', value: 'uh manoa' },
-      { key: 'uh hilo', text: 'University of Hawaiʻi at Hilo', value: 'uh hilo' },
-      { key: 'west oahu', text: 'University of Hawaiʻi - West Oahu', value: 'west oahu' },
-    ];
+    const { docID } = this.state;
 
     return (
-        <Container textAlign="center" style={margins}>
+        <Container textAlign="center" style={{ paddingBottom: "15px" }}>
           <Header as="h1">Events Manager</Header>
           <Header as="h3">Find an audit to edit, or create an Event for a future audit</Header>
           <Segment>
@@ -29,8 +49,16 @@ class EventAdmin extends React.Component {
                     <Icon name='search'/>
                     Find Event
                   </Header><br/>
-                  <Dropdown placeholder='Select Campus' search selection options={campusOptions}/>
-                  <Button positive as={Link} to={`/edit/`}>Edit</Button>
+                  <Container>
+                    <Dropdown floating search selection
+                              options={this.listEvents(this.props.data)}
+                              name="docID"
+                              placeholder='Select an event to edit.'
+                              value={docID}
+                              onChange={this.handleChange}
+                    />
+                    <Button positive as={Link} to={`/edit/${docID}`} floated="right">Edit</Button>
+                  </Container>
                 </Grid.Column>
 
                 <Grid.Column>
@@ -48,4 +76,18 @@ class EventAdmin extends React.Component {
   }
 }
 
-export default EventAdmin;
+/** Require an array of Events in the props. */
+EventAdmin.propTypes = {
+  data: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(() => {
+  // Get access to audit data.
+  const subscription = Meteor.subscribe('Data');
+  return {
+    data: Data.find({}, { sort: { date: -1 } }).fetch(),
+    ready: subscription.ready(),
+  };
+})(EventAdmin);
