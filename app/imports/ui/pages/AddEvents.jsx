@@ -67,7 +67,6 @@ class AddEvents extends React.Component {
   /** Handles changes to input fields. */
   handleChange(event, { name, value }) {
     this.setState({ [name]: value });
-    console.log(name, value);
   }
 
   /** Adds new value to array of options. */
