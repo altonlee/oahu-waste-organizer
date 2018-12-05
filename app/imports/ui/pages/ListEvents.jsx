@@ -10,6 +10,10 @@ import { Link } from 'react-router-dom';
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class ListEvents extends React.Component {
 
+  componentDidMount() {
+    document.title = "OWO - All Events"
+  }
+
   /** Load Events first, then render page. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;

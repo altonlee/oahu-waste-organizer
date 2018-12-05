@@ -4,6 +4,9 @@ import About from '../components/About';
 import '/client/landing.css';
 
 export default class Home extends React.Component {
+  componentDidMount() {
+    document.title = "OWO - Home"
+  }
 
   render() {
     return (
@@ -14,4 +17,3 @@ export default class Home extends React.Component {
     );
   }
 }
-

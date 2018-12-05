@@ -32,6 +32,11 @@ const buildings = [
 /** Renders the Page for editing a single document.
  * TODO: Implement addAdditions to dropdown options. */
 class EditEvents extends React.Component {
+
+  componentDidMount() {
+    document.title = "OWO - Edit Event"
+  }
+
   constructor(props) {
     super(props);
     this.state = {

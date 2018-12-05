@@ -11,6 +11,11 @@ import Combo from '../components/Charts/Combo';
 
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class EventCharts extends React.Component {
+
+  componentDidMount() {
+    document.title = "OWO - Dashboard"
+  }
+
   /** Get statistics of audits. */
   getStats(data) {
     let totalEvents = data.length;
