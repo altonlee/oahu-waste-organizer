@@ -4,13 +4,15 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Roles } from 'meteor/alanning:roles';
 import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Icon, Item } from 'semantic-ui-react';
+import { Button, Container, Header, Icon, Item } from 'semantic-ui-react';
 
 /** Renders a single event in the ListEvents table. See pages/ListEvents.jsx. */
 class Event extends React.Component {
+
+  /** Loads Event thumbnail. */
   renderSwitch(param) {
     const campus = param.toString();
-    switch(campus) {
+    switch (campus) {
       case "University of Hawaii at Manoa":
         return <Item.Image src='/images/thumb-uhm.png' size='medium' rounded/>;
       case "Kapiolani Community College":
@@ -32,7 +34,7 @@ class Event extends React.Component {
             <Item.Description>
               {this.props.data.date}<br/>
               {this.props.data.timeStart} to {this.props.data.timeEnd}<br/>
-               <br/><strong>NOTES:</strong><br/>
+              <br/><strong>NOTES:</strong><br/>
               {this.props.data.notes}<br/>
             </Item.Description>
             <Item.Extra>
@@ -42,10 +44,15 @@ class Event extends React.Component {
                     <Icon name='right chevron'/>
                   </Button>
               ) : ''}
+
               <Button basic color='green' as={Link} to={`/charts/${this.props.data._id}`} floated='right'>
                 View
                 <Icon name='right chevron'/>
               </Button>
+
+              {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
+                  <Button circular color="yellow" as={Link} to={`/edit/${this.props.data._id}`} icon="edit"/>
+              ) : ''}
             </Item.Extra>
           </Item.Content>
         </Item>
@@ -64,7 +71,6 @@ Event.propTypes = {
 const EventContainer = withTracker(() => ({
   currentUser: Meteor.user() ? Meteor.user().username : '',
 }))(Event);
-
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
 export default withRouter(EventContainer);

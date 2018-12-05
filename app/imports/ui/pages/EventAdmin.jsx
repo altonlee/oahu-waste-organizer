@@ -28,12 +28,12 @@ class EventAdmin extends React.Component {
 
   /** Handles changes to input fields. */
   handleChange(event, { name, value }) {
-    console.log(name, value);
     this.setState({ [name]: value });
   };
 
   render() {
     const { docID } = this.state;
+    const isEnabled = docID.length > 0;
 
     return (
         <Container textAlign="center" style={{ paddingBottom: "15px" }}>
@@ -57,7 +57,13 @@ class EventAdmin extends React.Component {
                               value={docID}
                               onChange={this.handleChange}
                     />
-                    <Button positive as={Link} to={`/edit/${docID}`} floated="right">Edit</Button>
+                    <Button color="yellow"
+                            as={Link} to={`/edit/${docID}`}
+                            floated="right"
+                            disabled={!isEnabled}
+                    >
+                      Edit
+                    </Button>
                   </Container>
                 </Grid.Column>
 
