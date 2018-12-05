@@ -33,7 +33,7 @@ class Bag extends React.Component {
             </List.Item>
             <List.Item style={{ width: 'calc(100% - 476px)' }}>
               <List.Header>Notes</List.Header>
-              <div style={{ overflow: 'hidden', height: '1em', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{this.props.notes} Lorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet suLorem ipsu dolor amet su</div>
+              <div style={{ overflow: 'hidden', height: '1em', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{this.props.notes}</div>
             </List.Item>
             <List.Item style={{ marginLeft: 'auto', width: '96px' }}>
               <List.Content verticalAlign='middle'>

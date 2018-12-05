@@ -45,21 +45,21 @@ class AddEvents extends React.Component {
   /** Inserts submitted values into Data collection as Event data. */
   handleSubmit() {
     const { campus, building, date, timeStart, timeEnd, notes } = this.state;
-    const input = [];
-    Data.insert({ campus, building, date, timeStart, timeEnd, notes, input }, this.insertCallback);
-  };
+    const bags = [];
+    Data.insert({ campus, building, date, timeStart, timeEnd, notes, bags }, this.insertCallback);
+  }
 
   /** Handles changes to input fields. */
   handleChange(event, { name, value }) {
     this.setState({ [name]: value });
-  };
+  }
 
   /** Adds new value to array of options. */
   handleAddition(event, { name, value }) {
     this.setState({
-      [name]: [{ text: value, value }, ...this.state[name]]
-    })
-  };
+      [name]: [{ text: value, value }, ...this.state[name]],
+    });
+  }
 
   render() {
     const { campus, building, date, timeStart, timeEnd, notes } = this.state;

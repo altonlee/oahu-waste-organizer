@@ -5,6 +5,7 @@ import { Data } from '../../api/data/data.js';
 /** Initialize the database with a default data document. */
 function addData(data) {
   console.log(`  Adding: ${data.building} audit data`);
+  console.log(data);
   Data.insert(data);
 }
 

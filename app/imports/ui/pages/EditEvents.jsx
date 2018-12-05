@@ -49,20 +49,20 @@ class EditEvents extends React.Component {
     } else {
       Bert.alert({ type: 'success', message: `Updated ${this.state.date}: ${this.state.building} Event` });
     }
-  };
+  }
 
   /** Handles changes to input fields. */
   handleChange(event, { name, value }) {
     this.setState({ [name]: value });
-  };
+  }
 
   /** Inserts submitted values into Data collection as Event data. */
   handleSubmit() {
     const { campus, building, date, timeStart, timeEnd, notes, _id } = this.state;
     const input = [];
     Data.update(_id, { $set: { campus, building, date, timeStart, timeEnd, notes, input } },
-        this.insertCallback)
-  };
+        this.insertCallback);
+  }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -136,7 +136,7 @@ class EditEvents extends React.Component {
             </Form>
           </Segment>
         </Container>
-    )
+    );
   }
 }
 

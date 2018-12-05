@@ -6,17 +6,12 @@ import { Tracker } from 'meteor/tracker';
 const Data = new Mongo.Collection('Data');
 
 /** Create a schema to constrain the structure of documents associated with this collection. */
-const Item = new SimpleSchema({
-  name: String,
+const BagSchema = new SimpleSchema({
+  category: String,
   weight: Number,
   volume: Number,
+  notes: String,
 });
-
-const Input = new SimpleSchema({
-  bagTare: Number,
-  category: String,
-  bags: [Item],
-}, { tracker: Tracker });
 
 const DataSchema = new SimpleSchema({
   campus: String,
@@ -24,12 +19,14 @@ const DataSchema = new SimpleSchema({
   date: String,
   timeStart: String,
   timeEnd: String,
-  notes: {
-    type: String,
-    optional: true
+  bagTare: {
+    type: Number,
+    optional: true,
   },
-  input: [Input],
-}, { tracker: Tracker });
+  notes: String,
+  bags: [BagSchema],
+  // removeEmptyStrings: false allows empty strings to count as values
+}, { clean: { removeEmptyStrings: false }, tracker: Tracker });
 
 /** Attach this schema to the collection. */
 Data.attachSchema(DataSchema);

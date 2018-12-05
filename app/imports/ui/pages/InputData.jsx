@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import {
-  TextArea,
   Segment,
   Menu,
   Form,
@@ -11,12 +10,24 @@ import {
   Sidebar, Button, Icon, Grid,
 } from 'semantic-ui-react';
 import '/client/input.css';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Bert } from 'meteor/themeteorchef:bert';
+import { Data } from '/imports/api/data/data';
 import Bag from '/imports/ui/components/Bag';
+import PropTypes from 'prop-types';
 
 class InputData extends React.Component {
   constructor() {
     super();
 
+    this.handleSave = this.handleSave.bind(this);
+    this.handleShowClick = this.handleShowClick.bind(this);
+    this.handleSidebarHide = this.handleSidebarHide.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.campusInput = null;
+    this.buildingInput = null;
+    this.dateInput = null;
     this.categoryInput = null;
     this.weightInput = null;
     this.volumeInput = null;
@@ -25,9 +36,27 @@ class InputData extends React.Component {
 
   state = { visible: false }
 
-  handleShowClick = () => this.setState({ visible: true })
+  handleSave = () => {
+    this.setState({ visible: false });
 
-  handleSidebarHide = () => this.setState({ visible: false })
+    //save
+  };
+
+  handleShowClick = () => this.setState({ visible: true });
+
+  handleSidebarHide = () => this.setState({ visible: false });
+
+  // /** Inserts submitted values into Data collection as Event data. */
+  handleSubmit() {
+    // const { name, weight, volume, notes } = this.state;
+    const category = this.categoryInput.value;
+    const weight = this.weightInput.value;
+    const volume = this.volumeInput.value;
+    const notes = this.notesInput.value;
+    Data.insert({
+      bags: { category, weight, volume, notes }
+    }, this.insertCallback);
+  }
 
   render() {
     const { visible } = this.state;
@@ -93,27 +122,29 @@ class InputData extends React.Component {
       { key: 'all electronics', text: 'All Electronics', value: 'all electronics' },
     ];
 
-    const bags = [
-      {
-        category: 'Starbucks Cups',
-        weight: 3.1,
-        volume: 13.75,
-      },
-      {
-        category: 'Plastic To-Go Cups',
-        weight: 2.65,
-        volume: 11,
-      },
-      {
-        category: 'Wax Paper cups',
-        weight: 3.2,
-        volume: 11,
-      },
-    ];
+    // const bags = [
+    //   {
+    //     category: 'Starbucks Cups',
+    //     weight: 3.1,
+    //     volume: 13.75,
+    //   },
+    //   {
+    //     category: 'Plastic To-Go Cups',
+    //     weight: 2.65,
+    //     volume: 11,
+    //   },
+    //   {
+    //     category: 'Wax Paper cups',
+    //     weight: 3.2,
+    //     volume: 11,
+    //   },
+    // ];
+
+    const bags = this.props.data.bags;
     const bagElements = [];
     for (let i = 0; i < bags.length; i++) {
       bagElements[i] = <Bag handleShowClick={this.handleShowClick} category={bags[i].category} volume={bags[i].volume}
-                            weight={bags[i].weight} visible={visible}/>;
+                            weight={bags[i].weight} notes={bags[i].notes} visible={visible}/>;
     }
 
     return (
@@ -123,21 +154,23 @@ class InputData extends React.Component {
               <Grid.Row>
                 <Grid.Column>
                   <div className="form-heading">Location</div>
-                  <Dropdown placeholder='Select Campus' fluid search selection options={campusOptions}/>
+                  <Dropdown ref={this.campusInput} placeholder='Select Campus' fluid search selection
+                            options={campusOptions}/>
                 </Grid.Column>
                 <Grid.Column>
                   <div className="form-heading">Building</div>
-                  <Dropdown placeholder='Select Building' fluid search selection options={buildingOptions}/>
+                  <Dropdown ref={this.buildingInput} placeholder='Select Building' fluid search selection
+                            options={buildingOptions}/>
                 </Grid.Column>
                 <Grid.Column>
                   <div className="form-heading">Date</div>
-                  <Input fluid placeholder="MM/DD/YYYY"/>
+                  <Input ref={this.dateInput} fluid placeholder="MM/DD/YYYY"/>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
             <div className="form-heading">Notes</div>
             <Form>
-              <TextArea placeholder="Notes..."/>
+              <Form.TextArea name="notes" placeholder="Notes..."/>
             </Form>
             <Sidebar.Pushable as={Segment}>
               <Sidebar as={Menu} animation='overlay' icon='labeled' vertical
@@ -153,10 +186,10 @@ class InputData extends React.Component {
                   <Input ref={this.volumeInput} label={{ content: 'gal', color: 'green' }} labelPosition='right'
                          placeholder="Volume"/>
                   <Header as='h3'>Notes</Header>
-                  <TextArea ref={this.notesInput} placeholder="Notes"/>
+                  <Form.TextArea ref={this.notesInput} placeholder="Notes"/>
                 </Form>
                 <div style={{ paddingTop: '20px', paddingBottom: '20px' }}>
-                  <Button color='green' floated='right'>
+                  <Button color='green' floated='right' onClick={this.handleSave}>
                     Save
                   </Button>
                   <Button basic color='green' floated='right' onClick={this.handleSidebarHide}>
@@ -166,30 +199,32 @@ class InputData extends React.Component {
               </Sidebar>
 
               <Sidebar.Pusher>
-                  <Segment vertical style={{ padding: '20px' }}>
-                    <Grid columns='equal'>
-                      <Grid.Row>
-                        <Grid.Column>
-                            <Icon name='tasks'/>
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Icon name='trash alternate' float='left'/>
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Button color='green' float='right' onClick={this.handleShowClick}>
-                            Add Bag
-                          </Button>
-                        </Grid.Column>
-                        <Grid.Column>
-                          <div className="form-heading" style={{ display: 'inline-block', paddingRight: '10px' }}>Bucket Tare</div>
-                          <Input placeholder="Bucket Tare..."/>
-                        </Grid.Column>
-                      </Grid.Row>
-                    </Grid>
-                  </Segment>
-                  <Segment vertical basic style={{ minHeight: '500px', padding: '20px' }}>
-                    {bagElements}
-                  </Segment>
+                <Segment vertical style={{ padding: '20px' }}>
+                  <Grid columns='equal'>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Icon name='tasks'/>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Icon name='trash alternate' float='left'/>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Button color='green' float='right' onClick={this.handleShowClick}>
+                          Add Bag
+                        </Button>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <div className="form-heading" style={{ display: 'inline-block', paddingRight: '10px' }}>Bucket
+                          Tare
+                        </div>
+                        <Input placeholder="Bucket Tare..."/>
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
+                </Segment>
+                <Segment vertical basic style={{ minHeight: '500px', padding: '20px' }}>
+                  {bagElements}
+                </Segment>
               </Sidebar.Pusher>
             </Sidebar.Pushable>
           </div>
@@ -199,4 +234,21 @@ class InputData extends React.Component {
 
 }
 
-export default InputData;
+/** Require the presence of a Events in the props object. */
+InputData.propTypes = {
+  data: PropTypes.object.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(({ match }) => {
+  // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
+  const docID = match.params._id;
+  // Get access to Events.
+  const subscription = Meteor.subscribe('Data');
+  return {
+    data: Data.findOne(docID),
+    ready: subscription.ready(),
+  };
+})(InputData);
+
