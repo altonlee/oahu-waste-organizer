@@ -19,6 +19,12 @@ class Bag extends React.Component {
                 {this.props.category}
               </List.Content>
             </List.Item>
+            <List.Item style={{ width: '150px' }}>
+              <List.Content>
+                <List.Header>Type</List.Header>
+                {this.props.type}
+              </List.Content>
+            </List.Item>
             <List.Item style={{ width: '105px' }}>
               <List.Content>
                 <List.Header>Weight</List.Header>
@@ -53,6 +59,7 @@ class Bag extends React.Component {
 Bag.propTypes = {
   handleShowClick: PropTypes.func.isRequired,
   category: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   weight: PropTypes.number.isRequired,
   volume: PropTypes.number.isRequired,
   notes: PropTypes.string.isRequired,

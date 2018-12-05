@@ -28,6 +28,7 @@ class InputData extends React.Component {
     this.state = {
       notes: this.props.data.notes,
       category: '',
+      type: '',
       weight: '',
       volume: '',
       bagNotes: '',
@@ -45,7 +46,13 @@ class InputData extends React.Component {
 
     const notes = this.state.notes;
     const bags = this.props.data.bags;
-    bags.push({ category: this.state.category, weight: this.state.weight, volume: this.state.volume, notes: this.state.bagNotes });
+    bags.push({
+      category: this.state.category,
+      type: this.state.type,
+      weight: this.state.weight,
+      volume: this.state.volume,
+      notes: this.state.bagNotes
+    });
     Data.update(this.props.data._id, { $set: { notes, bags } }, this.insertCallback);
   };
 
@@ -71,6 +78,15 @@ class InputData extends React.Component {
       { key: 'post', text: 'Pacific Ocean Science and Technology', value: 'post' },
     ];
     const categoryOptions = [
+      { key: 'items of interest', text: '---Items of Interest---', value: 'items of interest' },
+      { key: 'paper', text: '---Paper---', value: 'paper' },
+      { key: 'plastic', text: '---Plastic---', value: 'plastic' },
+      { key: 'glass', text: '---Glass---', value: 'glass' },
+      { key: 'metals', text: '---Metals---', value: 'metals' },
+      { key: 'organics', text: '---Organics---', value: 'organics' },
+      { key: 'misc', text: '---Misc---', value: 'misc' },
+    ];
+    const typeOptions = [
       { key: 'items of interest', text: '---Items of Interest---', value: 'items of interest', disabled: true },
       { key: 'starbucks cups', text: 'Starbucks Cups', value: 'starbucks cups' },
       { key: 'plastic to-go cups', text: 'Plastic To-Go Cups', value: 'plastic to-go cups' },
@@ -95,7 +111,7 @@ class InputData extends React.Component {
       { key: 'plastic food containers', text: 'Plastic Food Containers', value: 'plastic food containers' },
       { key: 'styrofoam', text: 'Styrofoam', value: 'styrofoam' },
       { key: 'other plastic', text: 'Other Plastic', value: 'other plastic' },
-      { key: 'glass', text: '---Glass---', value: 'glass' },
+      { key: 'glass', text: '---Glass---', value: 'glass', disabled: true },
       {
         key: 'hi-5 glass bottles and containers',
         text: 'HI-5 Glass Bottles and Containers',
@@ -122,28 +138,11 @@ class InputData extends React.Component {
       { key: 'all electronics', text: 'All Electronics', value: 'all electronics' },
     ];
 
-    // const bags = [
-    //   {
-    //     category: 'Starbucks Cups',
-    //     weight: 3.1,
-    //     volume: 13.75,
-    //   },
-    //   {
-    //     category: 'Plastic To-Go Cups',
-    //     weight: 2.65,
-    //     volume: 11,
-    //   },
-    //   {
-    //     category: 'Wax Paper cups',
-    //     weight: 3.2,
-    //     volume: 11,
-    //   },
-    // ];
-
     const bags = this.props.data.bags;
     const bagElements = [];
     for (let i = 0; i < bags.length; i++) {
-      bagElements[i] = <Bag handleShowClick={this.handleShowClick} category={bags[i].category} volume={bags[i].volume}
+      bagElements[i] = <Bag handleShowClick={this.handleShowClick} category={bags[i].category} type={bags[i].type}
+                            volume={bags[i].volume}
                             weight={bags[i].weight} notes={bags[i].notes} visible={visible}/>;
     }
 
@@ -181,6 +180,9 @@ class InputData extends React.Component {
                   <Header as='h3'>Category</Header>
                   <Dropdown value={category} name='category' placeholder='Select Category' selection search
                             options={categoryOptions} onChange={this.handleChange}/>
+                  <Header as='h3'>Type</Header>
+                  <Dropdown value={type} name='type' placeholder='Select Category' selection search
+                            options={typeOptions} onChange={this.handleChange}/>
                   <Header as='h3'>Weight</Header>
                   <Input value={weight} name='weight' label={{ content: 'lb', color: 'green' }} labelPosition='right'
                          placeholder="Weight" onChange={this.handleChange}/>
