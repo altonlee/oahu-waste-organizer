@@ -146,7 +146,7 @@ class InputData extends React.Component {
                             weight={bags[i].weight} notes={bags[i].notes} visible={visible}/>;
     }
 
-    const { notes, category, weight, volume, bagNotes } = this.state;
+    const { notes, category, type, weight, volume, bagNotes } = this.state;
 
     return (
         <div>
@@ -181,7 +181,7 @@ class InputData extends React.Component {
                   <Dropdown value={category} name='category' placeholder='Select Category' selection search
                             options={categoryOptions} onChange={this.handleChange}/>
                   <Header as='h3'>Type</Header>
-                  <Dropdown value={type} name='type' placeholder='Select Category' selection search
+                  <Dropdown value={type} name='type' placeholder='Select Type' selection search
                             options={typeOptions} onChange={this.handleChange}/>
                   <Header as='h3'>Weight</Header>
                   <Input value={weight} name='weight' label={{ content: 'lb', color: 'green' }} labelPosition='right'

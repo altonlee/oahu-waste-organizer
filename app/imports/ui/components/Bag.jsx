@@ -37,7 +37,7 @@ class Bag extends React.Component {
                 {this.props.volume} gal
               </List.Content>
             </List.Item>
-            <List.Item style={{ width: 'calc(100% - 476px)' }}>
+            <List.Item style={{ width: '800px' }}>
               <List.Header>Notes</List.Header>
               <div style={{ overflow: 'hidden', height: '1em', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{this.props.notes}</div>
             </List.Item>
