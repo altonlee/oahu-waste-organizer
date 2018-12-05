@@ -7,7 +7,7 @@ import {
   Input,
   Dropdown,
   Header,
-  Sidebar, Button, Icon, Grid,
+  Sidebar, Button, Icon, Grid, Loader,
 } from 'semantic-ui-react';
 import '/client/input.css';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -17,48 +17,48 @@ import Bag from '/imports/ui/components/Bag';
 import PropTypes from 'prop-types';
 
 class InputData extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
+    this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleShowClick = this.handleShowClick.bind(this);
     this.handleSidebarHide = this.handleSidebarHide.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
 
-    this.campusInput = null;
-    this.buildingInput = null;
-    this.dateInput = null;
-    this.categoryInput = null;
-    this.weightInput = null;
-    this.volumeInput = null;
-    this.notesInput = null;
+    this.state = {
+      notes: this.props.data.notes,
+      category: '',
+      weight: '',
+      volume: '',
+      bagNotes: '',
+      visible: false,
+    };
   }
 
-  state = { visible: false }
+  /** Handles changes to input fields. */
+  handleChange(event, { name, value }) {
+    this.setState({ [name]: value });
+  }
 
   handleSave = () => {
     this.setState({ visible: false });
 
-    //save
+    const notes = this.state.notes;
+    const bags = this.props.data.bags;
+    bags.push({ category: this.state.category, weight: this.state.weight, volume: this.state.volume, notes: this.state.bagNotes });
+    Data.update(this.props.data._id, { $set: { notes, bags } }, this.insertCallback);
   };
 
   handleShowClick = () => this.setState({ visible: true });
 
   handleSidebarHide = () => this.setState({ visible: false });
 
-  // /** Inserts submitted values into Data collection as Event data. */
-  handleSubmit() {
-    // const { name, weight, volume, notes } = this.state;
-    const category = this.categoryInput.value;
-    const weight = this.weightInput.value;
-    const volume = this.volumeInput.value;
-    const notes = this.notesInput.value;
-    Data.insert({
-      bags: { category, weight, volume, notes }
-    }, this.insertCallback);
+  /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
+  render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
-  render() {
+  renderPage() {
     const { visible } = this.state;
     const campusOptions = [
       { key: 'uh manoa', text: 'University of Hawaiʻi at Manoa', value: 'uh manoa' },
@@ -147,6 +147,8 @@ class InputData extends React.Component {
                             weight={bags[i].weight} notes={bags[i].notes} visible={visible}/>;
     }
 
+    const { notes, category, weight, volume, bagNotes } = this.state;
+
     return (
         <div>
           <div style={{ padding: '20px' }}>
@@ -154,39 +156,39 @@ class InputData extends React.Component {
               <Grid.Row>
                 <Grid.Column>
                   <div className="form-heading">Location</div>
-                  <Dropdown ref={this.campusInput} placeholder='Select Campus' fluid search selection
+                  <Dropdown placeholder='Select Campus' fluid search selection
                             options={campusOptions}/>
                 </Grid.Column>
                 <Grid.Column>
                   <div className="form-heading">Building</div>
-                  <Dropdown ref={this.buildingInput} placeholder='Select Building' fluid search selection
+                  <Dropdown placeholder='Select Building' fluid search selection
                             options={buildingOptions}/>
                 </Grid.Column>
                 <Grid.Column>
                   <div className="form-heading">Date</div>
-                  <Input ref={this.dateInput} fluid placeholder="MM/DD/YYYY"/>
+                  <Input fluid placeholder="MM/DD/YYYY"/>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
             <div className="form-heading">Notes</div>
             <Form>
-              <Form.TextArea name="notes" placeholder="Notes..."/>
+              <Form.TextArea value={notes} name="notes" placeholder="Notes..." onChange={this.handleChange}/>
             </Form>
             <Sidebar.Pushable as={Segment}>
               <Sidebar as={Menu} animation='overlay' icon='labeled' vertical
                        visible={visible} direction='right' width='very wide' style={{ padding: '20px' }}>
                 <Form>
                   <Header as='h3'>Category</Header>
-                  <Dropdown ref={this.categoryInput} placeholder='Select Category' selection search
-                            options={categoryOptions}/>
+                  <Dropdown value={category} name='category' placeholder='Select Category' selection search
+                            options={categoryOptions} onChange={this.handleChange}/>
                   <Header as='h3'>Weight</Header>
-                  <Input ref={this.weightInput} label={{ content: 'lb', color: 'green' }} labelPosition='right'
-                         placeholder="Weight"/>
+                  <Input value={weight} name='weight' label={{ content: 'lb', color: 'green' }} labelPosition='right'
+                         placeholder="Weight" onChange={this.handleChange}/>
                   <Header as='h3'>Volume</Header>
-                  <Input ref={this.volumeInput} label={{ content: 'gal', color: 'green' }} labelPosition='right'
-                         placeholder="Volume"/>
+                  <Input value={volume} name='volume' label={{ content: 'gal', color: 'green' }} labelPosition='right'
+                         placeholder="Volume" onChange={this.handleChange}/>
                   <Header as='h3'>Notes</Header>
-                  <Form.TextArea ref={this.notesInput} placeholder="Notes"/>
+                  <Form.TextArea value={bagNotes} name='bagNotes' placeholder="Notes" onChange={this.handleChange}/>
                 </Form>
                 <div style={{ paddingTop: '20px', paddingBottom: '20px' }}>
                   <Button color='green' floated='right' onClick={this.handleSave}>
@@ -251,4 +253,3 @@ export default withTracker(({ match }) => {
     ready: subscription.ready(),
   };
 })(InputData);
-

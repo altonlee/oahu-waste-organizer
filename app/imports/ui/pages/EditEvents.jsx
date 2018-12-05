@@ -33,7 +33,7 @@ class EditEvents extends React.Component {
       timeStart: this.props.data.timeStart,
       timeEnd: this.props.data.timeEnd,
       notes: this.props.data.notes,
-      _id: this.props.data._id
+      _id: this.props.data._id,
     };
     this.options = { campusOptions, buildingOptions };
     this.handleChange = this.handleChange.bind(this);
