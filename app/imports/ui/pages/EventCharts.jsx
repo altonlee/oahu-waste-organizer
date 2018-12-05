@@ -9,49 +9,70 @@ import Graph from '../components/Charts/Graph';
 
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class EventCharts extends React.Component {
+  /** Generate data in a format for Charts to read. */
   generateData(data) {
     let ret = [];
-    let name = [];
-    let y = [];
-    let length = data.length;
+    let type = [];
 
-    // Get bag data
-    for (let i = 0; i < length; i++) {
-      name[i] = data[i].category;
-      y[i] = _.reduce((_.pluck(data[i].bags, 'weight')), function (memo, num) {
-        return memo + num;
-      }, 0);
+    // Get array of names
+    for (let i = 0; i < data.length; i++) {
+      type[i] = data[i].type;
+    }
+    let name = _.uniq(type);
+
+    // Get array of values
+    let y = [];
+    // We want to find all elements with type "name[x]" and add up its weight
+    // TODO: Optimize the hell out of this
+    for (let i = 0; i < name.length; i++) {
+      y[i] = 0;
+      for (let j = 0; j < data.length; j++) {
+        if (data[j].type === name[i]) {
+          y[i] += data[j].weight;
+        }
+      }
     }
 
     // Return series with data
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < name.length; i++) {
       ret.push({
         name: name[i],
         y: y[i],
         drilldown: name[i]
-      });
+      })
     }
+
     return ret;
   }
 
+  /**  Generate breakdown of data in a format for Graph can read. */
   generateDrilldown(input) {
     let ret = [];
-    let name = [];
-    let data = [];
-    let length = input.length;
 
-    // Get bag data
-    for (let i = 0; i < length; i++) {
-      name[i] = input[i].category;
-      data[i] = [];
-      let bags = input[i].bags;
-      for (let j = 0; j < bags.length; j++) {
-        data[i][j] = [bags[j].name, bags[j].weight];
+    // Get array of names
+    let type = [];
+    for (let i = 0; i < input.length; i++) {
+      type[i] = input[i].type;
+    }
+    let name = _.uniq(type);
+
+    // Get array of values
+    let data = [];
+    let temp = [];
+    // We want to find all elements with type "name[x]" and add up its weight
+    // TODO: Optimize the hell out of this
+    for (let i = 0; i < name.length; i++) {
+      temp[i] = [];
+      for (let j = 0; j < input.length; j++) {
+        if (input[j].type === name[i]) {
+          temp[i][j] = [input[j].category, input[j].weight];
+        }
       }
+      data[i] = _.compact(temp[i]);
     }
 
     // Return series with drilldown
-    for (let i = 0; i < input.length; i++) {
+    for (let i = 0; i < name.length; i++) {
       ret.push({
         name: name[i],
         id: name[i],
@@ -61,14 +82,15 @@ class EventCharts extends React.Component {
     return ret;
   }
 
+  /** Get data before loading page. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
   renderPage() {
     // Generate data for graphs to read
-    let seriesData = this.generateData(this.props.data.input);
-    let drillData = this.generateDrilldown(this.props.data.input);
+    let seriesData = this.generateData(this.props.data.bags);
+    let drillData = this.generateDrilldown(this.props.data.bags);
     // Pie chart options
     const pieStyle = {
       chart: {

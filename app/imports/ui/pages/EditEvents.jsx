@@ -10,12 +10,19 @@ import PropTypes from 'prop-types';
 import { DateInput, TimeInput } from 'semantic-ui-calendar-react';
 
 /** Some sample options. Admin can also type in custom options and will be saved in dropdowns. */
-const campusOptions = [
-  { key: 'uh manoa', text: 'University of Hawaii at Manoa', value: "University of Hawaii at Manoa" },
-  { key: 'kcc', text: 'Kapiolani Community College', value: "Kapiolani Community College" },
-  { key: 'west oahu', text: 'University of Hawaiʻi - West Oahu', value: "University of Hawaii - West Oahu" },
+const campuses = [
+  { key: 'uhm', text: 'University of Hawaii at Manoa', value: "University of Hawaii at Manoa" },
+  { key: 'uhwo', text: 'University of Hawaii - West Oahu', value: "University of Hawaii - West Oahu" },
+  { key: 'uhh', text: 'University of Hawaii at Hilo', value: "University of Hawaii at Hilo" },
+  { key: 'kcc', text: "Kapi'olani Community College", value: "Kapi'olani Community College" },
+  { key: 'hocc', text: 'Honolulu Community College', value: "Honolulu Community College" },
+  { key: 'lcc', text: 'Leeward Community College', value: "Leeward Community College" },
+  { key: 'wcc', text: 'Windward Community College', value: "Windward Community College" },
+  { key: 'uhma', text: 'UH Maui College', value: "UH Maui College" },
+  { key: 'kacc', text: "Kaua'i Community College", value: "Kaua'i Community College" },
+  { key: 'hacc', text: 'Hawaii Community College', value: "Hawaii Community College" },
 ];
-const buildingOptions = [
+const buildings = [
   { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: "Queen Liliʻuokalani Center" },
   { key: 'campus center', text: 'Campus Center', value: "Campus Center" },
   { key: 'post', text: 'Pacific Ocean Science and Technology', value: "Pacific Ocean Science and Technology" },
@@ -29,13 +36,14 @@ class EditEvents extends React.Component {
     this.state = {
       campus: this.props.data.campus,
       building: this.props.data.building,
+      buildings: buildings,
       date: this.props.data.date,
       timeStart: this.props.data.timeStart,
       timeEnd: this.props.data.timeEnd,
       notes: this.props.data.notes,
       _id: this.props.data._id,
     };
-    this.options = { campusOptions, buildingOptions };
+    this.handleAddition = this.handleAddition.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
@@ -51,11 +59,6 @@ class EditEvents extends React.Component {
     }
   }
 
-  /** Handles changes to input fields. */
-  handleChange(event, { name, value }) {
-    this.setState({ [name]: value });
-  }
-
   /** Inserts submitted values into Data collection as Event data. */
   handleSubmit() {
     const { campus, building, date, timeStart, timeEnd, notes, _id } = this.state;
@@ -64,31 +67,42 @@ class EditEvents extends React.Component {
         this.insertCallback);
   }
 
+  /** Handles changes to input fields. */
+  handleChange(event, { name, value }) {
+    this.setState({ [name]: value });
+  }
+
+  /** Adds new value to array of options. */
+  handleAddition(event, { value }) {
+    this.setState({
+      buildings: [{ text: value, value }, ...this.state.buildings]
+    })
+  };
+
+
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
-  /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
+  /** Render the form. All fields except notes required. */
   renderPage() {
     const { campus, building, date, timeStart, timeEnd, notes } = this.state;
     return (
         <Container style={{ paddingBottom: '15px' }}>
-          <Header as="h2" textAlign="center">Editing {this.props.data.date}: {this.props.data.building}</Header>
+          <Header as="h2" textAlign="center">Editing {this.props.data.date}: {this.props.data.building} Event</Header>
           <Segment>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group widths='equal'>
                 <Form.Select required fluid search label='Campus'
-                             options={this.options.campusOptions}
+                             options={campuses}
                              name="campus"
                              placeholder='Select the campus the audit is being held at.'
                              value={campus}
                              onChange={this.handleChange}
-                             allowAdditions
-                             onAddItem={this.handleAddition}
                 />
                 <Form.Select required fluid search selection label='Building'
-                             options={this.options.buildingOptions}
+                             options={this.state.buildings}
                              name="building"
                              placeholder='Select a building, or type a new building name to save it.'
                              value={building}

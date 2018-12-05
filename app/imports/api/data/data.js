@@ -7,8 +7,8 @@ const Data = new Mongo.Collection('Data');
 
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const BagSchema = new SimpleSchema({
-  category: String,
   type: String,
+  category: String,
   weight: Number,
   volume: Number,
   notes: String,

@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Roles } from 'meteor/alanning:roles';
 import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Container, Header, Icon, Item } from 'semantic-ui-react';
+import { Button, Icon, Item } from 'semantic-ui-react';
 
 /** Renders a single event in the ListEvents table. See pages/ListEvents.jsx. */
 class Event extends React.Component {
@@ -13,9 +13,9 @@ class Event extends React.Component {
   renderSwitch(param) {
     const campus = param.toString();
     switch (campus) {
-      case "University of Hawaii at Manoa":
+      case "University of Hawai'i at Manoa":
         return <Item.Image src='/images/thumb-uhm.png' size='medium' rounded/>;
-      case "Kapiolani Community College":
+      case "Kapi'olani Community College":
         return <Item.Image src='/images/thumb-kcc.png' size='medium' rounded/>;
       default:
         return <Item.Image src='/images/logo.png' size='medium' rounded/>;
@@ -38,12 +38,11 @@ class Event extends React.Component {
               {this.props.data.notes}<br/>
             </Item.Description>
             <Item.Extra>
-              {this.props.currentUser ? (
+              {this.props.currentUser ?
                   <Button color='green' as={Link} to={`/input/${this.props.data._id}`} floated='right'>
                     Input Data
                     <Icon name='right chevron'/>
-                  </Button>
-              ) : ''}
+                  </Button> : ''}
 
               <Button basic color='green' as={Link} to={`/charts/${this.props.data._id}`} floated='right'>
                 View
@@ -51,7 +50,7 @@ class Event extends React.Component {
               </Button>
 
               {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-                  <Button circular color="yellow" as={Link} to={`/edit/${this.props.data._id}`} icon="edit"/>
+                  <Button circular color="grey" as={Link} to={`/edit/${this.props.data._id}`} icon="edit"/>
               ) : ''}
             </Item.Extra>
           </Item.Content>

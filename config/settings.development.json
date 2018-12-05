@@ -6,7 +6,7 @@
 
   "defaultData": [
     {
-      "campus": "Kapiolani Community College",
+      "campus": "Kapi'olani Community College",
       "building": "Building A",
       "date": "10/10/2018",
       "timeStart": "09:00 AM",
@@ -14,25 +14,25 @@
       "notes": "Audit failed! How did this happen!?",
       "bagTare": 0,
       "bags": [
-        {"category": "Recyclable paper", "type": "placeholder", "weight": 9.6, "volume": 38.5, "notes": ""},
-        {"category": "Non-recyclable paper", "type": "placeholder", "weight": 8.75, "volume": 33, "notes": ""},
-        {"category": "Paper towels", "type": "placeholder", "weight": 16.75, "volume": 44, "notes": ""},
-        {"category": "Starbucks cups", "type": "placeholder", "weight": 3.1, "volume": 13.75, "notes": ""},
-        {"category": "Plastic to-go cups", "type": "placeholder", "weight": 2.65, "volume": 11, "notes": ""},
-        {"category": "Wax paper cups", "type": "placeholder", "weight": 3.2, "volume": 11, "notes": ""},
-        {"category": "Compostable take-out", "type": "placeholder", "weight": 6.15, "volume": 35.75, "notes": ""},
-        {"category": "Disposable utensils", "type": "placeholder", "weight": 2.25, "volume": 4, "notes": ""},
-        {"category": "Straws", "type": "placeholder", "weight": 0.05, "volume": 2.5, "notes": ""},
-        {"category": "8oz cans", "type": "placeholder", "weight": 6.6, "volume": 38.5, "notes": ""},
-        {"category": "Soda cans", "type": "placeholder", "weight": 5.75, "volume": 33, "notes": ""},
-        {"category": "16 oz cans", "type": "placeholder", "weight": 7.75, "volume": 44, "notes": ""},
-        {"category": "Shirts", "type": "placeholder", "weight": 3.1, "volume": 13.75, "notes": ""},
-        {"category": "Pants", "type": "placeholder", "weight": 2.65, "volume": 11, "notes": ""},
-        {"category": "Socks", "type": "placeholder", "weight": 3.2, "volume": 11, "notes": ""}
+        {"type": "Paper", "category": "Recyclable paper", "weight": 9.6, "volume": 38.5, "notes": ""},
+        {"type": "Paper", "category": "Non-recyclable paper", "weight": 8.75, "volume": 33, "notes": ""},
+        {"type": "Paper", "category": "Paper towels", "weight": 16.75, "volume": 44, "notes": ""},
+        {"type": "Plastic", "category": "Starbucks cups", "weight": 3.1, "volume": 13.75, "notes": ""},
+        {"type": "Plastic", "category": "Plastic to-go cups", "weight": 2.65, "volume": 11, "notes": ""},
+        {"type": "Plastic", "category": "Wax paper cups", "weight": 3.2, "volume": 11, "notes": ""},
+        {"type": "Plastic", "category": "Compostable take-out", "weight": 6.15, "volume": 35.75, "notes": ""},
+        {"type": "Plastic", "category": "Disposable utensils", "weight": 2.25, "volume": 4, "notes": ""},
+        {"type": "Plastic", "category": "Straws", "weight": 0.05, "volume": 2.5, "notes": ""},
+        {"type": "Metals", "category": "8oz cans", "weight": 6.6, "volume": 38.5, "notes": ""},
+        {"type": "Metals", "category": "Soda cans", "weight": 5.75, "volume": 33, "notes": ""},
+        {"type": "Metals", "category": "16 oz cans", "weight": 7.75, "volume": 44, "notes": ""},
+        {"type": "Misc.", "category": "Shirts", "weight": 3.1, "volume": 13.75, "notes": ""},
+        {"type": "Misc.", "category": "Pants", "weight": 2.65, "volume": 11, "notes": ""},
+        {"type": "Misc.", "category": "Socks", "weight": 3.2, "volume": 11, "notes": ""}
       ]
     },
     {
-      "campus": "University of Hawaii at Manoa",
+      "campus": "University of Hawai'i at Manoa",
       "building": "Queen Liliʻuokalani Center",
       "date": "11/20/2018",
       "timeStart": "11:00 PM",
@@ -40,30 +40,30 @@
       "notes": "Audit was successful! We ate at Papa John's after.",
       "bagTare": 0,
       "bags": [
-        {"category": "Starbucks cups", "type": "placeholder", "weight": 3.1, "volume": 13.75, "notes": ""},
-        {"category": "Plastic to-go cups", "type": "placeholder", "weight": 2.65, "volume": 11, "notes": ""},
-        {"category": "Wax paper cups", "type": "placeholder", "weight": 3.2, "volume": 11, "notes": ""},
-        {"category": "Compostable take-out", "type": "placeholder", "weight": 6.15, "volume": 35.75, "notes": ""},
-        {"category": "Disposable utensils", "type": "placeholder", "weight": 2.25, "volume": 4, "notes": ""},
-        {"category": "Straws", "type": "placeholder", "weight": 0.05, "volume": 2.5, "notes": ""},
-        {"category": "Recyclable paper", "type": "placeholder", "weight": 9.6, "volume": 38.5, "notes": ""},
-        {"category": "Non-recyclable paper", "type": "placeholder", "weight": 8.75, "volume": 33, "notes": ""},
-        {"category": "Paper towels", "type": "placeholder", "weight": 16.75, "volume": 44, "notes": ""},
-        {"category": "HI-5 Recyclable Plastic Containers", "type": "placeholder", "weight": 1.75, "volume": 11, "notes": ""},
-        {"category": "Food wrappers", "type": "placeholder", "weight": 1.85, "volume": 16.5, "notes": ""},
-        {"category": "Plastic food containers", "type": "placeholder", "weight": 5.2, "volume": 38.5, "notes": ""},
-        {"category": "Styrofoam", "type": "placeholder", "weight": 1.1, "volume": 5.5, "notes": ""},
-        {"category": "Other Plastic", "type": "placeholder", "weight": 11.35, "volume": 44, "notes": ""},
-        {"category": "Recyclable metals", "type": "placeholder", "weight": 1, "volume": 2.75, "notes": ""},
-        {"category": "Non-Recyclable", "type": "placeholder", "weight": 1.1, "volume": 5.5, "notes": ""},
-        {"category": "Aluminum Cans", "type": "placeholder", "weight": 1, "volume": 2.75, "notes": ""},
-        {"category": "HI-5 Glass Containers", "type": "placeholder", "weight": 4.5, "volume": 5.5, "notes": ""},
-        {"category": "Non-HI-5 Glass", "type": "placeholder", "weight": 4.65, "volume": 5.5, "notes": ""},
-        {"category": "Food Waste", "type": "placeholder", "weight": 35.15, "volume": 44.5, "notes": ""},
-        {"category": "Green Waste", "type": "placeholder", "weight": 1.65, "volume": 5.5, "notes": ""},
-        {"category": "Arkansas", "type": "placeholder", "weight": 8.4, "volume": 6, "notes": ""},
-        {"category": "Electronics", "type": "placeholder", "weight": 15.75, "volume": 33, "notes": ""},
-        {"category": "School supplies", "type": "placeholder", "weight": 7.75, "volume": 5, "notes": ""}
+        {"type": "Items of Interest", "category": "Starbucks cups", "weight": 3.1, "volume": 13.75, "notes": ""},
+        {"type": "Items of Interest", "category": "Plastic to-go cups", "weight": 2.65, "volume": 11, "notes": ""},
+        {"type": "Items of Interest", "category": "Wax paper cups", "weight": 3.2, "volume": 11, "notes": ""},
+        {"type": "Items of Interest", "category": "Compostable take-out", "weight": 6.15, "volume": 35.75, "notes": ""},
+        {"type": "Items of Interest", "category": "Disposable utensils", "weight": 2.25, "volume": 4, "notes": ""},
+        {"type": "Items of Interest", "category": "Straws", "weight": 0.05, "volume": 2.5, "notes": ""},
+        {"type": "Paper", "category": "Recyclable paper", "weight": 9.6, "volume": 38.5, "notes": ""},
+        {"type": "Paper", "category": "Non-recyclable paper", "weight": 8.75, "volume": 33, "notes": ""},
+        {"type": "Paper", "category": "Paper towels", "weight": 16.75, "volume": 44, "notes": ""},
+        {"type": "Plastic", "category": "HI-5 Recyclable Plastic Containers", "weight": 1.75, "volume": 11, "notes": ""},
+        {"type": "Plastic", "category": "Food wrappers", "weight": 1.85, "volume": 16.5, "notes": ""},
+        {"type": "Plastic", "category": "Plastic food containers", "weight": 5.2, "volume": 38.5, "notes": ""},
+        {"type": "Plastic", "category": "Styrofoam", "weight": 1.1, "volume": 5.5, "notes": ""},
+        {"type": "Plastic", "category": "Other Plastic", "weight": 11.35, "volume": 44, "notes": ""},
+        {"type": "Metals", "category": "Recyclable metals", "weight": 1, "volume": 2.75, "notes": ""},
+        {"type": "Metals", "category": "Non-Recyclable", "weight": 1.1, "volume": 5.5, "notes": ""},
+        {"type": "Metals", "category": "Aluminum Cans", "weight": 1, "volume": 2.75, "notes": ""},
+        {"type": "Glass", "category": "HI-5 Glass Containers", "weight": 4.5, "volume": 5.5, "notes": ""},
+        {"type": "Glass", "category": "Non-HI-5 Glass", "weight": 4.65, "volume": 5.5, "notes": ""},
+        {"type": "Organics", "category": "Food Waste", "weight": 35.15, "volume": 44.5, "notes": ""},
+        {"type": "Organics", "category": "Green Waste", "weight": 1.65, "volume": 5.5, "notes": ""},
+        {"type": "Misc.", "category": "Arkansas", "weight": 8.4, "volume": 6, "notes": ""},
+        {"type": "Misc.", "category": "Electronics", "weight": 15.75, "volume": 33, "notes": ""},
+        {"type": "Misc.", "category": "School supplies", "weight": 7.75, "volume": 5, "notes": ""}
       ]
     },
     {
@@ -75,8 +75,8 @@
       "notes": "What the... Where am I? Placeholder event to test unknown campus.",
       "bagTare": 0,
       "bags": [
-        {"category": "Recyclable paper", "type": "placeholder", "weight": 9.6, "volume": 38.5, "notes": ""},
-        {"category": "HI-5 Recyclable Plastic Containers", "type": "placeholder", "weight": 1.75, "volume": 11, "notes": ""}
+        {"type": "Paper", "category": "Recyclable paper", "weight": 9.6, "volume": 38.5, "notes": ""},
+        {"type": "Plastic", "category": "HI-5 Recyclable Plastic Containers", "weight": 1.75, "volume": 11, "notes": ""}
       ]
     }
   ]

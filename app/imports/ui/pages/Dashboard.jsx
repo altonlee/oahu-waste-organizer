@@ -11,6 +11,7 @@ import Combo from '../components/Charts/Combo';
 
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class EventCharts extends React.Component {
+  /** Get statistics of audits. */
   getStats(data) {
     let totalEvents = data.length;
     let totalWeight = 0;
@@ -19,34 +20,38 @@ class EventCharts extends React.Component {
     let ret = [];
 
     for (let i = 0; i < data.length; i++) {
-      for (let j = 0; j < data[i].input.length; j++) {
-        for (let k = 0; k < data[i].input[j].bags.length; k++) {
-          let bags = data[i].input[j].bags;
-          totalBags++;
-          totalWeight += _.reduce((_.pluck(bags, 'weight')), function (memo, num) {
-            return memo + num;
-          }, 0);
-          totalVolume += _.reduce((_.pluck(bags, 'volume')), function (memo, num) {
-            return memo + num;
-          }, 0);
-        }
+      for (let j = 0; j < data[i].bags.length; j++) {
+        totalBags++;
+        totalWeight += _.reduce((_.pluck(data[i].bags, 'weight')), function (memo, num) {
+          return memo + num;
+        }, 0);
+        totalVolume += _.reduce((_.pluck(data[i].bags, 'volume')), function (memo, num) {
+          return memo + num;
+        }, 0);
       }
     }
 
     ret = {
       totalEvents: totalEvents,
-      totalWeight: Math.round(totalWeight),
-      totalVolume: Math.round(totalVolume),
+      totalWeight: this.numFormatter(Math.round(totalWeight)),
+      totalVolume: this.numFormatter(Math.round(totalVolume)),
       totalBags: totalBags
     };
     return ret;
   }
 
+  /** Format numbers larger than 1000 to 1k. */
+  numFormatter(num) {
+    return num > 999 ? (num / 1000).toFixed(1) + 'k' : num;
+  }
+
+  /** Load all data first, then render page. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
   renderPage() {
+    // Statistics
     const stats = this.getStats(this.props.data);
     // Pie chart options
     const pieStyle = {
@@ -57,7 +62,7 @@ class EventCharts extends React.Component {
         type: 'pie'
       },
       title: {
-        text: 'Browser market shares in January, 2018'
+        text: 'All trash by Weight'
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -104,10 +109,10 @@ class EventCharts extends React.Component {
         type: 'column'
       },
       title: {
-        text: 'Browser market shares. January, 2018'
+        text: 'All trash by Weight across all campuses'
       },
       subtitle: {
-        text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+        text: 'Click the columns to see trash by building.'
       },
       xAxis: {
         type: 'category'
@@ -403,7 +408,7 @@ class EventCharts extends React.Component {
     // Combo graph options
     const comboStyle = {
       title: {
-        text: 'Combination chart'
+        text: 'Building Comparisons within University of Hawaii at Manoa'
       },
       xAxis: {
         categories: ['Apples', 'Oranges', 'Pears', 'Bananas', 'Plums']
@@ -472,7 +477,7 @@ class EventCharts extends React.Component {
               <div className="ui five small statistics">
                 <div className="statistic">
                   <div className="value">
-                    <i className="clipboard icon"></i> {stats.totalEvents}
+                    <i className="clipboard icon"/> {stats.totalEvents}
                   </div>
                   <div className="label">
                     Total Audits
@@ -480,7 +485,7 @@ class EventCharts extends React.Component {
                 </div>
                 <div className="statistic">
                   <div className="value">
-                    <i className="balance scale icon"></i> {stats.totalWeight}
+                    <i className="balance scale icon"/> {stats.totalWeight}
                   </div>
                   <div className="label">
                     Pounds of Trash
@@ -488,7 +493,7 @@ class EventCharts extends React.Component {
                 </div>
                 <div className="statistic">
                   <div className="value">
-                    <i className="weight icon"></i> {stats.totalVolume}
+                    <i className="weight icon"/> {stats.totalVolume}
                   </div>
                   <div className="label">
                     Gallons of Trash
@@ -496,7 +501,7 @@ class EventCharts extends React.Component {
                 </div>
                 <div className="statistic">
                   <div className="value">
-                    <i className="trash icon"></i> {stats.totalBags}
+                    <i className="trash icon"/> {stats.totalBags}
                   </div>
                   <div className="label">
                     Total Trashbags
@@ -504,7 +509,7 @@ class EventCharts extends React.Component {
                 </div>
                 <div className="statistic">
                   <div className="value">
-                    <i className="users icon"></i> 42
+                    <i className="users icon"/> 42
                   </div>
                   <div className="label">
                     Users

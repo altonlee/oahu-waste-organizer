@@ -9,12 +9,19 @@ import { Data } from '/imports/api/data/data';
 import { DateInput, TimeInput } from 'semantic-ui-calendar-react';
 
 /** Some sample options. Admin can also type in custom options and will be saved in dropdowns. */
-const campusOptions = [
-  { key: 'uh manoa', text: 'University of Hawaii at Manoa', value: "University of Hawaii at Manoa" },
-  { key: 'kcc', text: 'Kapiolani Community College', value: "Kapiolani Community College" },
-  { key: 'west oahu', text: 'University of Hawaiʻi - West Oahu', value: "University of Hawaii - West Oahu" },
+const campuses = [
+  { key: 'uhm', text: "University of Hawai'i at Manoa", value: "University of Hawai'i at Manoa" },
+  { key: 'uhwo', text: "University of Hawai'i - West O'ahu", value: "University of Hawai'i - West O'ahu" },
+  { key: 'uhh', text: "University of Hawai'i at Hilo", value: "University of Hawai'i at Hilo" },
+  { key: 'kcc', text: "Kapi'olani Community College", value: "Kapi'olani Community College" },
+  { key: 'hocc', text: 'Honolulu Community College', value: "Honolulu Community College" },
+  { key: 'lcc', text: 'Leeward Community College', value: "Leeward Community College" },
+  { key: 'wcc', text: 'Windward Community College', value: "Windward Community College" },
+  { key: 'uhma', text: 'UH Maui College', value: "UH Maui College" },
+  { key: 'kacc', text: "Kaua'i Community College", value: "Kaua'i Community College" },
+  { key: 'hacc', text: "Hawai'i Community College", value: "Hawai'i Community College" },
 ];
-const buildingOptions = [
+const buildings = [
   { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: "Queen Liliʻuokalani Center" },
   { key: 'campus center', text: 'Campus Center', value: "Campus Center" },
   { key: 'post', text: 'Pacific Ocean Science and Technology', value: "Pacific Ocean Science and Technology" },
@@ -25,8 +32,16 @@ class AddEvents extends React.Component {
   /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
   constructor(props) {
     super(props);
-    this.state = { campus: '', building: '', date: '', timeStart: '', timeEnd: '', notes: '' };
-    this.options = { campusOptions, buildingOptions };
+    this.state = {
+      campus: '',
+      building: '',
+      buildings: buildings,
+      date: '',
+      timeStart: '',
+      timeEnd: '',
+      notes: ''
+    };
+    this.handleAddition = this.handleAddition.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
@@ -38,7 +53,7 @@ class AddEvents extends React.Component {
     if (error) {
       Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
     } else {
-      Bert.alert({ type: 'success', message: 'Add succeeded' });
+      Bert.alert({ type: 'success', message: `Added ${this.state.date}: ${this.state.building} Event` });
     }
   };
 
@@ -52,14 +67,15 @@ class AddEvents extends React.Component {
   /** Handles changes to input fields. */
   handleChange(event, { name, value }) {
     this.setState({ [name]: value });
+    console.log(name, value);
   }
 
   /** Adds new value to array of options. */
-  handleAddition(event, { name, value }) {
+  handleAddition(event, { value }) {
     this.setState({
-      [name]: [{ text: value, value }, ...this.state[name]],
-    });
-  }
+      buildings: [{ text: value, value }, ...this.state.buildings]
+    })
+  };
 
   render() {
     const { campus, building, date, timeStart, timeEnd, notes } = this.state;
@@ -70,16 +86,14 @@ class AddEvents extends React.Component {
             <Form onSubmit={this.handleSubmit}>
               <Form.Group widths='equal'>
                 <Form.Select required fluid search label='Campus'
-                             options={this.options.campusOptions}
+                             options={campuses}
                              name="campus"
                              placeholder='Select the campus the audit is being held at.'
                              value={campus}
                              onChange={this.handleChange}
-                             allowAdditions
-                             onAddItem={this.handleAddition}
                 />
                 <Form.Select required fluid search selection label='Building'
-                             options={this.options.buildingOptions}
+                             options={this.state.buildings}
                              name="building"
                              placeholder='Select a building, or type a new building name to save it.'
                              value={building}
@@ -134,7 +148,6 @@ class AddEvents extends React.Component {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to audit data.
-  const subscription = Meteor.subscribe('Data');
   return {
     data: Data.find({}).fetch(),
   };

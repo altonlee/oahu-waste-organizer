@@ -2,7 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Container, Item, Header, Loader, Button, Icon, Menu } from 'semantic-ui-react';
+import { Container, Item, Header, Loader, Button, Icon } from 'semantic-ui-react';
 import { Data } from '/imports/api/data/data';
 import Event from '/imports/ui/components/Event';
 import { Link } from 'react-router-dom';
@@ -21,12 +21,11 @@ class ListEvents extends React.Component {
     return (
         <Container style={eventStyle}>
           <Header as='h1' textAlign="center">Past / Upcoming Waste Audits</Header>
-          {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
+          {Roles.userIsInRole(Meteor.userId(), 'admin') ?
               <Button circular primary as={Link} to={`/add`} floated='right'>
                 <Icon name="add"/>
                 Create an Event
-              </Button>
-          ) : ''}
+              </Button> : ''}
           <Item.Group divided unstackable>
             {this.props.data.map((event, index) => <Event key={index} data={event}/>)}
           </Item.Group>
