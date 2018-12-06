@@ -11,6 +11,10 @@ import Combo from '../components/Charts/Combo';
 
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class EventCharts extends React.Component {
+  componentDidMount() {
+    document.title = "OWO - Dashboard"
+  }
+
   /** Get statistics of audits. */
   getStats(data) {
     let totalEvents = data.length;
@@ -20,15 +24,13 @@ class EventCharts extends React.Component {
     let ret = [];
 
     for (let i = 0; i < data.length; i++) {
-      for (let j = 0; j < data[i].bags.length; j++) {
-        totalBags++;
-        totalWeight += _.reduce((_.pluck(data[i].bags, 'weight')), function (memo, num) {
-          return memo + num;
-        }, 0);
-        totalVolume += _.reduce((_.pluck(data[i].bags, 'volume')), function (memo, num) {
-          return memo + num;
-        }, 0);
-      }
+      totalBags += data[i].bags.length;
+      totalWeight += _.reduce((_.pluck(data[i].bags, 'weight')), function (memo, num) {
+        return memo + num;
+      }, 0);
+      totalVolume += _.reduce((_.pluck(data[i].bags, 'volume')), function (memo, num) {
+        return memo + num;
+      }, 0);
     }
 
     ret = {
@@ -45,14 +47,89 @@ class EventCharts extends React.Component {
     return num > 999 ? (num / 1000).toFixed(1) + 'k' : num;
   }
 
+  /** Generate data into a format Chart can read. */
+  getSeriesData(data) {
+    let ret = [];
+
+    // Get array of campuses
+    let campuses = [];
+    for (let i = 0; i < data.length; i++) {
+      campuses[i] = data[i].campus;
+    }
+    let name = _.uniq(campuses);
+
+    // Get array of values
+    let y = [];
+    // TODO: Optimize the hell out of this
+    for (let x = 0; x < name.length; x++) {
+      y[x] = 0;
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].campus === name[x]) {
+          for (let j = 0; j < data[i].bags.length; j++) {
+            y[x] += data[i].bags[j].weight;
+          }
+        }
+      }
+    }
+
+    // Return series with data
+    for (let i = 0; i < name.length; i++) {
+      ret.push({
+        name: name[i],
+        y: y[i],
+        drilldown: name[i]
+      })
+    }
+    return ret;
+  }
+
+  /** Generate drilldown data for Graph to read. */
+  getDrillData(data) {
+    let ret = [];
+
+    // Get array of names
+    let campuses = [];
+    for (let i = 0; i < data.length; i++) {
+      campuses[i] = data[i].campus;
+    }
+    let name = _.uniq(campuses);
+
+    // Get array of values
+    let buildings = [];
+    for (let x = 0; x < name.length; x++) {
+      buildings[x] = [];
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].campus === name[x]) {
+          for (let j = 0; j < data[i].bags.length; j++) {
+            buildings[x][j] = [data[i].bags[j].type, data[i].bags[j].weight];
+          }
+        }
+      }
+      console.log(buildings[x]);
+    }
+
+    // Return series with drilldown
+    for (let i = 0; i < name.length; i++) {
+      ret.push({
+        name: name[i],
+        id: name[i],
+        data: buildings[i]
+      })
+    }
+    return ret;
+  }
+
   /** Load all data first, then render page. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
   renderPage() {
-    // Statistics
+    // Get data
     const stats = this.getStats(this.props.data);
+    const seriesData = this.getSeriesData(this.props.data);
+    const drillData = this.getDrillData(this.props.data);
+
     // Pie chart options
     const pieStyle = {
       chart: {
@@ -62,7 +139,7 @@ class EventCharts extends React.Component {
         type: 'pie'
       },
       title: {
-        text: 'All trash by Weight'
+        text: 'Total Weight of trash per campus'
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -78,29 +155,9 @@ class EventCharts extends React.Component {
         }
       },
       series: [{
-        name: 'Brands',
+        name: 'Total Campus Trash',
         colorByPoint: true,
-        data: [{
-          name: 'Chrome',
-          y: 61.41,
-          sliced: true,
-          selected: true
-        }, {
-          name: 'Internet Explorer',
-          y: 11.84
-        }, {
-          name: 'Firefox',
-          y: 10.85
-        }, {
-          name: 'Edge',
-          y: 4.67
-        }, {
-          name: 'Safari',
-          y: 4.18
-        }, {
-          name: 'Other',
-          y: 7.05
-        }]
+        data: seriesData
       }]
     };
     // Bar graph options
@@ -109,17 +166,17 @@ class EventCharts extends React.Component {
         type: 'column'
       },
       title: {
-        text: 'All trash by Weight across all campuses'
+        text: 'Total Weight of trash per campus'
       },
       subtitle: {
-        text: 'Click the columns to see trash by building.'
+        text: 'Click the columns to see trash types.'
       },
       xAxis: {
         type: 'category'
       },
       yAxis: {
         title: {
-          text: 'Total percent market share'
+          text: 'Weight (lbs)'
         }
 
       },
@@ -131,279 +188,25 @@ class EventCharts extends React.Component {
           borderWidth: 0,
           dataLabels: {
             enabled: true,
-            format: '{point.y:.1f}%'
+            format: '{point.y:.1f}'
           }
         }
       },
 
       tooltip: {
         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> lbs<br/>'
       },
 
       "series": [
         {
-          "name": "Browsers",
+          "name": "Total Campus Trash",
           "colorByPoint": true,
-          "data": [
-            {
-              "name": "Chrome",
-              "y": 62.74,
-              "drilldown": "Chrome"
-            },
-            {
-              "name": "Firefox",
-              "y": 10.57,
-              "drilldown": "Firefox"
-            },
-            {
-              "name": "Internet Explorer",
-              "y": 7.23,
-              "drilldown": "Internet Explorer"
-            },
-            {
-              "name": "Safari",
-              "y": 5.58,
-              "drilldown": "Safari"
-            },
-            {
-              "name": "Edge",
-              "y": 4.02,
-              "drilldown": "Edge"
-            },
-            {
-              "name": "Opera",
-              "y": 1.92,
-              "drilldown": "Opera"
-            },
-            {
-              "name": "Other",
-              "y": 7.62,
-              "drilldown": null
-            }
-          ]
+          "data": seriesData
         }
       ],
-      "drilldown": {
-        "series": [
-          {
-            "name": "Chrome",
-            "id": "Chrome",
-            "data": [
-              [
-                "v65.0",
-                0.1
-              ],
-              [
-                "v64.0",
-                1.3
-              ],
-              [
-                "v63.0",
-                53.02
-              ],
-              [
-                "v62.0",
-                1.4
-              ],
-              [
-                "v61.0",
-                0.88
-              ],
-              [
-                "v60.0",
-                0.56
-              ],
-              [
-                "v59.0",
-                0.45
-              ],
-              [
-                "v58.0",
-                0.49
-              ],
-              [
-                "v57.0",
-                0.32
-              ],
-              [
-                "v56.0",
-                0.29
-              ],
-              [
-                "v55.0",
-                0.79
-              ],
-              [
-                "v54.0",
-                0.18
-              ],
-              [
-                "v51.0",
-                0.13
-              ],
-              [
-                "v49.0",
-                2.16
-              ],
-              [
-                "v48.0",
-                0.13
-              ],
-              [
-                "v47.0",
-                0.11
-              ],
-              [
-                "v43.0",
-                0.17
-              ],
-              [
-                "v29.0",
-                0.26
-              ]
-            ]
-          },
-          {
-            "name": "Firefox",
-            "id": "Firefox",
-            "data": [
-              [
-                "v58.0",
-                1.02
-              ],
-              [
-                "v57.0",
-                7.36
-              ],
-              [
-                "v56.0",
-                0.35
-              ],
-              [
-                "v55.0",
-                0.11
-              ],
-              [
-                "v54.0",
-                0.1
-              ],
-              [
-                "v52.0",
-                0.95
-              ],
-              [
-                "v51.0",
-                0.15
-              ],
-              [
-                "v50.0",
-                0.1
-              ],
-              [
-                "v48.0",
-                0.31
-              ],
-              [
-                "v47.0",
-                0.12
-              ]
-            ]
-          },
-          {
-            "name": "Internet Explorer",
-            "id": "Internet Explorer",
-            "data": [
-              [
-                "v11.0",
-                6.2
-              ],
-              [
-                "v10.0",
-                0.29
-              ],
-              [
-                "v9.0",
-                0.27
-              ],
-              [
-                "v8.0",
-                0.47
-              ]
-            ]
-          },
-          {
-            "name": "Safari",
-            "id": "Safari",
-            "data": [
-              [
-                "v11.0",
-                3.39
-              ],
-              [
-                "v10.1",
-                0.96
-              ],
-              [
-                "v10.0",
-                0.36
-              ],
-              [
-                "v9.1",
-                0.54
-              ],
-              [
-                "v9.0",
-                0.13
-              ],
-              [
-                "v5.1",
-                0.2
-              ]
-            ]
-          },
-          {
-            "name": "Edge",
-            "id": "Edge",
-            "data": [
-              [
-                "v16",
-                2.6
-              ],
-              [
-                "v15",
-                0.92
-              ],
-              [
-                "v14",
-                0.4
-              ],
-              [
-                "v13",
-                0.1
-              ]
-            ]
-          },
-          {
-            "name": "Opera",
-            "id": "Opera",
-            "data": [
-              [
-                "v50.0",
-                0.96
-              ],
-              [
-                "v49.0",
-                0.82
-              ],
-              [
-                "v12.1",
-                0.14
-              ]
-            ]
-          }
-        ]
-      }
+      "drilldown":
+          { series: drillData }
     };
     // Combo graph options
     const comboStyle = {

@@ -9,6 +9,11 @@ import Graph from '../components/Charts/Graph';
 
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class EventCharts extends React.Component {
+
+  componentDidMount() {
+    document.title = "OWO - Data Visualized"
+  }
+
   /** Generate data in a format for Charts to read. */
   generateData(data) {
     let ret = [];

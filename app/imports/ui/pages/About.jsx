@@ -4,6 +4,10 @@ import '/client/about.css';
 
 /** A simple static component to render some text for the Home page. */
 class About extends React.Component {
+  componentDidMount() {
+    document.title = "OWO - About Us"
+  }
+
   render() {
     return (
         <div className="about-background">

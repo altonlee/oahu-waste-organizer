@@ -17,6 +17,22 @@ class Event extends React.Component {
         return <Item.Image src='/images/thumb-uhm.png' size='medium' rounded/>;
       case 'Kapiʻolani Community College':
         return <Item.Image src='/images/thumb-kcc.png' size='medium' rounded/>;
+      case "University of Hawai'i - West O'ahu":
+        return <Item.Image src='/images/thumb-uhw.png' size='medium' rounded/>;
+      case "University of Hawai'i at Hilo":
+        return <Item.Image src='/images/thumb-uhh.png' size='medium' rounded/>;
+      case "Honolulu Community College":
+        return <Item.Image src='/images/thumb-hcc.png' size='medium' rounded/>;
+      case "Leeward Community College":
+        return <Item.Image src='/images/thumb-lcc.png' size='medium' rounded/>;
+      case "Windward Community College":
+        return <Item.Image src='/images/thumb-wcc.png' size='medium' rounded/>;
+      case "UH Maui College":
+        return <Item.Image src='/images/thumb-uh-maui.png' size='medium' rounded/>;
+      case "Kaua'i Community College":
+        return <Item.Image src='/images/thumb-kauai-cc.png' size='medium' rounded/>;
+      case "Hawai'i Community College":
+        return <Item.Image src='/images/thumb-hawaii-cc.png' size='medium' rounded/>;
       default:
         return <Item.Image src='/images/logo.png' size='medium' rounded/>;
     }

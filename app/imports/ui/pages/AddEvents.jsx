@@ -29,6 +29,11 @@ const buildings = [
 
 /** Renders the Page for adding a document. */
 class AddEvents extends React.Component {
+
+  componentDidMount() {
+    document.title = "OWO - Create Event"
+  }
+
   /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
   constructor(props) {
     super(props);
@@ -67,7 +72,6 @@ class AddEvents extends React.Component {
   /** Handles changes to input fields. */
   handleChange(event, { name, value }) {
     this.setState({ [name]: value });
-    console.log(name, value);
   }
 
   /** Adds new value to array of options. */
