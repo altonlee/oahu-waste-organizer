@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Roles } from 'meteor/alanning:roles';
 import PropTypes from 'prop-types';
 import { Container, Item, Header, Loader, Button, Icon } from 'semantic-ui-react';
 import { Data } from '/imports/api/data/data';
@@ -11,7 +12,7 @@ import { Link } from 'react-router-dom';
 class ListEvents extends React.Component {
 
   componentDidMount() {
-    document.title = "OWO - All Events"
+    document.title = 'OWO - All Events';
   }
 
   /** Load Events first, then render page. */
@@ -26,7 +27,7 @@ class ListEvents extends React.Component {
         <Container style={eventStyle}>
           <Header as='h1' textAlign="center">Past / Upcoming Waste Audits</Header>
           {Roles.userIsInRole(Meteor.userId(), 'admin') ?
-              <Button circular primary as={Link} to={`/add`} floated='right'>
+              <Button circular primary as={Link} to={'/add'} floated='right'>
                 <Icon name="add"/>
                 Create an Event
               </Button> : ''}

@@ -2,12 +2,11 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import {
   Segment,
-  Menu,
   Form,
   Input,
   Dropdown,
   Header,
-  Sidebar, Button, Icon, Grid, Loader,
+  Sidebar, Button, Grid, Loader,
 } from 'semantic-ui-react';
 import '/client/input.css';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -22,6 +21,7 @@ class InputData extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.handleShowClick = this.handleShowClick.bind(this);
     this.handleSidebarHide = this.handleSidebarHide.bind(this);
 
@@ -56,6 +56,10 @@ class InputData extends React.Component {
     Data.update(this.props.data._id, { $set: { notes, bags } }, this.insertCallback);
   };
 
+  handleDelete = (event, {value}) => {
+    console.log(event, {value});
+  };
+
   handleShowClick = () => this.setState({ visible: true });
 
   handleSidebarHide = () => this.setState({ visible: false });
@@ -68,13 +72,13 @@ class InputData extends React.Component {
   renderPage() {
     const { visible } = this.state;
     const categoryOptions = [
-      { key: 'items of interest', text: '---Items of Interest---', value: 'items of interest' },
-      { key: 'paper', text: '---Paper---', value: 'paper' },
-      { key: 'plastic', text: '---Plastic---', value: 'plastic' },
-      { key: 'glass', text: '---Glass---', value: 'glass' },
-      { key: 'metals', text: '---Metals---', value: 'metals' },
-      { key: 'organics', text: '---Organics---', value: 'organics' },
-      { key: 'misc', text: '---Misc---', value: 'misc' },
+      { key: 'items of interest', text: 'Items of Interest', value: 'items of interest' },
+      { key: 'paper', text: 'Paper', value: 'paper' },
+      { key: 'plastic', text: 'Plastic', value: 'plastic' },
+      { key: 'glass', text: 'Glass', value: 'glass' },
+      { key: 'metals', text: 'Metals', value: 'metals' },
+      { key: 'organics', text: 'Organics', value: 'organics' },
+      { key: 'misc', text: 'Misc', value: 'misc' },
     ];
     const typeOptions = [
       { key: 'items of interest', text: '---Items of Interest---', value: 'items of interest', disabled: true },
@@ -131,12 +135,14 @@ class InputData extends React.Component {
     const bags = this.props.data.bags;
     const bagElements = [];
     for (let i = 0; i < bags.length; i++) {
-      bagElements[i] = <Bag handleShowClick={this.handleShowClick} category={bags[i].category} type={bags[i].type}
+      bagElements[i] = <Bag handleDelete={this.handleDelete} category={bags[i].category} type={bags[i].type}
                             volume={bags[i].volume}
                             weight={bags[i].weight} notes={bags[i].notes} visible={visible}/>;
     }
 
     const { notes, category, type, weight, volume, bagNotes } = this.state;
+
+    const { contextRef } = this.state
 
     return (
         <div>
@@ -161,44 +167,41 @@ class InputData extends React.Component {
             <Form>
               <Form.TextArea value={notes} name="notes" placeholder="Notes..." onChange={this.handleChange}/>
             </Form>
-            <Sidebar.Pushable as={Segment}>
-              <Sidebar as={Menu} animation='overlay' icon='labeled' vertical
-                       visible={visible} direction='right' width='very wide' style={{ padding: '20px' }}>
-                <Form>
-                  <Header as='h3'>Category</Header>
-                  <Dropdown value={category} name='category' placeholder='Select Category' selection search
-                            options={categoryOptions} onChange={this.handleChange}/>
-                  <Header as='h3'>Type</Header>
-                  <Dropdown value={type} name='type' placeholder='Select Type' selection search
-                            options={typeOptions} onChange={this.handleChange}/>
-                  <Header as='h3'>Weight</Header>
-                  <Input value={weight} name='weight' label={{ content: 'lb', color: 'green' }} labelPosition='right'
-                         placeholder="Weight" onChange={this.handleChange}/>
-                  <Header as='h3'>Volume</Header>
-                  <Input value={volume} name='volume' label={{ content: 'gal', color: 'green' }} labelPosition='right'
-                         placeholder="Volume" onChange={this.handleChange}/>
-                  <Header as='h3'>Notes</Header>
-                  <Form.TextArea value={bagNotes} name='bagNotes' placeholder="Notes" onChange={this.handleChange}/>
-                </Form>
-                <div style={{ paddingTop: '20px', paddingBottom: '20px' }}>
-                  <Button color='green' floated='right' onClick={this.handleSave}>
-                    Save
-                  </Button>
-                  <Button basic color='green' floated='right' onClick={this.handleSidebarHide}>
-                    Cancel
-                  </Button>
+            <Sidebar.Pushable as={Segment} style={{ maxHeight: 'calc(100vh - 100px)' }}>
+              <div className="new-sidebar" style={{ display: this.state.visible ? 'block' : 'none' }}>
+                <div className="new-sidebar-content">
+                  <Form>
+                    <Header as='h3'>Category</Header>
+                    <Dropdown value={category} name='category' placeholder='Select Category' selection search
+                              options={categoryOptions} onChange={this.handleChange}/>
+                    <Header as='h3'>Type</Header>
+                    <Dropdown value={type} name='type' placeholder='Select Type' selection search
+                              options={typeOptions} onChange={this.handleChange}/>
+                    <Header as='h3'>Weight</Header>
+                    <Input value={weight} name='weight' label={{ content: 'lb' }} labelPosition='right'
+                           placeholder="Weight" onChange={this.handleChange}/>
+                    <Header as='h3'>Volume</Header>
+                    <Input value={volume} name='volume' label={{ content: 'gal' }} labelPosition='right'
+                           placeholder="Volume" onChange={this.handleChange}/>
+                    <Header as='h3'>Notes</Header>
+                    <Form.TextArea value={bagNotes} name='bagNotes' placeholder="Notes" onChange={this.handleChange}/>
+                  </Form>
+                  <div style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+                    <Button color='green' floated='right' onClick={this.handleSave}>
+                      Save
+                    </Button>
+                    <Button basic color='green' floated='right' onClick={this.handleSidebarHide}>
+                      Cancel
+                    </Button>
+                  </div>
                 </div>
-              </Sidebar>
-
+              </div>
               <Sidebar.Pusher>
                 <Segment vertical style={{ padding: '20px' }}>
                   <Grid columns='equal'>
                     <Grid.Row>
                       <Grid.Column>
-                        <Icon name='tasks'/>
-                      </Grid.Column>
-                      <Grid.Column>
-                        <Icon name='trash alternate' float='left'/>
+                        <Dropdown placeholder='State' search selection options={categoryOptions}/>
                       </Grid.Column>
                       <Grid.Column>
                         <Button color='green' float='right' onClick={this.handleShowClick}>

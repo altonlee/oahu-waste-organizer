@@ -60,10 +60,7 @@
         {"type": "Glass", "category": "HI-5 Glass Containers", "weight": 4.5, "volume": 5.5, "notes": ""},
         {"type": "Glass", "category": "Non-HI-5 Glass", "weight": 4.65, "volume": 5.5, "notes": ""},
         {"type": "Organics", "category": "Food Waste", "weight": 35.15, "volume": 44.5, "notes": ""},
-        {"type": "Organics", "category": "Green Waste", "weight": 1.65, "volume": 5.5, "notes": ""},
-        {"type": "Misc.", "category": "Arkansas", "weight": 8.4, "volume": 6, "notes": ""},
-        {"type": "Misc.", "category": "Electronics", "weight": 15.75, "volume": 33, "notes": ""},
-        {"type": "Misc.", "category": "School supplies", "weight": 7.75, "volume": 5, "notes": ""}
+        {"type": "Organics", "category": "Green Waste", "weight": 1.65, "volume": 5.5, "notes": ""}
       ]
     },
     {

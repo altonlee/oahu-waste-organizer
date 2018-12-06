@@ -23,7 +23,7 @@ class Footer extends React.Component {
             <hr/>
             Final Project for ICS 314<br/>
             Inspired by OWO, the HACC 2018 team project<br/>
-            University of Hawaii<br/>
+            University of Hawaiʻi<br/>
             Honolulu, HI 96822<br/>
           </div>
         </footer>

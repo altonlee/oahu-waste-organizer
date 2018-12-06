@@ -47,3 +47,26 @@
 .input-bag .ui.horizontal.list > .item {
   margin-left: 0;
 }
+
+.new-sidebar {
+  position: sticky;
+  top: 0;
+  right: 0;
+  width: 450px;
+  margin-top: calc(-100vh + 100px);
+  margin-left: calc(100% - 450px);
+  padding: 20px;
+  height: calc(100vh - 100px);
+  background: #FFF;box-shadow: 0px 0px 20px rgba(34, 36, 38, 0.15);
+  z-index: 10;
+  overflow: auto;
+}
+
+.new-sidebar .ui.form .ui.dropdown,
+.new-sidebar .ui.form textarea {
+  width: 100%;
+}
+
+.new-sidebar .ui.form .ui.input {
+  width: calc(100% - 40px);
+}

@@ -8,21 +8,10 @@ class Bag extends React.Component {
     return (
         <div className='input-bag'>
           <List horizontal relaxed='very' style={{ width: '100%' }}>
-            <List.Item style={{ width: '20px', paddingRight: 0 }}>
-              <List.Content>
-                <Checkbox/>
-              </List.Content>
-            </List.Item>
-            <List.Item style={{ width: '150px' }}>
+            <List.Item style={{ width: '160px' }}>
               <List.Content>
                 <List.Header>Category</List.Header>
                 {this.props.category}
-              </List.Content>
-            </List.Item>
-            <List.Item style={{ width: '150px' }}>
-              <List.Content>
-                <List.Header>Type</List.Header>
-                {this.props.type}
               </List.Content>
             </List.Item>
             <List.Item style={{ width: '105px' }}>
@@ -37,14 +26,14 @@ class Bag extends React.Component {
                 {this.props.volume} gal
               </List.Content>
             </List.Item>
-            <List.Item style={{ width: '800px' }}>
+            <List.Item style={{ width: 'calc(100% - 476px)' }}>
               <List.Header>Notes</List.Header>
               <div style={{ overflow: 'hidden', height: '1em', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{this.props.notes}</div>
             </List.Item>
             <List.Item style={{ marginLeft: 'auto', width: '96px' }}>
               <List.Content verticalAlign='middle'>
-                <Button disabled={this.props.visible} onClick={this.props.handleShowClick}>
-                  Edit
+                <Button disabled={this.props.visible} onClick={this.props.handleDelete}>
+                  Delete
                 </Button>
               </List.Content>
             </List.Item>
@@ -57,7 +46,7 @@ class Bag extends React.Component {
 
 /** Require a document to be passed to this component. */
 Bag.propTypes = {
-  handleShowClick: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
   category: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   weight: PropTypes.number.isRequired,
