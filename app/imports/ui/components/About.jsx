@@ -7,7 +7,7 @@ export default class About extends React.Component {
     const gridStyle = { height: '400px', display: 'flex' };
     return (
         <div style={{ background: 'white', gridStyle, marginLeft: '10px', marginRight: '10px' }}>
-          <Container style={{ textAlign: 'center', padding: '100px 0px 0px 0px', lineHeight: '1.7em' }}>
+          <Container style={{ textAlign: 'center', padding: '75px 0px 25px 0px', lineHeight: '1.7em' }}>
             <Header as="h1" style={{ fontSize: '40px' }}>What is a Trash Audit?</Header>
             <Header as="h3" style={{ fontSize: '25px' }}>
               A trash audit is an analysis of our waste to identify the changes needed to build a sustainable future. By

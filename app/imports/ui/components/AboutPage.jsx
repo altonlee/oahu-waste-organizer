@@ -7,34 +7,47 @@ export default class AboutPage extends React.Component {
     const gridStyle = { height: '400px', display: 'flex' };
     return (
         <div style={{ background: 'white', gridStyle, marginLeft: '10px', marginRight: '10px' }}>
-          <Container style={{ textAlign: 'center', padding: '100px 0px 0px 0px', lineHeight: '1.7em' }}>
-            <Header as="h1" style={{ fontSize: '40px' }}>What is a Trash Audit?</Header>
-            <Header as="h3" style={{ fontSize: '25px' }}>
-              A trash audit is an analysis of our waste to identify the changes needed to build a sustainable future. By
-              sorting, categorizing, and weighing our trash, we are able to visualize the scope of our waste habits and
-              their impact on the environment.
+          <Container style={{ textAlign: 'center', padding: '100px 0px 100px 0px', lineHeight: '1.7em' }}>
+            <Header as="h1" style={{ fontSize: '40px' }}>Who Are We?</Header>
+            <Header as="h3" style={{ fontSize: '20px' }}>
+              The Oʻahu Waste Organizer waste audit management tool was first designed in the 2018 Hawaiʻi Annual Coding
+              Challenge in cooperation with University of Manoa Office of Sustainability who presented the problems with
+              conducting waste audits within the university. Our technically minded team used our knowledge to help
+              address these issues to provide an easy way for people to conduct waste audits and get involved in taking
+              care of our island.
             </Header>
           </Container>
           <Container fluid style={{}}>
-            <Image src="/images/landing-laptop.png"/>
-            <Image
-                src="/images/landing-laptop-2.png"
-                size="small" style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box' }}/>
-            <Container style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box', margin: 'auto' }}>
-              <Header as="h1">Get rid of pencil and paper!</Header>
-              <Header as="h3">The input form features an easy-to-use interface to record the category, type, weight, and
-                volume of
-                multiple bags of trash.</Header>
+            <Container style={{
+              textAlign: 'center',
+              width: '50%',
+              boxSizing: 'border-box',
+              margin: 'auto',
+              paddingBottom: '100px'
+            }}>
+              <Header as="h1">Resources and Frameworks</Header>
+              <Header as="h3">Built with Semantic UI, React, MongoDB, and Meteor</Header>
+              <div class="ui small images">
+                <Image src="https://react.semantic-ui.com/logo.png" size="tiny"/>
+                <Image src="https://www.vectorlogo.zone/logos/reactjs/reactjs-card.png" size="tiny"/>
+                <Image
+                    src="https://cacm.acm.org/system/assets/0002/7119/042117_Theodo_MongoDB.large.jpg?1492791427&1492791427"
+                    size="tiny"/>
+                <Image src="https://d14jjfgstdxsoz.cloudfront.net/assets/og-image-logo.png" size="tiny"/>
+              </div>
             </Container>
           </Container>
           <Container fluid>
-            <Image src="/images/highcharts.PNG"
-                   style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box' }}/>
-            <Container style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box' }}>
-              <Header as="h1">Turn data into insights</Header>
-              <Header as="h3">Various graphs are used to help the user compare data results. The Oahu Waste Organizer
-                saves you time by automatically producing the graphs for you. These charts are available for the
-                community to view.</Header>
+            <Container style={{
+              textAlign: 'center',
+              width: '50%',
+              boxSizing: 'border-box',
+              margin: 'auto',
+              paddingBottom: '100px'
+            }}>
+              <Header as="h1">Contact Us</Header>
+              <Header as="h3">Alton Lee, Emily Pang, Jake Weber</Header>
+              <Header as="h3"><a href="https://oahu-waste-organizer.github.io/">Oʻahu Waste Organizer</a></Header>
             </Container>
           </Container>
         </div>
