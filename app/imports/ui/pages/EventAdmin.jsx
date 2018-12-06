@@ -57,7 +57,7 @@ class EventAdmin extends React.Component {
                               value={docID}
                               onChange={this.handleChange}
                     />
-                    <Button color="grey"
+                    <Button color="yellow"
                             as={Link} to={`/edit/${docID}`}
                             floated="right"
                             disabled={!isEnabled}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Container, Segment, Form, Header } from 'semantic-ui-react';
@@ -44,12 +45,14 @@ class AddEvents extends React.Component {
       date: '',
       timeStart: '',
       timeEnd: '',
-      notes: ''
+      notes: '',
+      redirect: false
     };
     this.handleAddition = this.handleAddition.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
+    this.renderRedirect = this.renderRedirect.bind(this);
   }
 
   /** Notify the user of the results of the submit. If successful, redirect to Events.
@@ -59,8 +62,16 @@ class AddEvents extends React.Component {
       Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
     } else {
       Bert.alert({ type: 'success', message: `Added ${this.state.date}: ${this.state.building} Event` });
+      this.setState({ redirect: true })
     }
   };
+
+  /** Redirects the page. */
+  renderRedirect() {
+    if (this.state.redirect) {
+      return <Redirect to='/events'/>
+    }
+  }
 
   /** Inserts submitted values into Data collection as Event data. */
   handleSubmit() {
@@ -85,6 +96,7 @@ class AddEvents extends React.Component {
     const { campus, building, date, timeStart, timeEnd, notes } = this.state;
     return (
         <Container style={{ paddingBottom: '15px' }}>
+          {this.renderRedirect()}
           <Header as="h2" textAlign="center">Create an Event</Header>
           <Segment>
             <Form onSubmit={this.handleSubmit}>

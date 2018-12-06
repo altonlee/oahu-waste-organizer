@@ -13,9 +13,9 @@ class Event extends React.Component {
   renderSwitch(param) {
     const campus = param.toString();
     switch (campus) {
-      case 'University of Hawaiʻi at Manoa':
+      case 'University of Hawai\'i at Manoa':
         return <Item.Image src='/images/thumb-uhm.png' size='medium' rounded/>;
-      case 'Kapiʻolani Community College':
+      case 'Kapi\'olani Community College':
         return <Item.Image src='/images/thumb-kcc.png' size='medium' rounded/>;
       case "University of Hawai'i - West O'ahu":
         return <Item.Image src='/images/thumb-uhw.png' size='medium' rounded/>;
@@ -66,7 +66,7 @@ class Event extends React.Component {
               </Button>
 
               {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-                  <Button circular color="grey" as={Link} to={`/edit/${this.props.data._id}`} icon="edit"/>
+                  <Button circular color="yellow" as={Link} to={`/edit/${this.props.data._id}`} icon="edit"/>
               ) : ''}
             </Item.Extra>
           </Item.Content>
