@@ -37,7 +37,7 @@ class Logo extends React.Component {
   }
 
   render() {
-    const gridStyle = { display: 'flex', height: '700px', alignItems: 'center' };
+    const gridStyle = { display: 'flex', height: '680px', alignItems: 'center' };
     return (
         <div className="landing-background">
           <Container id="grad1" style={gridStyle}>
