@@ -45,8 +45,8 @@ class AddEvents extends React.Component {
       date: '',
       timeStart: '',
       timeEnd: '',
-      notes: '',
-      redirect: false
+      notes: ',',
+      redirect: false,
     };
     this.handleAddition = this.handleAddition.bind(this);
     this.handleChange = this.handleChange.bind(this);

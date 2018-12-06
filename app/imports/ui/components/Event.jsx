@@ -13,25 +13,25 @@ class Event extends React.Component {
   renderSwitch(param) {
     const campus = param.toString();
     switch (campus) {
-      case 'University of Hawai\'i at Manoa':
+      case 'University of Hawaiʻi at Manoa':
         return <Item.Image src='/images/thumb-uhm.png' size='medium' rounded/>;
-      case 'Kapi\'olani Community College':
+      case 'Kapiʻolani Community College':
         return <Item.Image src='/images/thumb-kcc.png' size='medium' rounded/>;
-      case "University of Hawai'i - West O'ahu":
+      case "University of Hawaiʻi - West O'ahu":
         return <Item.Image src='/images/thumb-uhw.png' size='medium' rounded/>;
-      case "University of Hawai'i at Hilo":
+      case 'University of Hawaiʻi at Hilo':
         return <Item.Image src='/images/thumb-uhh.png' size='medium' rounded/>;
-      case "Honolulu Community College":
+      case 'Honolulu Community College':
         return <Item.Image src='/images/thumb-hcc.png' size='medium' rounded/>;
-      case "Leeward Community College":
+      case 'Leeward Community College':
         return <Item.Image src='/images/thumb-lcc.png' size='medium' rounded/>;
-      case "Windward Community College":
+      case 'Windward Community College':
         return <Item.Image src='/images/thumb-wcc.png' size='medium' rounded/>;
-      case "UH Maui College":
+      case 'UH Maui College':
         return <Item.Image src='/images/thumb-uh-maui.png' size='medium' rounded/>;
-      case "Kaua'i Community College":
+      case 'Kauaʻi Community College':
         return <Item.Image src='/images/thumb-kauai-cc.png' size='medium' rounded/>;
-      case "Hawai'i Community College":
+      case 'Hawaiʻi Community College':
         return <Item.Image src='/images/thumb-hawaii-cc.png' size='medium' rounded/>;
       default:
         return <Item.Image src='/images/logo.png' size='medium' rounded/>;
