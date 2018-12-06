@@ -11,16 +11,16 @@ import { DateInput, TimeInput } from 'semantic-ui-calendar-react';
 
 /** Some sample options. Admin can also type in custom options and will be saved in dropdowns. */
 const campuses = [
-  { key: 'uhm', text: "University of Hawai'i at Manoa", value: "University of Hawai'i at Manoa" },
-  { key: 'uhwo', text: "University of Hawai'i - West O'ahu", value: "University of Hawai'i - West O'ahu" },
-  { key: 'uhh', text: "University of Hawai'i at Hilo", value: "University of Hawai'i at Hilo" },
-  { key: 'kcc', text: "Kapi'olani Community College", value: "Kapi'olani Community College" },
+  { key: 'uhm', text: "University of Hawai'i at Manoa", value: "University of Hawaiʻi at Manoa" },
+  { key: 'uhwo', text: "University of Hawai'i - West O'ahu", value: "University of Hawaiʻi - West O'ahu" },
+  { key: 'uhh', text: "University of Hawai'i at Hilo", value: "University of Hawaiʻi at Hilo" },
+  { key: 'kcc', text: "Kapi'olani Community College", value: "Kapiʻolani Community College" },
   { key: 'hocc', text: 'Honolulu Community College', value: "Honolulu Community College" },
   { key: 'lcc', text: 'Leeward Community College', value: "Leeward Community College" },
   { key: 'wcc', text: 'Windward Community College', value: "Windward Community College" },
   { key: 'uhma', text: 'UH Maui College', value: "UH Maui College" },
-  { key: 'kacc', text: "Kaua'i Community College", value: "Kaua'i Community College" },
-  { key: 'hacc', text: "Hawai'i Community College", value: "Hawai'i Community College" },
+  { key: 'kacc', text: "Kaua'i Community College", value: "Kauaʻi Community College" },
+  { key: 'hacc', text: "Hawai'i Community College", value: "Hawaiʻi Community College" },
 ];
 const buildings = [
   { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: "Queen Liliʻuokalani Center" },
