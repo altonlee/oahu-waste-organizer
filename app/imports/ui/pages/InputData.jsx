@@ -56,8 +56,8 @@ class InputData extends React.Component {
     Data.update(this.props.data._id, { $set: { notes, bags } }, this.insertCallback);
   };
 
-  handleDelete = (event, {value}) => {
-    console.log(event, {value});
+  handleDelete = (event, { value }) => {
+    console.log(event, { value });
   };
 
   handleShowClick = () => this.setState({ visible: true });
@@ -142,7 +142,7 @@ class InputData extends React.Component {
 
     const { notes, category, type, weight, volume, bagNotes } = this.state;
 
-    const { contextRef } = this.state
+    const { contextRef } = this.state;
 
     return (
         <div>

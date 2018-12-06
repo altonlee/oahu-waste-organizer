@@ -13,7 +13,7 @@ class Combo extends React.Component {
   componentDidMount() {
     this.chart = new Highcharts[this.props.type || 'Chart'](
         this.chartEl,
-        this.props.style
+        this.props.style,
     );
   }
 

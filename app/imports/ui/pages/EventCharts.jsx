@@ -11,22 +11,22 @@ import Graph from '../components/Charts/Graph';
 class EventCharts extends React.Component {
 
   componentDidMount() {
-    document.title = "OWO - Data Visualized"
+    document.title = 'OWO - Data Visualized';
   }
 
   /** Generate data in a format for Charts to read. */
   generateData(data) {
-    let ret = [];
-    let type = [];
+    const ret = [];
+    const type = [];
 
     // Get array of names
     for (let i = 0; i < data.length; i++) {
       type[i] = data[i].type;
     }
-    let name = _.uniq(type);
+    const name = _.uniq(type);
 
     // Get array of values
-    let y = [];
+    const y = [];
     // We want to find all elements with type "name[x]" and add up its weight
     // TODO: Optimize the hell out of this
     for (let i = 0; i < name.length; i++) {
@@ -43,8 +43,8 @@ class EventCharts extends React.Component {
       ret.push({
         name: name[i],
         y: y[i],
-        drilldown: name[i]
-      })
+        drilldown: name[i],
+      });
     }
 
     return ret;
@@ -52,18 +52,18 @@ class EventCharts extends React.Component {
 
   /**  Generate breakdown of data in a format for Graph can read. */
   generateDrilldown(input) {
-    let ret = [];
+    const ret = [];
 
     // Get array of names
-    let type = [];
+    const type = [];
     for (let i = 0; i < input.length; i++) {
       type[i] = input[i].type;
     }
-    let name = _.uniq(type);
+    const name = _.uniq(type);
 
     // Get array of values
-    let data = [];
-    let temp = [];
+    const data = [];
+    const temp = [];
     // We want to find all elements with type "name[x]" and add up its weight
     // TODO: Optimize the hell out of this
     for (let i = 0; i < name.length; i++) {
@@ -81,8 +81,8 @@ class EventCharts extends React.Component {
       ret.push({
         name: name[i],
         id: name[i],
-        data: data[i]
-      })
+        data: data[i],
+      });
     }
     return ret;
   }
@@ -94,8 +94,8 @@ class EventCharts extends React.Component {
 
   renderPage() {
     // Generate data for graphs to read
-    let seriesData = this.generateData(this.props.data.bags);
-    let drillData = this.generateDrilldown(this.props.data.bags);
+    const seriesData = this.generateData(this.props.data.bags);
+    const drillData = this.generateDrilldown(this.props.data.bags);
     // Pie chart options
     const pieStyle = {
       chart: {
@@ -132,48 +132,48 @@ class EventCharts extends React.Component {
     // Bar graph options
     const barStyle = {
           chart: {
-            type: 'column'
+            type: 'column',
           },
           title: {
-            text: 'Breakdown of Data'
+            text: 'Breakdown of Data',
           },
           subtitle: {
-            text: 'Click the columns to view breakdown.'
+            text: 'Click the columns to view breakdown.',
           },
           xAxis: {
-            type: 'category'
+            type: 'category',
           },
           yAxis: {
             title: {
-              text: 'Weight (lbs)'
-            }
+              text: 'Weight (lbs)',
+            },
 
           },
           legend: {
-            enabled: false
+            enabled: false,
           },
           plotOptions: {
             series: {
               borderWidth: 0,
               dataLabels: {
                 enabled: true,
-                format: '{point.y:.1f}'
-              }
-            }
+                format: '{point.y:.1f}',
+              },
+            },
           },
 
           tooltip: {
             headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br/>'
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br/>',
           },
 
           series: [{
             name: 'Breakdown of Trash Category',
             colorByPoint: true,
-            data: seriesData
+            data: seriesData,
           }],
           drilldown:
-              { series: drillData }
+              { series: drillData },
         };
 
     const margins = { paddingBottom: '15px', paddingTop: '10px' };

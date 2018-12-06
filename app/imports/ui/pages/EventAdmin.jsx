@@ -15,13 +15,13 @@ class EventAdmin extends React.Component {
 
   /** Populates dropdown with existing Events. */
   listEvents(data) {
-    let options = [];
+    const options = [];
     for (let i = 0; i < data.length; i++) {
       options.push({
         key: i,
         text: `${data[i].date}: ${data[i].building}`,
-        value: data[i]._id
-      })
+        value: data[i]._id,
+      });
     }
     return options;
   }
@@ -29,14 +29,14 @@ class EventAdmin extends React.Component {
   /** Handles changes to input fields. */
   handleChange(event, { name, value }) {
     this.setState({ [name]: value });
-  };
+  }
 
   render() {
     const { docID } = this.state;
     const isEnabled = docID.length > 0;
 
     return (
-        <Container textAlign="center" style={{ paddingBottom: "15px" }}>
+        <Container textAlign="center" style={{ paddingBottom: '15px' }}>
           <Header as="h1">Events Manager</Header>
           <Header as="h3">Find an audit to edit, or create an Event for a future audit</Header>
           <Segment>
@@ -72,13 +72,13 @@ class EventAdmin extends React.Component {
                     <Icon name='world'/>
                     Add New Event
                   </Header><br/>
-                  <Button primary as={Link} to={`/add`}>Create</Button>
+                  <Button primary as={Link} to={'/add'}>Create</Button>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
           </Segment>
         </Container>
-    )
+    );
   }
 }
 
