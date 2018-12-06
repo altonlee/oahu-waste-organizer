@@ -47,7 +47,7 @@ class Logo extends React.Component {
                 Oʻahu Waste Organizer
               </Header>
               <Header as="h3" style={{ paddingBottom: '100px', fontStyle: 'italic', textAlign: 'center' }} inverted>
-                A clean, streamlined tool for data input and visualization
+                A clean, streamlined tool for waste audit data input and visualization.
               </Header>
             </Container>
             <Container style={{ width: '50%' }}>

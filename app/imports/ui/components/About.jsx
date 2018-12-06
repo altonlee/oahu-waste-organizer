@@ -7,26 +7,35 @@ export default class About extends React.Component {
     const gridStyle = { height: '400px', display: 'flex' };
     return (
         <div style={{ background: 'white', gridStyle, marginLeft: '10px', marginRight: '10px' }}>
-          <Container style={{ textAlign: 'center', padding: '100px 0px 100px 0px', lineHeight: '1.7em' }}>
+          <Container style={{ textAlign: 'center', padding: '100px 0px 0px 0px', lineHeight: '1.7em' }}>
             <Header as="h1" style={{ fontSize: '40px' }}>What is a Trash Audit?</Header>
-            <Header as="h3" style={{ fontSize: '25px' }}>A trash audit consists of sorting, categorizing and weighing waste, then
-              recording and analyzing data. The audit
-              targets specific types of waste (i.e. plastic utensils, disposable beverage containers) to enable a more
-              targeted response from the UH community. </Header>
+            <Header as="h3" style={{ fontSize: '25px' }}>
+              A trash audit is an analysis of our waste to identify the changes needed to build a sustainable future. By
+              sorting, categorizing, and weighing our trash, we are able to visualize the scope of our waste habits and
+              their impact on the environment.
+            </Header>
           </Container>
-          <Container fluid style={{ }}>
+          <Container fluid style={{}}>
             <Image src="/images/landing-laptop.png"/>
-            <Image src="https://lh3.googleusercontent.com/-1OrHC5XsHXA/W8isKqXFv_I/AAAAAAAAB6E/QTdFC4uutlUVQWx41TsmS95D5To3nXDRACJoC/w530-h353-n/pictofon-laptop-35.png" size="small" style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box' }}/>
+            <Image
+                src="/images/landing-laptop-2.png"
+                size="small" style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box' }}/>
             <Container style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box', margin: 'auto' }}>
-            <Header as="h1">Get rid of pencil and paper!</Header>
-            <Header as="h3">The input form features an easy-to-use interface to record the weight and volume of multiple bags.</Header>
+              <Header as="h1">Get rid of pencil and paper!</Header>
+              <Header as="h3">The input form features an easy-to-use interface to record the category, type, weight, and
+                volume of
+                multiple bags of trash.</Header>
             </Container>
           </Container>
           <Container fluid>
-            <Image src="/images/highcharts.PNG" style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box' }}/>
+            <Image src="/images/highcharts.PNG"
+                   style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box' }}/>
             <Container style={{ display: 'inline-block', width: '50%', boxSizing: 'border-box' }}>
-            <Header as="h1">Turn data into insights</Header>
-            <Header as="h3">Various graphs are used to help the user compare data results. The Oahu Waste Organizer saves you time by                       automatically producing the graphs for you. These charts are available for the community to view.</Header>
+              <Header as="h1">Turn data into insights</Header>
+              <Header as="h3"> The Oahu Waste Organizer automatically produces graphs and charts that allow you to
+                observe and compare various information from every waste audit, giving people and in depth as well as an
+                overarching view of our waste habits on UH campuses.
+              </Header>
             </Container>
           </Container>
         </div>
