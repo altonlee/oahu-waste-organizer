@@ -51,7 +51,7 @@ class InputData extends React.Component {
       type: this.state.type,
       weight: this.state.weight,
       volume: this.state.volume,
-      notes: this.state.bagNotes
+      notes: this.state.bagNotes,
     });
     Data.update(this.props.data._id, { $set: { notes, bags } }, this.insertCallback);
   };
@@ -67,16 +67,6 @@ class InputData extends React.Component {
 
   renderPage() {
     const { visible } = this.state;
-    const campusOptions = [
-      { key: 'uh manoa', text: 'University of Hawaiʻi at Manoa', value: 'uh manoa' },
-      { key: 'uh hilo', text: 'University of Hawaiʻi at Hilo', value: 'uh hilo' },
-      { key: 'west oahu', text: 'University of Hawaiʻi - West Oahu', value: 'west oahu' },
-    ];
-    const buildingOptions = [
-      { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: 'qlc' },
-      { key: 'campus center', text: 'Campus Center', value: 'campus center' },
-      { key: 'post', text: 'Pacific Ocean Science and Technology', value: 'post' },
-    ];
     const categoryOptions = [
       { key: 'items of interest', text: '---Items of Interest---', value: 'items of interest' },
       { key: 'paper', text: '---Paper---', value: 'paper' },
@@ -155,17 +145,15 @@ class InputData extends React.Component {
               <Grid.Row>
                 <Grid.Column>
                   <div className="form-heading">Location</div>
-                  <Dropdown placeholder='Select Campus' fluid search selection
-                            options={campusOptions}/>
+                  <Input disabled fluid value={this.props.data.campus}/>
                 </Grid.Column>
                 <Grid.Column>
                   <div className="form-heading">Building</div>
-                  <Dropdown placeholder='Select Building' fluid search selection
-                            options={buildingOptions}/>
+                  <Input disabled fluid value={this.props.data.building}/>
                 </Grid.Column>
                 <Grid.Column>
                   <div className="form-heading">Date</div>
-                  <Input fluid placeholder="MM/DD/YYYY"/>
+                  <Input disabled fluid value={this.props.data.date}/>
                 </Grid.Column>
               </Grid.Row>
             </Grid>

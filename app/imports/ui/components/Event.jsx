@@ -13,9 +13,9 @@ class Event extends React.Component {
   renderSwitch(param) {
     const campus = param.toString();
     switch (campus) {
-      case "University of Hawai'i at Manoa":
+      case 'University of Hawaiʻi at Manoa':
         return <Item.Image src='/images/thumb-uhm.png' size='medium' rounded/>;
-      case "Kapi'olani Community College":
+      case 'Kapiʻolani Community College':
         return <Item.Image src='/images/thumb-kcc.png' size='medium' rounded/>;
       default:
         return <Item.Image src='/images/logo.png' size='medium' rounded/>;

@@ -11,16 +11,16 @@ import { DateInput, TimeInput } from 'semantic-ui-calendar-react';
 
 /** Some sample options. Admin can also type in custom options and will be saved in dropdowns. */
 const campuses = [
-  { key: 'uhm', text: 'University of Hawaii at Manoa', value: "University of Hawaii at Manoa" },
-  { key: 'uhwo', text: 'University of Hawaii - West Oahu', value: "University of Hawaii - West Oahu" },
-  { key: 'uhh', text: 'University of Hawaii at Hilo', value: "University of Hawaii at Hilo" },
-  { key: 'kcc', text: "Kapi'olani Community College", value: "Kapi'olani Community College" },
-  { key: 'hocc', text: 'Honolulu Community College', value: "Honolulu Community College" },
-  { key: 'lcc', text: 'Leeward Community College', value: "Leeward Community College" },
-  { key: 'wcc', text: 'Windward Community College', value: "Windward Community College" },
-  { key: 'uhma', text: 'UH Maui College', value: "UH Maui College" },
-  { key: 'kacc', text: "Kaua'i Community College", value: "Kaua'i Community College" },
-  { key: 'hacc', text: 'Hawaii Community College', value: "Hawaii Community College" },
+  { key: 'uhm', text: 'University of Hawaiʻi at Manoa', value: 'University of Hawaiʻi at Manoa' },
+  { key: 'uhwo', text: 'University of Hawaiʻi - West Oahu', value: 'University of Hawaiʻi - West Oahu' },
+  { key: 'uhh', text: 'University of Hawaiʻi at Hilo', value: 'University of Hawaiʻi at Hilo' },
+  { key: 'kcc', text: "Kapi'olani Community College", value: 'Kapiʻolani Community College' },
+  { key: 'hocc', text: 'Honolulu Community College', value: 'Honolulu Community College' },
+  { key: 'lcc', text: 'Leeward Community College', value: 'Leeward Community College' },
+  { key: 'wcc', text: 'Windward Community College', value: 'Windward Community College' },
+  { key: 'uhma', text: 'UH Maui College', value: 'UH Maui College' },
+  { key: 'kacc', text: 'Kauaʻi Community College', value: 'Kauaʻi Community College' },
+  { key: 'hacc', text: 'Hawaiʻi Community College', value: 'Hawaiʻi Community College' },
 ];
 const buildings = [
   { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: "Queen Liliʻuokalani Center" },
