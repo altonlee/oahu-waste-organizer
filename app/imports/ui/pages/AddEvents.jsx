@@ -11,28 +11,28 @@ import { DateInput, TimeInput } from 'semantic-ui-calendar-react';
 
 /** Some sample options. Admin can also type in custom options and will be saved in dropdowns. */
 const campuses = [
-  { key: 'uhm', text: "University of Hawai'i at Manoa", value: "University of Hawaiʻi at Manoa" },
-  { key: 'uhwo', text: "University of Hawai'i - West O'ahu", value: "University of Hawaiʻi - West O'ahu" },
-  { key: 'uhh', text: "University of Hawai'i at Hilo", value: "University of Hawaiʻi at Hilo" },
-  { key: 'kcc', text: "Kapi'olani Community College", value: "Kapiʻolani Community College" },
-  { key: 'hocc', text: 'Honolulu Community College', value: "Honolulu Community College" },
-  { key: 'lcc', text: 'Leeward Community College', value: "Leeward Community College" },
-  { key: 'wcc', text: 'Windward Community College', value: "Windward Community College" },
-  { key: 'uhma', text: 'UH Maui College', value: "UH Maui College" },
-  { key: 'kacc', text: "Kaua'i Community College", value: "Kauaʻi Community College" },
-  { key: 'hacc', text: "Hawai'i Community College", value: "Hawaiʻi Community College" },
+  { key: 'uhm', text: 'University of Hawaiʻi at Manoa', value: 'University of Hawaiʻi at Manoa' },
+  { key: 'uhwo', text: 'University of Hawaiʻi - West Oʻahu', value: 'University of Hawaiʻi - West Oʻahu' },
+  { key: 'uhh', text: 'University of Hawaiʻi at Hilo', value: 'University of Hawaiʻi at Hilo' },
+  { key: 'kcc', text: 'Kapiʻolani Community College', value: 'Kapiʻolani Community College' },
+  { key: 'hocc', text: 'Honolulu Community College', value: 'Honolulu Community College' },
+  { key: 'lcc', text: 'Leeward Community College', value: 'Leeward Community College' },
+  { key: 'wcc', text: 'Windward Community College', value: 'Windward Community College' },
+  { key: 'uhma', text: 'UH Maui College', value: 'UH Maui College' },
+  { key: 'kacc', text: 'Kauaʻi Community College', value: 'Kauaʻi Community College' },
+  { key: 'hacc', text: 'Hawaiʻi Community College', value: 'Hawaiʻi Community College' },
 ];
 const buildings = [
-  { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: "Queen Liliʻuokalani Center" },
-  { key: 'campus center', text: 'Campus Center', value: "Campus Center" },
-  { key: 'post', text: 'Pacific Ocean Science and Technology', value: "Pacific Ocean Science and Technology" },
+  { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: 'Queen Liliʻuokalani Center' },
+  { key: 'campus center', text: 'Campus Center', value: 'Campus Center' },
+  { key: 'post', text: 'Pacific Ocean Science and Technology', value: 'Pacific Ocean Science and Technology' },
 ];
 
 /** Renders the Page for adding a document. */
 class AddEvents extends React.Component {
 
   componentDidMount() {
-    document.title = "OWO - Create Event"
+    document.title = 'OWO - Create Event';
   }
 
   /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
@@ -62,14 +62,14 @@ class AddEvents extends React.Component {
       Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
     } else {
       Bert.alert({ type: 'success', message: `Added ${this.state.date}: ${this.state.building} Event` });
-      this.setState({ redirect: true })
+      this.setState({ redirect: true });
     }
-  };
+  }
 
   /** Redirects the page. */
   renderRedirect() {
     if (this.state.redirect) {
-      return <Redirect to='/events'/>
+      return <Redirect to='/events'/>;
     }
   }
 
@@ -88,9 +88,9 @@ class AddEvents extends React.Component {
   /** Adds new value to array of options. */
   handleAddition(event, { value }) {
     this.setState({
-      buildings: [{ text: value, value }, ...this.state.buildings]
-    })
-  };
+      buildings: [{ text: value, value }, ...this.state.buildings],
+    });
+  }
 
   render() {
     const { campus, building, date, timeStart, timeEnd, notes } = this.state;
@@ -157,14 +157,11 @@ class AddEvents extends React.Component {
             </Form>
           </Segment>
         </Container>
-    )
+    );
   }
 }
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-export default withTracker(() => {
-  // Get access to audit data.
-  return {
+export default withTracker(() => ({
     data: Data.find({}).fetch(),
-  };
-})(AddEvents);
+  }))(AddEvents);

@@ -12,21 +12,21 @@ import { DateInput, TimeInput } from 'semantic-ui-calendar-react';
 
 /** Some sample options. Admin can also type in custom options and will be saved in dropdowns. */
 const campuses = [
-  { key: 'uhm', text: "University of Hawai'i at Manoa", value: "University of Hawaiʻi at Manoa" },
-  { key: 'uhwo', text: "University of Hawai'i - West O'ahu", value: "University of Hawaiʻi - West O'ahu" },
-  { key: 'uhh', text: "University of Hawai'i at Hilo", value: "University of Hawaiʻi at Hilo" },
-  { key: 'kcc', text: "Kapi'olani Community College", value: "Kapiʻolani Community College" },
-  { key: 'hocc', text: 'Honolulu Community College', value: "Honolulu Community College" },
-  { key: 'lcc', text: 'Leeward Community College', value: "Leeward Community College" },
-  { key: 'wcc', text: 'Windward Community College', value: "Windward Community College" },
-  { key: 'uhma', text: 'UH Maui College', value: "UH Maui College" },
-  { key: 'kacc', text: "Kaua'i Community College", value: "Kauaʻi Community College" },
-  { key: 'hacc', text: "Hawai'i Community College", value: "Hawaiʻi Community College" },
+  { key: 'uhm', text: 'University of Hawaiʻi at Manoa', value: 'University of Hawaiʻi at Manoa' },
+  { key: 'uhwo', text: 'University of Hawaiʻi - West Oʻahu', value: 'University of Hawaiʻi - West Oʻahu' },
+  { key: 'uhh', text: 'University of Hawaiʻi at Hilo', value: 'University of Hawaiʻi at Hilo' },
+  { key: 'kcc', text: 'Kapiʻolani Community College', value: 'Kapiʻolani Community College' },
+  { key: 'hocc', text: 'Honolulu Community College', value: 'Honolulu Community College' },
+  { key: 'lcc', text: 'Leeward Community College', value: 'Leeward Community College' },
+  { key: 'wcc', text: 'Windward Community College', value: 'Windward Community College' },
+  { key: 'uhma', text: 'UH Maui College', value: 'UH Maui College' },
+  { key: 'kacc', text: 'Kauaʻi Community College', value: 'Kauaʻi Community College' },
+  { key: 'hacc', text: 'Hawaiʻi Community College', value: 'Hawaiʻi Community College' },
 ];
 const buildings = [
-  { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: "Queen Liliʻuokalani Center" },
-  { key: 'campus center', text: 'Campus Center', value: "Campus Center" },
-  { key: 'post', text: 'Pacific Ocean Science and Technology', value: "Pacific Ocean Science and Technology" },
+  { key: 'qlc', text: 'Queen Liliʻuokalani Center', value: 'Queen Liliʻuokalani Center' },
+  { key: 'campus center', text: 'Campus Center', value: 'Campus Center' },
+  { key: 'post', text: 'Pacific Ocean Science and Technology', value: 'Pacific Ocean Science and Technology' },
 ];
 
 /** Renders the Page for editing a single document.
@@ -34,7 +34,7 @@ const buildings = [
 class EditEvents extends React.Component {
 
   componentDidMount() {
-    document.title = "OWO - Edit Event"
+    document.title = 'OWO - Edit Event';
   }
 
   constructor(props) {
@@ -49,7 +49,7 @@ class EditEvents extends React.Component {
       notes: this.props.data.notes,
       _id: this.props.data._id,
       open: false,
-      redirect: false
+      redirect: false,
     };
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
@@ -69,7 +69,7 @@ class EditEvents extends React.Component {
       Bert.alert({ type: 'danger', message: `Could not update event: ${error.message}` });
     } else {
       Bert.alert({ type: 'success', message: `Updated ${this.state.date}: ${this.state.building} Event` });
-      this.setState({ redirect: true })
+      this.setState({ redirect: true });
     }
   }
 
@@ -85,19 +85,19 @@ class EditEvents extends React.Component {
 
   /** Show confirmation. */
   show(event, { value }) {
-    this.setState({ open: true })
-  };
+    this.setState({ open: true });
+  }
 
   /** Hide confirmation. */
   hide(event, { value }) {
-    this.setState({ open: false })
-  };
+    this.setState({ open: false });
+  }
 
   /** Deletes Event. */
   handleDelete(event) {
     Data.remove(this.props.data._id, this.deleteCallback);
-    this.setState({ redirect: true })
-  };
+    this.setState({ redirect: true });
+  }
 
   /** Inserts submitted values into Data collection as Event data. */
   handleSubmit() {
@@ -109,7 +109,7 @@ class EditEvents extends React.Component {
 
   renderRedirect() {
     if (this.state.redirect) {
-      return <Redirect to='/events'/>
+      return <Redirect to='/events'/>;
     }
   }
 
@@ -121,9 +121,9 @@ class EditEvents extends React.Component {
   /** Adds new value to array of options. */
   handleAddition(event, { value }) {
     this.setState({
-      buildings: [{ text: value, value }, ...this.state.buildings]
-    })
-  };
+      buildings: [{ text: value, value }, ...this.state.buildings],
+    });
+  }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
