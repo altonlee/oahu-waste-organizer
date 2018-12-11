@@ -7,6 +7,10 @@ import { Accounts } from 'meteor/accounts-base';
  * Signup component is similar to signin component, but we attempt to create a new user instead.
  */
 export default class Signup extends React.Component {
+  componentDidMount() {
+    document.title = 'OWO - Sign Up';
+  }
+
   /** Initialize state fields. */
   constructor(props) {
     super(props);

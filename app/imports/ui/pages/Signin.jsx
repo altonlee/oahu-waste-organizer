@@ -9,6 +9,9 @@ import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-rea
  * Authentication errors modify the component’s state to be displayed
  */
 export default class Signin extends React.Component {
+  componentDidMount() {
+    document.title = 'OWO - Sign In';
+  }
 
   /** Initialize component state with properties for login and redirection. */
   constructor(props) {

@@ -1,58 +1,34 @@
 import React from 'react';
-import { Button, Divider, List, Checkbox } from 'semantic-ui-react';
+import { Meteor } from 'meteor/meteor';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Table, Checkbox, Icon } from 'semantic-ui-react';
 
 /** Renders a single bag in the InputData table. See pages/InputData.jsx. */
 class Bag extends React.Component {
   render() {
     return (
-        <div className='input-bag'>
-          <List horizontal relaxed='very' style={{ width: '100%' }}>
-            <List.Item style={{ width: '160px' }}>
-              <List.Content>
-                <List.Header>Category</List.Header>
-                {this.props.category}
-              </List.Content>
-            </List.Item>
-            <List.Item style={{ width: '105px' }}>
-              <List.Content>
-                <List.Header>Weight</List.Header>
-                {this.props.weight} lbs
-              </List.Content>
-            </List.Item>
-            <List.Item style={{ width: '105px' }}>
-              <List.Content>
-                <List.Header>Volume</List.Header>
-                {this.props.volume} gal
-              </List.Content>
-            </List.Item>
-            <List.Item style={{ width: 'calc(100% - 476px)' }}>
-              <List.Header>Notes</List.Header>
-              <div style={{ overflow: 'hidden', height: '1em', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{this.props.notes}</div>
-            </List.Item>
-            <List.Item style={{ marginLeft: 'auto', width: '96px' }}>
-              <List.Content verticalAlign='middle'>
-                <Button disabled={this.props.visible} onClick={this.props.handleDelete}>
-                  Delete
-                </Button>
-              </List.Content>
-            </List.Item>
-          </List>
-          <Divider/>
-        </div>
+        <Table.Row>
+          <Table.Cell collapsing><Checkbox/></Table.Cell>
+          <Table.Cell collapsing>{this.props.data.type}</Table.Cell>
+          <Table.Cell collapsing>{this.props.data.category}</Table.Cell>
+          <Table.Cell collapsing>{this.props.data.weight}</Table.Cell>
+          <Table.Cell collapsing>{this.props.data.volume}</Table.Cell>
+          <Table.Cell>{this.props.data.notes}</Table.Cell>
+          <Table.Cell collapsing>
+            <Icon link name="edit"/>
+            <Icon link name="delete"/>
+          </Table.Cell>
+        </Table.Row>
     );
   }
 }
 
 /** Require a document to be passed to this component. */
 Bag.propTypes = {
-  handleDelete: PropTypes.func.isRequired,
-  category: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  weight: PropTypes.number.isRequired,
-  volume: PropTypes.number.isRequired,
-  notes: PropTypes.string.isRequired,
-  visible: PropTypes.bool.isRequired,
+  data: PropTypes.object.isRequired,
+
 };
 
-export default Bag;
+/** Wrap this component in withRouter since we use the <Link> React Router element. */
+export default withRouter(Bag);
