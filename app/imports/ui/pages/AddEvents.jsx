@@ -45,6 +45,7 @@ class AddEvents extends React.Component {
       date: '',
       timeStart: '',
       timeEnd: '',
+      eventID: '',
       notes: '',
       redirect: false,
     };
@@ -55,8 +56,7 @@ class AddEvents extends React.Component {
     this.renderRedirect = this.renderRedirect.bind(this);
   }
 
-  /** Notify the user of the results of the submit. If successful, redirect to Events.
-   * TODO: Redirect the page. */
+  /** Notify the user of the results of the submit. If successful, redirect to Events. */
   insertCallback(error) {
     if (error) {
       Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
@@ -76,8 +76,8 @@ class AddEvents extends React.Component {
   /** Inserts submitted values into Data collection as Event data. */
   handleSubmit() {
     const { campus, building, date, timeStart, timeEnd, notes } = this.state;
-    const bags = [];
-    Data.insert({ campus, building, date, timeStart, timeEnd, notes, bags }, this.insertCallback);
+    const eventID = new Meteor.Collection.ObjectID().toString();
+    Data.insert({ campus, building, date, timeStart, timeEnd, eventID, notes }, this.insertCallback);
   }
 
   /** Handles changes to input fields. */
@@ -163,5 +163,5 @@ class AddEvents extends React.Component {
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => ({
-    data: Data.find({}).fetch(),
-  }))(AddEvents);
+  data: Data.find({}).fetch(),
+}))(AddEvents);

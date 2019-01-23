@@ -7,10 +7,12 @@ import { Container, Segment, Grid, Divider, Icon, Button, Header, Dropdown } fro
 import { Data } from '/imports/api/data/data';
 
 class EventAdmin extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = { docID: '' };
     this.handleChange = this.handleChange.bind(this);
+    this.listEvents = this.listEvents.bind(this);
   }
 
   /** Populates dropdown with existing Events. */

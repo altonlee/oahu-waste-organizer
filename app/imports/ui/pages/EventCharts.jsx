@@ -3,14 +3,18 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
-import { Data, DataSchema } from '/imports/api/data/data';
+import { Data } from '/imports/api/data/data';
+import { Bags } from '/imports/api/bags/bags';
 import Chart from '../components/Charts/Chart';
 import Graph from '../components/Charts/Graph';
 
 /** Renders a table containing all of the Event documents. Use <Event> to render each row. */
 class EventCharts extends React.Component {
 
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.generateData = this.generateData.bind(this);
+    this.generateDrilldown = this.generateDrilldown.bind(this);
     document.title = 'OWO - Data Visualized';
   }
 
@@ -21,7 +25,7 @@ class EventCharts extends React.Component {
 
     // Get array of names
     for (let i = 0; i < data.length; i++) {
-      type[i] = data[i].type;
+      type[i] = data[i].category;
     }
     const name = _.uniq(type);
 
@@ -32,7 +36,7 @@ class EventCharts extends React.Component {
     for (let i = 0; i < name.length; i++) {
       y[i] = 0;
       for (let j = 0; j < data.length; j++) {
-        if (data[j].type === name[i]) {
+        if (data[j].category === name[i]) {
           y[i] += data[j].weight;
         }
       }
@@ -57,7 +61,7 @@ class EventCharts extends React.Component {
     // Get array of names
     const type = [];
     for (let i = 0; i < input.length; i++) {
-      type[i] = input[i].type;
+      type[i] = input[i].category;
     }
     const name = _.uniq(type);
 
@@ -69,8 +73,8 @@ class EventCharts extends React.Component {
     for (let i = 0; i < name.length; i++) {
       temp[i] = [];
       for (let j = 0; j < input.length; j++) {
-        if (input[j].type === name[i]) {
-          temp[i][j] = [input[j].category, input[j].weight];
+        if (input[j].category === name[i]) {
+          temp[i][j] = [input[j].name, input[j].weight];
         }
       }
       data[i] = _.compact(temp[i]);
@@ -93,9 +97,13 @@ class EventCharts extends React.Component {
   }
 
   renderPage() {
+    // Filter bags corresponding to current event
+    const bags = this.props.bags.filter(bags => (bags.eventID === this.props.data.eventID));
+
     // Generate data for graphs to read
-    const seriesData = this.generateData(this.props.data.bags);
-    const drillData = this.generateDrilldown(this.props.data.bags);
+    const seriesData = this.generateData(bags);
+    const drillData = this.generateDrilldown(bags);
+
     // Pie chart options
     const pieStyle = {
       chart: {
@@ -129,52 +137,53 @@ class EventCharts extends React.Component {
         data: seriesData,
       }],
     };
+
     // Bar graph options
     const barStyle = {
-          chart: {
-            type: 'column',
-          },
-          title: {
-            text: 'Breakdown of Data',
-          },
-          subtitle: {
-            text: 'Click the columns to view breakdown.',
-          },
-          xAxis: {
-            type: 'category',
-          },
-          yAxis: {
-            title: {
-              text: 'Weight (lbs)',
-            },
+      chart: {
+        type: 'column',
+      },
+      title: {
+        text: 'Breakdown of Data',
+      },
+      subtitle: {
+        text: 'Click the columns to view breakdown.',
+      },
+      xAxis: {
+        type: 'category',
+      },
+      yAxis: {
+        title: {
+          text: 'Weight (lbs)',
+        },
 
+      },
+      legend: {
+        enabled: false,
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}',
           },
-          legend: {
-            enabled: false,
-          },
-          plotOptions: {
-            series: {
-              borderWidth: 0,
-              dataLabels: {
-                enabled: true,
-                format: '{point.y:.1f}',
-              },
-            },
-          },
+        },
+      },
 
-          tooltip: {
-            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br/>',
-          },
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br/>',
+      },
 
-          series: [{
-            name: 'Breakdown of Trash Category',
-            colorByPoint: true,
-            data: seriesData,
-          }],
-          drilldown:
-              { series: drillData },
-        };
+      series: [{
+        name: 'Breakdown of Trash Category',
+        colorByPoint: true,
+        data: seriesData,
+      }],
+      drilldown:
+          { series: drillData },
+    };
 
     const margins = { paddingBottom: '15px', paddingTop: '10px' };
     return (
@@ -182,7 +191,7 @@ class EventCharts extends React.Component {
           <div className="ui huge centered header">{this.props.data.date}: {this.props.data.building} data<br/>
             <div className="ui large buttons" style={margins}>
               <button className="ui button">Weight</button>
-              <div className="or"></div>
+              <div className="or"/>
               <button className="ui button">Volume</button>
             </div>
             <div className="ui grid container">
@@ -207,6 +216,7 @@ class EventCharts extends React.Component {
 /** Require an array of Events in the props. */
 EventCharts.propTypes = {
   data: PropTypes.object.isRequired,
+  bags: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -215,9 +225,11 @@ export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const docID = match.params._id;
   // Get access to audit data.
-  const subscription = Meteor.subscribe('Data');
+  const sub1 = Meteor.subscribe('Data');
+  const sub2 = Meteor.subscribe('Bags');
   return {
     data: Data.findOne(docID),
-    ready: subscription.ready(),
+    bags: Bags.find({}).fetch(),
+    ready: (sub1.ready() && sub2.ready())
   };
 })(EventCharts);

@@ -17,7 +17,7 @@ class Event extends React.Component {
         return <Item.Image src='/images/thumb-uhm.png' size='medium' rounded/>;
       case 'Kapiʻolani Community College':
         return <Item.Image src='/images/thumb-kcc.png' size='medium' rounded/>;
-      case "University of Hawaiʻi - West O'ahu":
+      case 'University of Hawaiʻi - West Oʻahu':
         return <Item.Image src='/images/thumb-uhw.png' size='medium' rounded/>;
       case 'University of Hawaiʻi at Hilo':
         return <Item.Image src='/images/thumb-uhh.png' size='medium' rounded/>;

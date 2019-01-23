@@ -33,10 +33,6 @@ const buildings = [
  * TODO: Implement addAdditions to dropdown options. */
 class EditEvents extends React.Component {
 
-  componentDidMount() {
-    document.title = 'OWO - Edit Event';
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -46,6 +42,7 @@ class EditEvents extends React.Component {
       date: this.props.data.date,
       timeStart: this.props.data.timeStart,
       timeEnd: this.props.data.timeEnd,
+      eventID: this.props.data.eventID,
       notes: this.props.data.notes,
       _id: this.props.data._id,
       open: false,
@@ -60,6 +57,7 @@ class EditEvents extends React.Component {
     this.insertCallback = this.insertCallback.bind(this);
     this.deleteCallback = this.deleteCallback.bind(this);
     this.renderRedirect = this.renderRedirect.bind(this);
+    document.title = 'OWO - Edit Event';
   }
 
   /** Notify the user of the results of the submit. If successful, redirect to Events.
@@ -101,9 +99,8 @@ class EditEvents extends React.Component {
 
   /** Inserts submitted values into Data collection as Event data. */
   handleSubmit() {
-    const { campus, building, date, timeStart, timeEnd, notes, _id } = this.state;
-    const input = [];
-    Data.update(_id, { $set: { campus, building, date, timeStart, timeEnd, notes, input } },
+    const { campus, building, date, timeStart, timeEnd, eventID, notes, _id } = this.state;
+    Data.update(_id, { $set: { campus, building, date, timeStart, timeEnd, eventID, notes } },
         this.insertCallback);
   }
 
