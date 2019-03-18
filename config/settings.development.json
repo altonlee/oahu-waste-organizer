@@ -19,7 +19,8 @@
       "timeEnd": "01:00 PM",
       "eventID": "TEST-Event-KCC",
       "notes": "Audit failed! How did this happen!?",
-      "bagTare": 0
+      "bagTare": 0,
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "campus": "University of Hawaiʻi at Manoa",
@@ -29,7 +30,8 @@
       "timeEnd": "03:00 PM",
       "eventID": "TEST-Event-UHM",
       "notes": "Audit was successful! We ate at Papa John's after.",
-      "bagTare": 0
+      "bagTare": 0,
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "campus": "University of Washington",
@@ -39,7 +41,8 @@
       "timeEnd": "02:00 PM",
       "eventID": "TEST-Event-UW",
       "notes": "What the... Where am I? Placeholder event to test unknown campus.",
-      "bagTare": 0
+      "bagTare": 0,
+      "createdAt": "December 17, 1995 03:24:00"
     }
   ],
   "defaultBags": [
@@ -49,7 +52,8 @@
       "name": "Recyclable paper",
       "weight": 9.6,
       "volume": 38.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -57,7 +61,8 @@
       "name": "Non-recyclable paper",
       "weight": 8.75,
       "volume": 33,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -65,7 +70,8 @@
       "name": "Paper towels",
       "weight": 16.75,
       "volume": 44,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -73,7 +79,8 @@
       "name": "Starbucks cups",
       "weight": 3.1,
       "volume": 13.75,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -81,7 +88,8 @@
       "name": "Plastic to-go cups",
       "weight": 2.65,
       "volume": 11,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -89,7 +97,8 @@
       "name": "Wax paper cups",
       "weight": 3.2,
       "volume": 11,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -97,7 +106,8 @@
       "name": "Compostable take-out",
       "weight": 6.15,
       "volume": 35.75,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -105,7 +115,8 @@
       "name": "Disposable utensils",
       "weight": 2.25,
       "volume": 4,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -113,7 +124,8 @@
       "name": "Straws",
       "weight": 0.05,
       "volume": 2.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -121,7 +133,8 @@
       "name": "8oz cans",
       "weight": 6.6,
       "volume": 38.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -129,7 +142,8 @@
       "name": "Soda cans",
       "weight": 5.75,
       "volume": 33,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -137,7 +151,8 @@
       "name": "16 oz cans",
       "weight": 7.75,
       "volume": 44,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -145,7 +160,8 @@
       "name": "Shirts",
       "weight": 3.1,
       "volume": 13.75,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -153,7 +169,8 @@
       "name": "Pants",
       "weight": 2.65,
       "volume": 11,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-KCC",
@@ -161,7 +178,8 @@
       "name": "Socks",
       "weight": 3.2,
       "volume": 11,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Wed Oct 10 2018 13:03:44"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -169,7 +187,8 @@
       "name": "Starbucks cups",
       "weight": 3.1,
       "volume": 13.75,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -177,7 +196,8 @@
       "name": "Plastic to-go cups",
       "weight": 2.65,
       "volume": 11,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -185,7 +205,8 @@
       "name": "Wax paper cups",
       "weight": 3.2,
       "volume": 11,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -193,7 +214,8 @@
       "name": "Compostable take-out",
       "weight": 6.15,
       "volume": 35.75,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -201,7 +223,8 @@
       "name": "Disposable utensils",
       "weight": 2.25,
       "volume": 4,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -209,7 +232,8 @@
       "name": "Straws",
       "weight": 0.05,
       "volume": 2.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -217,7 +241,8 @@
       "name": "Recyclable paper",
       "weight": 9.6,
       "volume": 38.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -225,7 +250,8 @@
       "name": "Non-recyclable paper",
       "weight": 8.75,
       "volume": 33,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -233,7 +259,8 @@
       "name": "Paper towels",
       "weight": 16.75,
       "volume": 44,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -241,7 +268,8 @@
       "name": "HI-5 Recyclable Plastic Containers",
       "weight": 1.75,
       "volume": 11,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -249,7 +277,8 @@
       "name": "Food wrappers",
       "weight": 1.85,
       "volume": 16.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -257,7 +286,8 @@
       "name": "Plastic food containers",
       "weight": 5.2,
       "volume": 38.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -265,7 +295,8 @@
       "name": "Styrofoam",
       "weight": 1.1,
       "volume": 5.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -273,7 +304,8 @@
       "name": "Other Plastic",
       "weight": 11.35,
       "volume": 44,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -281,7 +313,8 @@
       "name": "Recyclable metals",
       "weight": 1,
       "volume": 2.75,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -289,7 +322,8 @@
       "name": "Non-Recyclable",
       "weight": 1.1,
       "volume": 5.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -297,7 +331,8 @@
       "name": "Aluminum Cans",
       "weight": 1,
       "volume": 2.75,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -305,7 +340,8 @@
       "name": "HI-5 Glass Containers",
       "weight": 4.5,
       "volume": 5.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -313,7 +349,8 @@
       "name": "Non-HI-5 Glass",
       "weight": 4.65,
       "volume": 5.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -321,7 +358,8 @@
       "name": "Food Waste",
       "weight": 35.15,
       "volume": 44.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UHM",
@@ -329,7 +367,8 @@
       "name": "Green Waste",
       "weight": 1.65,
       "volume": 5.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "Tue Nov 20 2018 16:03:00"
     },
     {
       "eventID": "TEST-Event-UW",
@@ -337,7 +376,8 @@
       "name": "Recyclable paper",
       "weight": 9.6,
       "volume": 38.5,
-      "notes": ""
+      "notes": "",
+      "createdAt": "December 17, 1995 03:24:00"
     },
     {
       "eventID": "TEST-Event-UW",
@@ -345,7 +385,8 @@
       "name": "HI-5 Recyclable Plastic Containers",
       "weight": 1.75,
       "volume": 11,
-      "notes": ""
+      "notes": "",
+      "createdAt": "December 17, 1995 03:24:00"
     }
   ]
 }

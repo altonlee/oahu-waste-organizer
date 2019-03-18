@@ -22,7 +22,6 @@ class EventCharts extends React.Component {
   generateData(data) {
     const ret = [];
     const type = [];
-
     // Get array of names
     for (let i = 0; i < data.length; i++) {
       type[i] = data[i].category;
@@ -98,11 +97,11 @@ class EventCharts extends React.Component {
 
   renderPage() {
     // Filter bags corresponding to current event
-    const bags = this.props.bags.filter(bags => (bags.eventID === this.props.data.eventID));
+    const eventBags = this.props.bags.filter(bag => (bag.eventID === this.props.data.eventID));
 
     // Generate data for graphs to read
-    const seriesData = this.generateData(bags);
-    const drillData = this.generateDrilldown(bags);
+    const seriesData = this.generateData(eventBags);
+    const drillData = this.generateDrilldown(eventBags);
 
     // Pie chart options
     const pieStyle = {
@@ -230,6 +229,6 @@ export default withTracker(({ match }) => {
   return {
     data: Data.findOne(docID),
     bags: Bags.find({}).fetch(),
-    ready: (sub1.ready() && sub2.ready())
+    ready: (sub1.ready() && sub2.ready()),
   };
 })(EventCharts);
